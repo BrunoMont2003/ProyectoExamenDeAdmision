@@ -5,6 +5,7 @@
  */
 package datos;
 //GAAAAaa
+//GAAA
 import entidades.Areas;
 import java.sql.*;
 import javax.swing.JOptionPane;
