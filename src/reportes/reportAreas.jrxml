@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ac4ee1f-484f-476c-a071-8b89964f0826">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[call mostrarAreas()]]>
+	</queryString>
+	<field name="idArea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreArea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="idArea">
+		<groupExpression><![CDATA[$F{idArea}]]></groupExpression>
+	</group>
+	<group name="nombreArea">
+		<groupExpression><![CDATA[$F{nombreArea}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="169" splitType="Stretch">
+			<image>
+				<reportElement x="97" y="0" width="555" height="169" uuid="64d651dc-e0ab-4d7c-bb4f-0f1318b1db08"/>
+				<imageExpression><![CDATA["C:\\Users\\Frecuencia 7\\Desktop\\ProyectoUniversidad\\src\\img\\logo-unt1.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="0" width="100" height="20" uuid="35d918c7-39d8-447e-8d50-32600874397e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="154" y="9" width="232" height="35" uuid="033090d3-d639-449e-b819-1f63684bc17b"/>
+				<textElement>
+					<font fontName="Calisto MT" size="22"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE AREAS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="2" width="100" height="20" uuid="c2609b56-a31c-49ad-ab25-8a4479a06ee7"/>
+				<textElement>
+					<font fontName="Broadway" size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ID Area]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="2" width="173" height="20" uuid="7060a563-8e21-4a58-8c2b-e22e465d4c22"/>
+				<textElement>
+					<font fontName="Broadway" size="16"/>
+				</textElement>
+				<text><![CDATA[Nombre Area]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="0" width="100" height="20" uuid="f4ceabe9-d243-4460-9069-fb55ed42d32f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idArea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="222" height="20" uuid="de873cab-e7d6-4fa1-aaca-63b2f3f48d95"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreArea}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="283" y="0" width="1" height="20" uuid="1bb3a6a6-892f-4f55-8145-a02a79ee0818"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="57" splitType="Stretch">
+			<textField>
+				<reportElement x="203" y="37" width="80" height="20" uuid="d51a1ddf-5082-4b60-879c-c83dbc91f245"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="284" y="37" width="40" height="20" uuid="936e1e25-89ab-4efd-8875-4a26bfca100e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
