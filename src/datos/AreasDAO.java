@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package datos;
-//GAAAAaa
-//GAAA3333
+
 import entidades.Areas;
 import java.sql.*;
 import javax.swing.JOptionPane;
