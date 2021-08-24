@@ -31,6 +31,7 @@ public class CarrerasDAO {
             ps = cnn.prepareStatement("call insertar_carreras(?,?,?)");
             ps.setString(1, carreras.getCodigoCarrera());
             ps.setString(2, carreras.getNombreCarrera());
+            ps.setString(3, carreras.getFacultad().getIdFacultad());
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -40,75 +41,21 @@ public class CarrerasDAO {
         }
     }
 
-    public Carreras buscarCarreras(String codigoCarrera) throws SQLException {
-        cnn = Conexion.getInstancia().miConexion();
-        PreparedStatement ps = null;
-        Carreras car = null;
-        try {
-            ps = cnn.prepareStatement("SELECT * FROM carrera"
-                    + " WHERE codigoCarrera=?");
-            ps.setString(1, codigoCarrera);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                String nombreCarrera = rs.getString("nombreCarrera");
-                car = new Carreras(codigoCarrera, nombreCarrera);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
-        } finally {
-            ps.close();
-            cnn.close();
-        }
-        return car;
-    }
-
-    public void actualizar(Carreras carreras) throws SQLException {
-        cnn = Conexion.getInstancia().miConexion();
-        PreparedStatement ps = null;
-        try {
-            ps = cnn.prepareStatement(" UPDATE carrera"
-                    + " SET nombreCarrera = ?"
-                    + " WHERE codigoCarrera=?");
-            ps.setString(2, carreras.getCodigoCarrera());
-            ps.setString(1, carreras.getNombreCarrera());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
-        } finally {
-            ps.close();
-            cnn.close();
-        }
-    }
-
-    public void eliminar(String codigoCarrera) throws SQLException {
-        cnn = Conexion.getInstancia().miConexion();
-        PreparedStatement ps = null;
-        try {
-            ps = cnn.prepareStatement("DELETE FROM carrera"
-                    + " WHERE codigoCarrera=?");
-            ps.setString(1, codigoCarrera);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
-        } finally {
-            ps.close();
-            cnn.close();
-        }
-    }
 
     public void mostrarCarreras(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"Codigo Carrera", "Nombre Carrera"};
+        String titulos[] = {"ID Carrera", "Nombre Carrera", "ID Facultad"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("SELECT * FROM carrera");
+            ps = cnn.prepareStatement("call mostrarCarreras()");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String codigoCarrera = rs.getString("codigoCarrera");
+                String idCarrera = rs.getString("idCarrera");
                 String nombreCarrera = rs.getString("nombreCarrera");
-                String fila[] = {codigoCarrera, nombreCarrera};
+                String idFacultad = rs.getString("idFacultad");
+                String fila[] = {idCarrera, nombreCarrera, idFacultad};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -119,7 +66,7 @@ public class CarrerasDAO {
         }
     }
 
-    public void mostraCarrerasPorNombre(String nombre, DefaultTableModel modelo) throws SQLException {
+   /* public void mostraCarrerasPorNombre(String nombre, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         String titulos[] = {"Codigo Carrera", "Nombre Carrera"};
@@ -142,5 +89,5 @@ public class CarrerasDAO {
             ps.close();
             cnn.close();
         }
-    }
+    }*/
 }
