@@ -135,11 +135,7 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String nombreCarrera = txtNombreCarrera.getText();
-        try {
-            cd.mostraCarrerasPorNombre(nombreCarrera, modelo);
-        } catch (SQLException ex) {
-
-        }
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
