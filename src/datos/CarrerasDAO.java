@@ -28,7 +28,7 @@ public class CarrerasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("INSERT INTO Autor(codigoCarrera,nombreCarrera) values(?,?)");
+            ps = cnn.prepareStatement("call insertar_carreras(?,?,?)");
             ps.setString(1, carreras.getCodigoCarrera());
             ps.setString(2, carreras.getNombreCarrera());
             ps.executeUpdate();
