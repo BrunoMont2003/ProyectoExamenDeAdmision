@@ -35,7 +35,7 @@
 			</textField>
 			<image>
 				<reportElement x="108" y="-12" width="727" height="156" uuid="1a21122d-1fed-4f0e-8882-b0bfe244df33"/>
-				<imageExpression><![CDATA["C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\img\\logo-unt1.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\Frecuencia 7\\Documents\\NetBeansProjects\\ProyectoExamenAdmision\\src\\img\\logo-unt1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
