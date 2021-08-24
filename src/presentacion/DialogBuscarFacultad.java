@@ -17,7 +17,7 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
     DefaultTableModel modelo = new DefaultTableModel();
     Facultad facultadSelec = new Facultad();
     FacultadDAO ad = new FacultadDAO();
-     
+     //GAA
     public DialogBuscarFacultad() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
