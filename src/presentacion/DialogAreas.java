@@ -70,6 +70,11 @@ public class DialogAreas extends javax.swing.JDialog {
         jLabel4.setText("Nombre Area");
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
 
@@ -156,6 +161,10 @@ public class DialogAreas extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_btnGenActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
