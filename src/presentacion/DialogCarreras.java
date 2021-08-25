@@ -7,11 +7,15 @@ package presentacion;
 
 import datos.CarrerasDAO;
 import entidades.Carreras;
+import entidades.Facultad;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import reportes.GestionReportes;
 
 /**
  *
@@ -21,13 +25,15 @@ public class DialogCarreras extends javax.swing.JDialog {
 
     DefaultTableModel modelo = new DefaultTableModel();
     CarrerasDAO cd = new CarrerasDAO();
-
+    Facultad facultad;
     /**
      * Creates new form DialogCarreras
      */
     public DialogCarreras() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
+        setLocationRelativeTo(null);
         initComponents();
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel7, "src/img/pdf.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/logo-unt1.png");
         cd.mostrarCarreras(modelo);
     }
@@ -55,19 +61,34 @@ public class DialogCarreras extends javax.swing.JDialog {
         btnMostrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        txtIdFacu = new javax.swing.JTextField();
+        txtNombreF = new javax.swing.JTextField();
+        btnSeleccionar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnReporteCarreras = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 627, 169));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel2.setText("Carreras Universitarias");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 175, 296, -1));
+        getContentPane().add(txtCodigoCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 215, 298, 40));
+        getContentPane().add(txtNombreCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 267, 298, 35));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Codigo Carrera");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 225, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nombre Carrera");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 260, -1, -1));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +96,7 @@ public class DialogCarreras extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, 34));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +104,7 @@ public class DialogCarreras extends javax.swing.JDialog {
                 btnModificarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, 30));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +112,7 @@ public class DialogCarreras extends javax.swing.JDialog {
                 btnEliminarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, 30));
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +120,7 @@ public class DialogCarreras extends javax.swing.JDialog {
                 btnConsultarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, 30));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +128,7 @@ public class DialogCarreras extends javax.swing.JDialog {
                 btnSalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, 67, 30));
 
         btnMostrar.setText("Mostrar");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,75 +136,83 @@ public class DialogCarreras extends javax.swing.JDialog {
                 btnMostrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 450, -1, 30));
 
         jTable1.setModel(modelo);
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 579, 230));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "FACULTAD"));
+
+        txtIdFacu.setEditable(false);
+
+        txtNombreF.setEditable(false);
+        txtNombreF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreFActionPerformed(evt);
+            }
+        });
+
+        btnSeleccionar.setText("SELECCIONAR");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("NOMBRE FACULTAD");
+
+        jLabel6.setText("ID FACULTAD");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(txtIdFacu, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(txtNombreF, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCodigoCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                    .addComponent(txtNombreCarrera))
-                .addGap(59, 59, 59))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnGuardar)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnConsultar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificar)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnEliminar)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnMostrar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addGap(99, 99, 99))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccionar)
+                .addGap(196, 196, 196))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigoCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreF, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdFacu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 130));
+
+        btnReporteCarreras.setBackground(new java.awt.Color(255, 51, 51));
+        btnReporteCarreras.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btnReporteCarreras.setText("GENERAR REPORTE DE CARRERAS");
+        btnReporteCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteCarrerasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReporteCarreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 750, -1, 57));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 740, 80, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,7 +220,8 @@ public class DialogCarreras extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String codigoCarrera = txtCodigoCarrera.getText();
         String nombreCarrera = txtNombreCarrera.getText();
-        Carreras x = new Carreras(codigoCarrera, nombreCarrera);
+        String idFacultad = txtIdFacu.getText();
+        Carreras x = new Carreras(codigoCarrera, nombreCarrera, facultad);
         try {
             cd.insertar(x);
             cd.mostrarCarreras(modelo);
@@ -197,38 +232,41 @@ public class DialogCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        String codigoCarrera = txtCodigoCarrera.getText();
-        Carreras x;
-        try {
-            x = cd.buscarCarreras(codigoCarrera);
+         try {
+            String idCarreras= txtCodigoCarrera.getText();
+            Carreras x;
+            x = cd.buscarCarreras(idCarreras);
             txtNombreCarrera.setText(x.getNombreCarrera());
+            txtIdFacu.setText(x.getFacultad().getIdFacultad());
+            txtNombreF.setText(x.getFacultad().getNombreFacultad());
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        String codigoCarrera = txtCodigoCarrera.getText();
+     String idCarrera = txtCodigoCarrera.getText();
         String nombreCarrera = txtNombreCarrera.getText();
-        Carreras x = new Carreras(codigoCarrera, nombreCarrera);
+        String idFacultad= txtIdFacu.getText();
+        Carreras x = new Carreras(idCarrera, nombreCarrera, facultad);
         try {
             cd.actualizar(x);
             cd.mostrarCarreras(modelo);
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
         }
+
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-          String codigoCarrera = txtCodigoCarrera.getText();
+         String idCarrera = txtCodigoCarrera.getText();
         try {
-            cd.eliminar(codigoCarrera);
+            cd.eliminar(idCarrera);
             cd.mostrarCarreras(modelo);
             JOptionPane.showMessageDialog(null, "Se elimino el registro");
-          
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -244,6 +282,33 @@ public class DialogCarreras extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void txtNombreFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreFActionPerformed
+
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        try {
+            DialogBuscarFacultad f = new DialogBuscarFacultad();
+            f.setVisible(true);
+            facultad = f.facultadSelec;
+            txtIdFacu.setText(facultad.getIdFacultad());
+            txtNombreF.setText(facultad.getNombreFacultad());
+        } catch (SQLException ex) {
+            Logger.getLogger(DialogCarreras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
+
+    private void btnReporteCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteCarrerasActionPerformed
+          GestionReportes fr = new  GestionReportes();
+         try {
+             fr.ReporteCarreras();
+             dispose();
+         } catch (JRException ex) {
+             Logger.getLogger(DialogFacultad.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+    }//GEN-LAST:event_btnReporteCarrerasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
@@ -251,14 +316,22 @@ public class DialogCarreras extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnReporteCarreras;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCodigoCarrera;
+    private javax.swing.JTextField txtIdFacu;
     private javax.swing.JTextField txtNombreCarrera;
+    private javax.swing.JTextField txtNombreF;
     // End of variables declaration//GEN-END:variables
 }

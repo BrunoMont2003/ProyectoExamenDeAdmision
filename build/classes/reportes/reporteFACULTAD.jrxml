@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7092ec1a-d6d0-448e-afe8-82543d25d686">
+	<property name="ireport.zoom" value="2.143588810000003"/>
+	<property name="ireport.x" value="177"/>
+	<property name="ireport.y" value="172"/>
+	<parameter name="idar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from facultad
+WHERE idArea like $P{idar}]]>
+	</queryString>
+	<field name="idFacultad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreFacultad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idArea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="idFacultad">
+		<groupExpression><![CDATA[$F{idFacultad}]]></groupExpression>
+	</group>
+	<group name="nombreFacultad">
+		<groupExpression><![CDATA[$F{nombreFacultad}]]></groupExpression>
+	</group>
+	<group name="idArea">
+		<groupExpression><![CDATA[$F{idArea}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="98" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="134" y="3" width="312" height="26" uuid="b541fdd3-d36b-4a8f-934d-eabe9598c0ec"/>
+				<textElement>
+					<font fontName="Calisto MT" size="22"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE FACULTADES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="208" y="1" width="173" height="20" uuid="0c8071a3-7072-4b0a-ab9f-5ca2cd4867e6"/>
+				<textElement>
+					<font fontName="Broadway" size="16"/>
+				</textElement>
+				<text><![CDATA[Nombre Facultad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="2" width="76" height="20" uuid="8e8fdc85-41af-4b0e-871a-18bc684778a8"/>
+				<textElement>
+					<font fontName="Broadway" size="16"/>
+				</textElement>
+				<text><![CDATA[ID Area]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="2" width="114" height="20" uuid="fcb5c03f-7534-42ab-81db-2d9241304b24"/>
+				<textElement>
+					<font fontName="Broadway" size="16"/>
+				</textElement>
+				<text><![CDATA[ID Facultad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="159" y="1" width="233" height="20" uuid="58bb5b91-8d61-472a-a11b-128811805976"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombreFacultad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="1" width="100" height="20" uuid="dca1a4e6-9d21-438d-ab3f-fcb86af59a7e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{idArea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="1" width="124" height="20" uuid="593a09d6-be17-4672-96e5-2b31640f152b"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idFacultad}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="147" y="0" width="1" height="21" uuid="62ceb6a6-b0a4-4289-ad74-19de74cfb6a8"/>
+			</line>
+			<line>
+				<reportElement x="409" y="0" width="1" height="21" uuid="1404c1da-f250-49ad-b96a-d764051bd1ba"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

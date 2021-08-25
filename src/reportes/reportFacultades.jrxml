@@ -33,10 +33,6 @@
 				<reportElement x="455" y="0" width="100" height="20" uuid="ad1af785-530a-4827-a496-8a24ba7f0d38"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="108" y="-12" width="727" height="156" uuid="1a21122d-1fed-4f0e-8882-b0bfe244df33"/>
-				<imageExpression><![CDATA["C:\\Users\\Frecuencia 7\\Desktop\\ProyectoUniversidad\\src\\img\\logo-unt1.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

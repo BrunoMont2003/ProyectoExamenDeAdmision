@@ -6,6 +6,7 @@
 package datos;
 
 import entidades.Carreras;
+import entidades.Facultad;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,9 +29,10 @@ public class CarrerasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("INSERT INTO Autor(codigoCarrera,nombreCarrera) values(?,?)");
+            ps = cnn.prepareStatement("call insertar_carreras(?,?,?)");
             ps.setString(1, carreras.getCodigoCarrera());
             ps.setString(2, carreras.getNombreCarrera());
+            ps.setString(3, carreras.getFacultad().getIdFacultad());
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -40,18 +42,19 @@ public class CarrerasDAO {
         }
     }
 
-    public Carreras buscarCarreras(String codigoCarrera) throws SQLException {
+    public Carreras buscarCarreras(String idCarrera) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         Carreras car = null;
         try {
-            ps = cnn.prepareStatement("SELECT * FROM carrera"
-                    + " WHERE codigoCarrera=?");
-            ps.setString(1, codigoCarrera);
+            ps = cnn.prepareStatement("call buscarCarrera(?)");
+            ps.setString(1, idCarrera);
             rs = ps.executeQuery();
             if (rs.next()) {
                 String nombreCarrera = rs.getString("nombreCarrera");
-                car = new Carreras(codigoCarrera, nombreCarrera);
+                String idFacultad = rs.getString("idFacultad");
+                Facultad facultad = FacultadDAO.getInstancia().buscarFacultad(idFacultad);
+                car = new Carreras(idCarrera, nombreCarrera, facultad);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -66,11 +69,10 @@ public class CarrerasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement(" UPDATE carrera"
-                    + " SET nombreCarrera = ?"
-                    + " WHERE codigoCarrera=?");
-            ps.setString(2, carreras.getCodigoCarrera());
-            ps.setString(1, carreras.getNombreCarrera());
+            ps = cnn.prepareStatement("call modificarCarrera(?,?,?)");
+            ps.setString(1, carreras.getCodigoCarrera());
+            ps.setString(2, carreras.getNombreCarrera());
+            ps.setString(3, carreras.getFacultad().getIdFacultad());
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -80,13 +82,12 @@ public class CarrerasDAO {
         }
     }
 
-    public void eliminar(String codigoCarrera) throws SQLException {
+    public void eliminar(String idCarrera) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("DELETE FROM carrera"
-                    + " WHERE codigoCarrera=?");
-            ps.setString(1, codigoCarrera);
+            ps = cnn.prepareStatement("call eliminarCarrera(?)");
+            ps.setString(1, idCarrera);
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -99,16 +100,17 @@ public class CarrerasDAO {
     public void mostrarCarreras(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"Codigo Carrera", "Nombre Carrera"};
+        String titulos[] = {"ID Carrera", "Nombre Carrera", "ID Facultad"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("SELECT * FROM carrera");
+            ps = cnn.prepareStatement("call mostrarCarreras()");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String codigoCarrera = rs.getString("codigoCarrera");
+                String idCarrera = rs.getString("idCarrera");
                 String nombreCarrera = rs.getString("nombreCarrera");
-                String fila[] = {codigoCarrera, nombreCarrera};
+                String idFacultad = rs.getString("idFacultad");
+                String fila[] = {idCarrera, nombreCarrera, idFacultad};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -119,21 +121,22 @@ public class CarrerasDAO {
         }
     }
 
-    public void mostraCarrerasPorNombre(String nombre, DefaultTableModel modelo) throws SQLException {
+    public void mostraCarreraPorFacultad(String id, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"Codigo Carrera", "Nombre Carrera"};
+        String titulos[] = {"ID CARRERA", "NOMBRE CARRERA", "ID FACULTAD"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("SELECT * FROM carrera where nombreCarrera like ?");
-            ps.setString(1, nombre + "%");
+            ps = cnn.prepareStatement("call buscar_carrera(?)");
+            ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String codigoCarrera = rs.getString("codigoCarrera");
+                String idCarrera= rs.getString("idCarrera");
                 String nombreCarrera = rs.getString("nombreCarrera");
-                String fila[] = {codigoCarrera, nombreCarrera};
+                String idFacultad = rs.getString("idFacultad");
+                String fila[] = {idCarrera, nombreCarrera, idFacultad};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {

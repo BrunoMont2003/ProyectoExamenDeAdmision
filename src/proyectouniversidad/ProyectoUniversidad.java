@@ -5,6 +5,8 @@
  */
 package proyectouniversidad;
 
+import presentacion.FrmPrincipal;
+
 /**
  *
  * @author Frecuencia 7
@@ -15,7 +17,8 @@ public class ProyectoUniversidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        FrmPrincipal fr = new FrmPrincipal();
+        fr.setVisible(true);
     }
     
 }

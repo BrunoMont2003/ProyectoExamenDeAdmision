@@ -29,6 +29,7 @@ public class GestionReportes {
              JasperViewer view = new JasperViewer(jprint,false);
              view.setTitle("Areas");
              view.setVisible(true);
+             view.setAlwaysOnTop(true);
              
     }
     
@@ -41,7 +42,21 @@ public class GestionReportes {
              JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
              JasperViewer view = new JasperViewer(jprint,false);
              view.setTitle("Facultades");
+             view.setVisible(true);    
+             view.setAlwaysOnTop(true);
+    }
+        
+             public void ReporteCarreras() throws JRException {
+            Conexion con = new Conexion();
+             Connection conn = con.miConexion();
+             JasperReport reporte  = null;
+             String path = "src\\reportes\\reportCarreras.jasper";
+             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+             JasperViewer view = new JasperViewer(jprint,false);
+             view.setTitle("Carreras");
              view.setVisible(true);
+             view.setAlwaysOnTop(true);
              
     }
 }

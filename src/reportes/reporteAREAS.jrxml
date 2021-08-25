@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ab33901-7f41-4644-a1f4-0771ee6c45e8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     areau.`idArea` AS areau_idArea,
+     areau.`nombreArea` AS areau_nombreArea
+FROM
+     `areau` areau
+
+WHERE idArea like $P{idar}]]>
+	</queryString>
+	<field name="areau_idArea" class="java.lang.String"/>
+	<field name="areau_nombreArea" class="java.lang.String"/>
+	<group name="areau_idArea">
+		<groupExpression><![CDATA[$F{areau_idArea}]]></groupExpression>
+	</group>
+	<group name="areau_nombreArea">
+		<groupExpression><![CDATA[$F{areau_nombreArea}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="11" width="100" height="20" uuid="b9971cde-8482-41bf-96ff-d21f133871d3"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="175" y="0" width="232" height="35" uuid="2251e3b1-69e9-4c5f-86aa-b23df64a3ef7"/>
+				<textElement>
+					<font fontName="Calisto MT" size="22"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE AREAS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="85" y="2" width="100" height="20" uuid="03cff22f-477a-4e48-966e-7bb7b45d2ac7"/>
+				<textElement>
+					<font fontName="Broadway" size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ID Area]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="2" width="173" height="20" uuid="c3c96823-a503-491d-adbd-2f4406add946"/>
+				<textElement>
+					<font fontName="Broadway" size="16"/>
+				</textElement>
+				<text><![CDATA[Nombre Area]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="62" y="4" width="123" height="20" uuid="e6482a21-789b-487b-9b8f-8f231242e356"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{areau_idArea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="4" width="209" height="20" uuid="55fca7fd-8d7f-4119-8566-104bc5bee2b4"/>
+				<textFieldExpression><![CDATA[$F{areau_nombreArea}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="260" y="0" width="1" height="24" uuid="f096147e-9264-4a6f-8ea9-836df33cb470"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="202" y="34" width="80" height="20" uuid="9d70d9bd-54f5-4560-8910-ab9a6e164fa1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="282" y="34" width="40" height="20" uuid="a6a35a1c-810e-4cb3-bc4f-a65e26cd828c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
