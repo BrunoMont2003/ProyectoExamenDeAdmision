@@ -62,7 +62,7 @@ create procedure modificarFacultad(in idFa char(10), in nombF varchar(40), in id
 begin
   UPDATE facultad SET nombreFacultad=nombF, idArea=idAr WHERE idFacultad=idFa;
 end$$
-call modificarFacultad('FACD-013','MedicinaGod','AREA_A');
+call modificarFacultad('FACD-13','MedicinaGod','AREA_A');
 
 
 DELIMITER $$
@@ -71,4 +71,4 @@ begin
   DELETE FROM facultad where idFacultad=idFa;
 end$$
 
-call eliminarFacultad("FACD-013");
+call eliminarFacultad("FACD-13");
