@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/Conexion.java</file>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogCarreras.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/RangoPreguntasDAO.java</file>
             <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/AreasDAO.java</file>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/FrmPrincipal.java</file>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogBuscarAreas.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/composite2/Cliente.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/composite2/RangoPreguntas.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/composite2/RangoPreguntasLeaf.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/composite2/RangoPreguntasComposite.java</file>
         </group>
     </open-files>
 </project-private>
