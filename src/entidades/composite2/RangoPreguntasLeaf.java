@@ -5,6 +5,8 @@
  */
 package entidades.composite2;
 
+import entidades.Examen;
+
 /**
  *
  * @author bruno
@@ -14,14 +16,17 @@ public class RangoPreguntasLeaf extends RangoPreguntas {
     private String idClave;
     private int numero;
     private char letra;
+    private Examen examen;
 
-
-    public RangoPreguntasLeaf(String idClave, int numero,char letra) {
+    public RangoPreguntasLeaf(String idClave, int numero, char letra, Examen examen) {
         this.idClave = idClave;
         this.numero = numero;
         this.letra = letra;
+        this.examen = examen;
     }
 
+
+    
     public String getIdClave() {
         return idClave;
     }
@@ -46,6 +51,15 @@ public class RangoPreguntasLeaf extends RangoPreguntas {
         this.letra = letra;
     }
 
+    public Examen getExamen() {
+        return examen;
+    }
+
+    public void setExamen(Examen examen) {
+        this.examen = examen;
+    }
+
+    
     
    
     @Override

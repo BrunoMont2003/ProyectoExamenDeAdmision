@@ -34,7 +34,7 @@ public class RangoPreguntasDAO {
         cnn = Conexion.getInstancia().miConexion();
          PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_RangoPreguntas(?,?,?,?)");
+            ps = cnn.prepareStatement("call insertarRangoPreguntas(?,?,?,?)");
             ps.setString(1, rangoPreguntas.getIdRangoPreguntas());
             ps.setString(2, rangoPreguntas.getNombre());
             ps.setDouble(3, rangoPreguntas.getPuntajeCorrecta());
@@ -59,7 +59,7 @@ public class RangoPreguntasDAO {
             ps.setString(1, idRangoPreguntas);
             rs = ps.executeQuery();
             if (rs.next()) {
-                String nombre = rs.getString("nombreRangoPreguntas");
+                String nombre = rs.getString("nombre");
                 double puntajeCorrecta = rs.getDouble("puntajeCorrecta");
                 double puntajeIncorrecta = rs.getDouble("puntajeIncorrecta");
                 r = new RangoPreguntasComposite(idRangoPreguntas, nombre, puntajeCorrecta, puntajeIncorrecta);
@@ -106,7 +106,7 @@ public class RangoPreguntasDAO {
             cnn.close();
         }
     }
-     public void mostrarAreas(DefaultTableModel modelo) throws SQLException {
+     public void mostrarRangoPreguntas(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         String titulos[] = {"ID Rango Preguntas", "Nombre", "Puntaje Correcta", "Puntaje Incorrecta"};
@@ -116,11 +116,11 @@ public class RangoPreguntasDAO {
             ps = cnn.prepareStatement("call mostrarRangoPreguntas()");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String idArea = rs.getString("idRangoPreguntas");
-                String nombreArea = rs.getString("nombreRangoPreguntas");
+                String idRango = rs.getString("idRangoPreguntas");
+                String nombre = rs.getString("nombre");
                 double puntajeCorrecta = rs.getDouble("puntajeCorrecta");
                 double puntajeIncorrecta = rs.getDouble("puntajeIncorrecta");
-                String fila[] = {idArea, nombreArea, String.valueOf(puntajeCorrecta) , String.valueOf(puntajeIncorrecta)};
+                String fila[] = {idRango, nombre, String.valueOf(puntajeCorrecta) , String.valueOf(puntajeIncorrecta)};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
