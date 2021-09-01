@@ -18,15 +18,17 @@ import entidades.builder.OrdinarioModalidadBuilder;
  */
 public class Cliente {
     public static void main(String[] args) {
+        //creando el objeto examen para poder tenerlo de parámetro en CLAVE
         Fecha f = new Fecha(27,05,2021);
         Areas ar = new Areas("AREA_A","Ciencias De La Vidad Y La Salud");
+        //para modalidad se implementó el patrón builder
         DireccionSistemas m = new DireccionSistemas();
         m.setBuilder(new OrdinarioModalidadBuilder());
         m.construirModalidad();
         Modalidad modalidad = new Modalidad(m.getModalidad().getIdModalidad(), m.getModalidad().getNombreM());
-        System.out.println(modalidad.getNombreM());
         
         Examen ex = new Examen("EX-0001", "2021", f, ar, modalidad);
+ 
         RangoPreguntasComposite conocimientos = new RangoPreguntasComposite("RANGO-001", "Conocimientos", 4.079, -1.021);
         conocimientos.add(new RangoPreguntasLeaf("CLA-0001", 1, 'a',ex));
         conocimientos.add(new RangoPreguntasLeaf("CLA-0002", 2, 'b',ex));

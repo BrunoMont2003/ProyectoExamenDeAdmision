@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -125,6 +126,30 @@ public class ClaveDAO {
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
                 String idExamen = rs.getString("idExamen");
+                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+    public void mostrarClavesPorExamen(DefaultTableModel modelo, String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareStatement("call mostrarClavesDeExamen(?)");
+            ps.setString(1, idExamen);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idClave = rs.getString("idClave");
+                int numero = rs.getInt("numero");
+                char letra = rs.getString("letra").charAt(0);
                 String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen};
                 modelo.addRow(fila);
             }

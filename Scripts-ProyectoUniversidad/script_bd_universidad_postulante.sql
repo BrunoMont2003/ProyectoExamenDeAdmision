@@ -16,7 +16,7 @@ CREATE TABLE postulante (
     FOREIGN KEY (idAula)
         REFERENCES aula (idAula)
 );
-
+drop table postulante;
 SELECT 
     *
 FROM

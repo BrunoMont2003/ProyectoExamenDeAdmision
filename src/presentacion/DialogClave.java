@@ -5,21 +5,15 @@
  */
 package presentacion;
 
-import Datos.AutorDAO;
-import Datos.Conexion;
-import Entidad.Autor;
+import datos.ClaveDAO;
+import entidades.Examen;
+import entidades.composite2.RangoPreguntasLeaf;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -28,16 +22,17 @@ import net.sf.jasperreports.view.JasperViewer;
 public class DialogClave extends javax.swing.JDialog {
 
     DefaultTableModel modelo = new DefaultTableModel();
-    AutorDAO dao = new AutorDAO();
+    ClaveDAO dao = new ClaveDAO();
+    Examen examen;
 
     public DialogClave() {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
         desHabilitar();
         setLocationRelativeTo(null);
-        txtIdAutor.requestFocus();
+        txtIdClave.requestFocus();
         try {
-            dao.mostrar(modelo);
+            dao.mostrarClaves(modelo);
         } catch (SQLException ex) {
             Logger.getLogger(DialogClave.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,9 +53,10 @@ public class DialogClave extends javax.swing.JDialog {
     }
 
     public void limpiarEntradas() {
-        txtIdAutor.setText("");
-        txtNombre.setText("");
-        txtIdAutor.requestFocus();
+        txtIdClave.setText("");
+        cboNumero.setSelectedIndex(0);
+        cboLetra.setSelectedIndex(0);
+        txtIdClave.requestFocus();
     }
 
     /**
@@ -76,8 +72,7 @@ public class DialogClave extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtIdAutor = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
+        txtIdClave = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
@@ -86,7 +81,21 @@ public class DialogClave extends javax.swing.JDialog {
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnGenerarReporte = new javax.swing.JButton();
+        cboNumero = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        cboLetra = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        btnSeleccionar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtIdExamen = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtSemestre = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtArea = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtModalidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,32 +104,24 @@ public class DialogClave extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Roboto Condensed", 1, 24)); // NOI18N
-        jLabel3.setText("DATOS DEL AUTOR");
+        jLabel3.setText("CLAVES");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel2.setText("Id Autor");
+        jLabel2.setText("Id Clave");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel4.setText("Nombre");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jLabel4.setText("Numero");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 172, -1, 20));
 
-        txtIdAutor.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        txtIdAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdClave.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtIdClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIdAutorKeyTyped(evt);
+                txtIdClaveKeyTyped(evt);
             }
         });
-        jPanel1.add(txtIdAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, -1));
-
-        txtNombre.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 230, -1));
+        jPanel1.add(txtIdClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, -1));
 
         btnGuardar.setBackground(new java.awt.Color(168, 192, 215));
         btnGuardar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -130,7 +131,7 @@ public class DialogClave extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 120, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, 120, -1));
 
         btnConsultar.setBackground(new java.awt.Color(168, 192, 215));
         btnConsultar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -140,7 +141,7 @@ public class DialogClave extends javax.swing.JDialog {
                 btnConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 130, -1));
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 670, 130, -1));
 
         btnActualizar.setBackground(new java.awt.Color(168, 192, 215));
         btnActualizar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -150,7 +151,7 @@ public class DialogClave extends javax.swing.JDialog {
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 140, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 670, 140, -1));
 
         btnSalir.setBackground(new java.awt.Color(234, 107, 107));
         btnSalir.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -160,7 +161,7 @@ public class DialogClave extends javax.swing.JDialog {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 90, -1));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 730, 90, -1));
 
         btnRestaurar.setBackground(new java.awt.Color(234, 107, 107));
         btnRestaurar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -170,7 +171,7 @@ public class DialogClave extends javax.swing.JDialog {
                 btnRestaurarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 140, -1));
+        jPanel1.add(btnRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, 140, -1));
 
         btnEliminar.setBackground(new java.awt.Color(234, 107, 107));
         btnEliminar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -180,36 +181,120 @@ public class DialogClave extends javax.swing.JDialog {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 140, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, 140, -1));
 
         jTable1.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         jTable1.setModel(modelo);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 520, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 500, 660));
 
-        btnGenerarReporte.setBackground(new java.awt.Color(168, 192, 215));
-        btnGenerarReporte.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnGenerarReporte.setText("Generar Reporte");
-        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+        cboNumero.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        cboNumero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+        jPanel1.add(cboNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 130, 30));
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel5.setText("Letra");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, 20));
+
+        cboLetra.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        cboLetra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "a", "b", "c", "d" }));
+        jPanel1.add(cboLetra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 130, 30));
+
+        jPanel2.setBackground(new java.awt.Color(235, 231, 172));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EXAMEN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSeleccionar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarReporteActionPerformed(evt);
+                btnSeleccionarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 180, -1));
+        jPanel2.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 480));
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel6.setText("ID EXAMEN");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        txtIdExamen.setEditable(false);
+        txtIdExamen.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtIdExamen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdExamenKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtIdExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 210, -1));
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel7.setText("Semestre");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        txtSemestre.setEditable(false);
+        txtSemestre.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtSemestre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSemestreKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtSemestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 230, -1));
+
+        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel8.setText("Fecha");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        txtFecha.setEditable(false);
+        txtFecha.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtFecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 230, -1));
+
+        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel9.setText("Area");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+
+        txtArea.setEditable(false);
+        txtArea.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAreaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 310, -1));
+
+        jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel10.setText("Modalidad");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+
+        txtModalidad.setEditable(false);
+        txtModalidad.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        txtModalidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtModalidadKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 220, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 430, 340));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtIdAutor.getText().equals("") || txtNombre.getText().equals("")) {
+        if (txtIdClave.getText().equals("") || cboLetra.getSelectedIndex()==0 || cboNumero.getSelectedIndex()==0){
             JOptionPane.showMessageDialog(null, "No deje el campo vacio");
         } else {
-            String idAutor = txtIdAutor.getText();
-            String nombre = txtNombre.getText();
-            Autor x = new Autor(idAutor, nombre);
+            String idClave = txtIdClave.getText();
+            int numero = Integer.parseInt(cboNumero.getSelectedItem().toString());
+            char letra = cboLetra.getSelectedItem().toString().charAt(0);
+            RangoPreguntasLeaf x = new RangoPreguntasLeaf(idClave, numero, letra, examen);
+            
             try {
                 dao.insertar(x);
             } catch (SQLException ex) {
@@ -217,7 +302,7 @@ public class DialogClave extends javax.swing.JDialog {
             }
             limpiarEntradas();
             try {
-                dao.mostrar(modelo);
+                dao.mostrarClaves(modelo);
             } catch (SQLException ex) {
                 Logger.getLogger(DialogClave.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -226,18 +311,45 @@ public class DialogClave extends javax.swing.JDialog {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        String idAutor = txtIdAutor.getText();
-        if (idAutor.equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "POR FAVOR INGRESA EL ID DEL AUTOR");
+        String idClave = txtIdClave.getText();
+        if (idClave.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "POR FAVOR INGRESA EL ID DE LA CLAVE");
         } else {
-            Autor x;
+            RangoPreguntasLeaf x;
             try {
-                x = dao.buscarAutor(idAutor);
+                x = dao.buscarClave(idClave);
                 if (x != null) {
-                    txtNombre.setText(x.getNombre());
+                    int numero = x.getNumero();
+
+                    cboNumero.setSelectedIndex(numero);
+                    
+                    char letra = x.getLetra();
+                    switch (letra) {
+                        case 'a':
+                            cboLetra.setSelectedIndex(1);
+                            break;
+                        case 'b':
+                            cboLetra.setSelectedIndex(2);
+                            break;
+                        case 'c':
+                            cboLetra.setSelectedIndex(3);
+                            break;
+                        case 'd':
+                            cboLetra.setSelectedIndex(4);
+                            break;
+                        default:
+                            break;
+                    }
+                        
+                    cboLetra.setSelectedItem(x.getLetra());
+                    txtIdExamen.setText(x.getExamen().getIdExamen());
+                    txtSemestre.setText(x.getExamen().getSemestre());
+                    txtFecha.setText(x.getExamen().getFecha().toStringFormatSql());
+                    txtArea.setText(x.getExamen().getArea().getNombreArea());
+                    txtModalidad.setText(x.getExamen().getModalidad().getNombreM());
                     habilitar();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Dicho autor no existe");
+                    JOptionPane.showMessageDialog(this, "Dicha clave no existe");
                 }
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
@@ -247,12 +359,14 @@ public class DialogClave extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if (txtIdAutor.getText().equals("") || txtNombre.getText().equals("")) {
+       if (txtIdClave.getText().equals("") || cboLetra.getSelectedIndex()==0 || cboNumero.getSelectedIndex()==0){
             JOptionPane.showMessageDialog(null, "No deje el campo vacio");
         } else {
-            String idAutor = txtIdAutor.getText();
-            String nombre = txtNombre.getText();
-            Autor x = new Autor(idAutor, nombre);
+            String idClave = txtIdClave.getText();
+            int numero = Integer.parseInt(cboNumero.getSelectedItem().toString());
+            char letra = cboLetra.getSelectedItem().toString().charAt(0);
+            RangoPreguntasLeaf x = new RangoPreguntasLeaf(idClave, numero, letra, examen);
+            
             try {
                 dao.actualizar(x);
             } catch (SQLException ex) {
@@ -261,9 +375,9 @@ public class DialogClave extends javax.swing.JDialog {
             limpiarEntradas();
             desHabilitar();
             try {
-                dao.mostrar(modelo);
+                dao.mostrarClaves(modelo);
             } catch (SQLException ex) {
-                System.out.println("ERROR: " + ex.getMessage());
+                Logger.getLogger(DialogClave.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -281,12 +395,12 @@ public class DialogClave extends javax.swing.JDialog {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        String id = txtIdAutor.getText();
+        String id = txtIdClave.getText();
         if (!id.equals("")) {
             try {
                 dao.eliminar(id);
                 JOptionPane.showMessageDialog(this, "Se eliminó el registro");
-                dao.mostrar(modelo);
+                dao.mostrarClaves(modelo);
                 limpiarEntradas();
                 desHabilitar();
             } catch (SQLException ex) {
@@ -299,45 +413,55 @@ public class DialogClave extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtIdAutorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdAutorKeyTyped
-        if (txtIdAutor.getText().length() >= 8) {
+    private void txtIdClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdClaveKeyTyped
+        if (txtIdClave.getText().length() >= 8) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtIdAutorKeyTyped
+    }//GEN-LAST:event_txtIdClaveKeyTyped
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if (txtNombre.getText().length() >= 45) {
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        // TODO add your handling code here:
+        DialogBuscarExamen f = new DialogBuscarExamen();
+        f.setVisible(true);
+        examen = f.examenSelec;
+        txtIdExamen.setText(examen.getIdExamen());
+        txtSemestre.setText(examen.getSemestre());
+        txtFecha.setText(examen.getFecha().toStringFormatSql());
+        txtArea.setText(examen.getArea().getNombreArea());
+        txtModalidad.setText(examen.getModalidad().getNombreM());
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
+
+    private void txtIdExamenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdExamenKeyTyped
+        if (txtIdExamen.getText().length() >= 8) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtNombreKeyTyped
+    }//GEN-LAST:event_txtIdExamenKeyTyped
 
-    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
-        try {
-            Connection cnn = Conexion.getInstancia().miConexion();
-            JasperReport reportes;
-            String path;
-            path = "src/reportes/autores.jasper";
-            
-            reportes = (JasperReport) JRLoader.loadObjectFromFile(path);
-            
-            JasperPrint jprint = JasperFillManager.fillReport(reportes, null, cnn);
-            
-            JasperViewer view = new JasperViewer(jprint, false);
-            
-            view.setVisible(true);
-            
-            view.setAlwaysOnTop(true);
-            
-            view.setAutoRequestFocus(true);
-            
-            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            
-            dispose();
-            
-        } catch (JRException ex) {
-            System.out.println("Error" + ex.getMessage());
+    private void txtSemestreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSemestreKeyTyped
+        if (txtSemestre.getText().length() >= 25) {
+            evt.consume();
         }
-    }//GEN-LAST:event_btnGenerarReporteActionPerformed
+    }//GEN-LAST:event_txtSemestreKeyTyped
+
+    private void txtFechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaKeyTyped
+        char c = evt.getKeyChar();
+        if (txtFecha.getText().length() >= 13 || (c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFechaKeyTyped
+
+    private void txtAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaKeyTyped
+        if (txtArea.getText().length() >= 25) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAreaKeyTyped
+
+    private void txtModalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModalidadKeyTyped
+        char c = evt.getKeyChar();
+        if (txtModalidad.getText().length() >= 5 || (c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtModalidadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -448,17 +572,30 @@ public class DialogClave extends javax.swing.JDialog {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGenerarReporte;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JComboBox<String> cboLetra;
+    private javax.swing.JComboBox<String> cboNumero;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtIdAutor;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtArea;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtIdClave;
+    private javax.swing.JTextField txtIdExamen;
+    private javax.swing.JTextField txtModalidad;
+    private javax.swing.JTextField txtSemestre;
     // End of variables declaration//GEN-END:variables
 }

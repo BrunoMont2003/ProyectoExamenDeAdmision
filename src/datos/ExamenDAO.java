@@ -10,6 +10,7 @@ import entidades.Examen;
 import entidades.Fecha;
 import entidades.Modalidad;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -58,15 +59,14 @@ public class ExamenDAO {
                 String semestre = rs.getString("semestre");
                 String fechaSql = rs.getString("fecha");
                 String fechaArray[] = fechaSql.split("-");
-                int añoF = Integer.parseInt(fechaArray[0]); 
-                int mes = Integer.parseInt(fechaArray[1]); 
-                int dia = Integer.parseInt(fechaArray[2]); 
+                int añoF = Integer.parseInt(fechaArray[0]);
+                int mes = Integer.parseInt(fechaArray[1]);
+                int dia = Integer.parseInt(fechaArray[2]);
                 Fecha fecha = new Fecha(añoF, mes, dia);
                 String idArea = rs.getString("idArea");
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
                 String idModalidad = rs.getString("idModalidad");
                 Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
-                
 
                 exa = new Examen(idExamen, semestre, fecha, areas, modalidad);
             }
@@ -112,22 +112,51 @@ public class ExamenDAO {
             cnn.close();
         }
     }
-   public void mostrarExamen(DefaultTableModel modelo) throws SQLException {
+
+    public ArrayList<Examen> listarExamenes() throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID Examen", "Semestre","Fecha","Id Area", "IdModalidad"};
+        ArrayList<Examen> lista = new ArrayList<Examen>();
+        try {
+            ps = cnn.prepareCall("call mostrarExamen()");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idExamen");
+                String semestre = rs.getString("semestre");
+                String idArea = rs.getString("idArea");
+                String idModalidad = rs.getString("idModalidad");
+                String fechaSql = rs.getString("fecha");
+                Areas area = AreasDAO.getInstancia().buscarArea(idArea);
+                Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
+                String fechaArray[] = fechaSql.split("-");
+                int añoF = Integer.parseInt(fechaArray[0]);
+                int mes = Integer.parseInt(fechaArray[1]);
+                int dia = Integer.parseInt(fechaArray[2]);
+                Fecha fecha = new Fecha(añoF, mes, dia);
+                Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
+                lista.add(ex);
+            }
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
+    public void mostrarExamen(DefaultTableModel modelo) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Examen", "Semestre", "Fecha", "Id Area", "IdModalidad"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
             ps = cnn.prepareStatement("call mostrarExamen()");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String  idExamen = rs.getString("idExamen");
-                 String semestre = rs.getString("semestre");
-                 String idArea = rs.getString("idArea");
-                 String idModalidad=rs.getString("idModalidad");
-                 String fecha = rs.getString("fecha");
-                String fila[] = {idExamen,semestre,fecha, idArea,idModalidad};
+                String idExamen = rs.getString("idExamen");
+                String semestre = rs.getString("semestre");
+                String idArea = rs.getString("idArea");
+                String idModalidad = rs.getString("idModalidad");
+                String fecha = rs.getString("fecha");
+                String fila[] = {idExamen, semestre, fecha, idArea, idModalidad};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {

@@ -18,6 +18,10 @@ public class RangoPreguntasLeaf extends RangoPreguntas {
     private char letra;
     private Examen examen;
 
+    public RangoPreguntasLeaf() {
+    }
+    
+
     public RangoPreguntasLeaf(String idClave, int numero, char letra, Examen examen) {
         this.idClave = idClave;
         this.numero = numero;

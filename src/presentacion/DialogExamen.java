@@ -504,7 +504,7 @@ public class DialogExamen extends javax.swing.JDialog {
 
                 Fecha fecha = new Fecha(dia, mes, año);
                 Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
-                examendao.insertar(x);
+                examendao.actualizar(x);
 
                 limpiarEntradas();
                 desHabilitar();
