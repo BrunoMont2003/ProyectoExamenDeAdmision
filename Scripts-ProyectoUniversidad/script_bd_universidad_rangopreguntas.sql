@@ -33,6 +33,13 @@ END$$
 
 call mostrarRangoPreguntas();
 
+DELIMITER $$
+CREATE PROCEDURE mostrarRangoPreguntasPorNombre(in nom varchar(45))
+BEGIN 
+  select*from RangoPreguntas where nombre like concat(nom,"%");
+END$$
+
+
 
 DELIMITER $$
 create procedure modificarRangoPreguntas(in id char(8), in nom varchar(45),in cor double, in inc double)

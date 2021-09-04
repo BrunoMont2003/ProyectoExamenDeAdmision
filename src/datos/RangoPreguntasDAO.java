@@ -130,5 +130,30 @@ public class RangoPreguntasDAO {
             cnn.close();
         }
     }
+     public void mostrarRangoPreguntasPorNombre(DefaultTableModel modelo, String nom) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Rango Preguntas", "Nombre", "Puntaje Correcta", "Puntaje Incorrecta"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareStatement("call mostrarRangoPreguntasPorNombre(?)");
+            ps.setString(1, nom);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idRango = rs.getString("idRangoPreguntas");
+                String nombre = rs.getString("nombre");
+                double puntajeCorrecta = rs.getDouble("puntajeCorrecta");
+                double puntajeIncorrecta = rs.getDouble("puntajeIncorrecta");
+                String fila[] = {idRango, nombre, String.valueOf(puntajeCorrecta) , String.valueOf(puntajeIncorrecta)};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
     
 }

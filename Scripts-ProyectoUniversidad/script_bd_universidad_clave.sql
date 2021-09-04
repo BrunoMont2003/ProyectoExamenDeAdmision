@@ -3,17 +3,17 @@ use bduniversidad;
 create table clave(
 	idClave char(15) not null, 
     numero smallint, 
-    letra char(1),
+    letra char(4),
     idExamen char(8) not null,
     idRangoPreguntas char(8) not null,
     primary key  (idClave) ,
     foreign key(idExamen) references Examen(idExamen),
 	foreign key(idRangoPreguntas) references RangoPreguntas(idRangoPreguntas)
 );
--- drop table clave;
+drop table clave;
 
 DELIMITER $$
-CREATE PROCEDURE insertarClave(in id char(15), in num smallint, in let char(1), idEx char(8), idR char(8))
+CREATE PROCEDURE insertarClave(in id char(15), in num smallint, in let char(4), idEx char(8), idR char(8))
 BEGIN
   insert into clave(idClave, numero, letra, idExamen, idRangoPreguntas) values (id,num, let, idEx, idR);
 END$$
@@ -36,7 +36,7 @@ call mostrarClaves();
 
 
 DELIMITER $$
-create procedure modificarClave(in id char(15), in num smallint, in let char(1), idEx char(8), idR char(8))
+create procedure modificarClave(in id char(15), in num smallint, in let char(4), idEx char(8), idR char(8))
 begin
   UPDATE clave SET numero=num, letra=letra, idExamen = idEx, idRangoPreguntas=idR WHERE idClave=id;
 end$$

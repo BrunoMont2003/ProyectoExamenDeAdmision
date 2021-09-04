@@ -560,7 +560,13 @@ public class DialogClave extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIncorrectaKeyTyped
 
     private void btnSeleccionarRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarRangoActionPerformed
-        // TODO add your handling code here:
+        DialogBuscarRangoPreguntas f = new DialogBuscarRangoPreguntas();
+        f.setVisible(true);
+        rango = f.rangoselec;
+        txtIdRango.setText(rango.getIdRangoPreguntas());
+        txtNombre.setText(rango.getNombre());
+        txtCorrecta.setText(String.valueOf(rango.getPuntajeCorrecta()));
+        txtIncorrecta.setText(String.valueOf(rango.getPuntajeIncorrecta()));
 
     }//GEN-LAST:event_btnSeleccionarRangoActionPerformed
 

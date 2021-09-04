@@ -24,6 +24,8 @@ public class DialogBuscarExmn extends javax.swing.JDialog {
       super(FrmPrincipal.getInstancia(), true);
         initComponents();
         setLocationRelativeTo(null);
+        btnSeleccionar.setEnabled(false);
+
         try {
             for (int i = 0; i < examendao.listarExamenes().size(); i++) {
                 cboIdExamen.addItem(examendao.listarExamenes().get(i).getIdExamen());
@@ -268,6 +270,7 @@ public class DialogBuscarExmn extends javax.swing.JDialog {
             txtDia.setText(String.valueOf(examen.getFecha().getDia()));
             txtMes.setText(String.valueOf(examen.getFecha().getMes()));
             txtAño.setText(String.valueOf(examen.getFecha().getAño()));
+            btnSeleccionar.setEnabled(true);
 
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
