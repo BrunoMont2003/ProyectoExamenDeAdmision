@@ -6,7 +6,7 @@ public class ResponsableAula{
     private String nombres;
     private String apellidos;
     private String dni;
-    private Aula aula;
+    private Aula aula = new Aula();
 
     public ResponsableAula(String idResponsable, String nombres, String apellidos, String dni) {
         this.idResponsable = idResponsable;
@@ -14,6 +14,8 @@ public class ResponsableAula{
         this.apellidos = apellidos;
         this.dni = dni;
     }
+    
+    
 
     public ResponsableAula(String idResponsable, String nombres, String apellidos, String dni, Aula aula) {
         this.idResponsable = idResponsable;

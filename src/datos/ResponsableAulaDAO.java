@@ -52,15 +52,17 @@ public class ResponsableAulaDAO {
             ps.setString(1, idResponsable);
             rs = ps.executeQuery();
             if (rs.next()) {
+                String idRespon = rs.getString("idResponsable");
                 String apellidosResp = rs.getString("apellidosResp");
-                String nombresResp = rs.getString("nombreResp");
+                String nombresResp = rs.getString("nombresResp");
                 String dniResp = rs.getString("dniResp");
                 String idAula = rs.getString("idAula");
                 Aula aula = new Aula();
-                aula = AulaDAO.getInstancia().buscarAula(idAula);
-                ResponsableAula a= new ResponsableAula(idResponsable, nombresResp, apellidosResp, dniResp, aula);
-                ResponsableAulaAdapter f = new ResponsableAulaAdapter();
-                f.setResponsableAula(a);
+                AulaDAO x = new AulaDAO();
+                aula = x.buscarAula(idAula);
+                ResponsableAula a= new ResponsableAula(idRespon, nombresResp, apellidosResp, dniResp, aula);
+                resp = new ResponsableAulaAdapter();
+                resp.setResponsableAula(a);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -135,13 +137,13 @@ public class ResponsableAulaDAO {
     public void mostraResponsableporNombre(String nombre, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID Resposable-Aula", "Apellidos","Nombres" , "DNI"};
+        String titulos[] = {"ID Resposable-Aula", "Apellidos","Nombres" , "DNI", "ID-Aula"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
 
         try {
             ps = cnn.prepareStatement("call buscarResponsable_PorNombre(?)");
-            ps.setString(1, nombre + "%");
+            ps.setString(1, nombre);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idResponsable = rs.getString("idResponsable");

@@ -36,7 +36,7 @@ public class DialogResponsableAula extends javax.swing.JDialog {
         txtDni = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        btnBuscarFacultad = new javax.swing.JButton();
+        btnBuscarRepresentante = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnTodos = new javax.swing.JButton();
@@ -93,13 +93,13 @@ public class DialogResponsableAula extends javax.swing.JDialog {
         });
         getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 60, -1));
 
-        btnBuscarFacultad.setText("Buscar");
-        btnBuscarFacultad.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarRepresentante.setText("Buscar");
+        btnBuscarRepresentante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFacultadActionPerformed(evt);
+                btnBuscarRepresentanteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscarFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
+        getContentPane().add(btnBuscarRepresentante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +206,7 @@ public class DialogResponsableAula extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnBuscarFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacultadActionPerformed
+    private void btnBuscarRepresentanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRepresentanteActionPerformed
         try {
             String idResponsable = txtIDResponsable.getText();
             ResponsableAula x;
@@ -221,7 +221,7 @@ public class DialogResponsableAula extends javax.swing.JDialog {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
         }
-    }//GEN-LAST:event_btnBuscarFacultadActionPerformed
+    }//GEN-LAST:event_btnBuscarRepresentanteActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         String idResponsable = txtIDResponsable.getText();
@@ -272,7 +272,7 @@ public class DialogResponsableAula extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarFacultad;
+    private javax.swing.JButton btnBuscarRepresentante;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;

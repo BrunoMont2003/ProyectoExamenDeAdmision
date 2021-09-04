@@ -22,7 +22,7 @@ public class ResponsableAulaAdapter extends Persona{
     
     @Override
     public String Apellidos_Nombres() {
-        return responsableAula.getApellidos() +" - "+ responsableAula.getNombres();
+        return "NOMBRE: "+responsableAula.getApellidos() +" - " + responsableAula.getNombres();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ResponsableAulaAdapter extends Persona{
 
     @Override
     public String funcion() {
-        return "Responsable de Aula";
+        return "FUNCIÓN: RESPONSABLE DE AULA";
     }
     
 }

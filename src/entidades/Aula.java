@@ -14,7 +14,7 @@ public class Aula {
     private int nAula;
     private int capacidad;
     private int numeroAusentes;
-    private Areas areas;
+    private Areas areas = new Areas();
 
     public Aula() {
     }

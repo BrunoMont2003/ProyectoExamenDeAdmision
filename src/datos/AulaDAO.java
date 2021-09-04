@@ -59,12 +59,13 @@ public class AulaDAO {
             ps.setString(1, idAula);
             rs = ps.executeQuery();
             if (rs.next()) {
+                String idAul = rs.getString("idAula");
                 int numeroAula = Integer.parseInt(rs.getString("numeroAula"));
                 int capacidad = Integer.parseInt(rs.getString("capacidad"));
                 int numeroAusentes = Integer.parseInt(rs.getString("numeroAusentes"));
                 String idArea = rs.getString("idArea");
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
-                aula= new Aula(idAula,numeroAula,capacidad,numeroAusentes, areas);
+                aula= new Aula(idAul,numeroAula,capacidad,numeroAusentes, areas);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
