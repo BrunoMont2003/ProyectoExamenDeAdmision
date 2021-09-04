@@ -73,21 +73,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        mnuAreas = new javax.swing.JMenu();
+        mnuiRegistrarAreas = new javax.swing.JMenuItem();
+        mnuiReporteAreas = new javax.swing.JMenuItem();
+        mnuFacultad = new javax.swing.JMenu();
+        mnuiRegistrarFacultad = new javax.swing.JMenuItem();
+        mnuiReporteFacultad = new javax.swing.JMenuItem();
+        mnuCarreras = new javax.swing.JMenu();
+        mnuiRegistrarCarreras = new javax.swing.JMenuItem();
+        mnuiReporteCarreras = new javax.swing.JMenuItem();
+        mnuModalidad = new javax.swing.JMenu();
+        mnuiRegistrarModalidad = new javax.swing.JMenuItem();
+        mnuiReporteModalidades = new javax.swing.JMenuItem();
+        mnuAula = new javax.swing.JMenu();
+        mnuiRegistrarAula = new javax.swing.JMenuItem();
+        mnuiReporteAulas = new javax.swing.JMenuItem();
 
         jLabel1.setText("jLabel1");
 
@@ -96,122 +96,122 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jMenu1.setText("AREAS");
+        mnuAreas.setText("AREAS");
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
-        jMenuItem1.setText("Registrar Areas");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnuiRegistrarAreas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarAreas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarAreas.setText("Registrar Areas");
+        mnuiRegistrarAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnuiRegistrarAreasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        mnuAreas.add(mnuiRegistrarAreas);
 
-        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
-        jMenuItem4.setText("Reporte Areas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        mnuiReporteAreas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteAreas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiReporteAreas.setText("Reporte Areas");
+        mnuiReporteAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                mnuiReporteAreasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        mnuAreas.add(mnuiReporteAreas);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuAreas);
 
-        jMenu2.setText("FACULTAD");
+        mnuFacultad.setText("FACULTAD");
 
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
-        jMenuItem2.setText("Registrar Facultad");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnuiRegistrarFacultad.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarFacultad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarFacultad.setText("Registrar Facultad");
+        mnuiRegistrarFacultad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnuiRegistrarFacultadActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        mnuFacultad.add(mnuiRegistrarFacultad);
 
-        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
-        jMenuItem5.setText("Reporte Facultad");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mnuiReporteFacultad.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteFacultad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiReporteFacultad.setText("Reporte Facultad");
+        mnuiReporteFacultad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mnuiReporteFacultadActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        mnuFacultad.add(mnuiReporteFacultad);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuFacultad);
 
-        jMenu3.setText("CARRERAS");
+        mnuCarreras.setText("CARRERAS");
 
-        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
-        jMenuItem3.setText("Registrar Carreras");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        mnuiRegistrarCarreras.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarCarreras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarCarreras.setText("Registrar Carreras");
+        mnuiRegistrarCarreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                mnuiRegistrarCarrerasActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        mnuCarreras.add(mnuiRegistrarCarreras);
 
-        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
-        jMenuItem6.setText("Reporte Carreras");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        mnuiReporteCarreras.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteCarreras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiReporteCarreras.setText("Reporte Carreras");
+        mnuiReporteCarreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                mnuiReporteCarrerasActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        mnuCarreras.add(mnuiReporteCarreras);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnuCarreras);
 
-        jMenu4.setText("MODALIDAD");
+        mnuModalidad.setText("MODALIDAD");
 
-        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
-        jMenuItem7.setText("Registrar Modalidad ");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        mnuiRegistrarModalidad.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarModalidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarModalidad.setText("Registrar Modalidad ");
+        mnuiRegistrarModalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                mnuiRegistrarModalidadActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem7);
+        mnuModalidad.add(mnuiRegistrarModalidad);
 
-        jMenuItem10.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuItem10.setText("Reporte de Modalidades");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        mnuiReporteModalidades.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteModalidades.setText("Reporte de Modalidades");
+        mnuiReporteModalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                mnuiReporteModalidadesActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem10);
+        mnuModalidad.add(mnuiReporteModalidades);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(mnuModalidad);
 
-        jMenu5.setText("AULA");
+        mnuAula.setText("AULA");
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
-        jMenuItem8.setText("Registrar Aula");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        mnuiRegistrarAula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarAula.setText("Registrar Aula");
+        mnuiRegistrarAula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                mnuiRegistrarAulaActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem8);
+        mnuAula.add(mnuiRegistrarAula);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
-        jMenuItem9.setText("Reporte Aulas");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        mnuiReporteAulas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiReporteAulas.setText("Reporte Aulas");
+        mnuiReporteAulas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                mnuiReporteAulasActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem9);
+        mnuAula.add(mnuiReporteAulas);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnuAula);
 
         setJMenuBar(jMenuBar1);
 
@@ -229,61 +229,61 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnuiRegistrarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarAreasActionPerformed
         try {
             DialogAreas f = new DialogAreas();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnuiRegistrarAreasActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnuiRegistrarFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarFacultadActionPerformed
         try {
             DialogFacultad f = new DialogFacultad();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mnuiRegistrarFacultadActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void mnuiRegistrarCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarCarrerasActionPerformed
         try {
             DialogCarreras f = new DialogCarreras();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_mnuiRegistrarCarrerasActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void mnuiReporteAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteAreasActionPerformed
         try {
             DialogBuscarAreas f = new DialogBuscarAreas();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_mnuiReporteAreasActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void mnuiReporteFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteFacultadActionPerformed
         try {
             DialogBuscarFacultad f = new DialogBuscarFacultad();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_mnuiReporteFacultadActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void mnuiReporteCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteCarrerasActionPerformed
         try {
             DialogReporteCarreras f = new DialogReporteCarreras();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_mnuiReporteCarrerasActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void mnuiRegistrarModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarModalidadActionPerformed
 
         try {
             modalidad1();
@@ -296,34 +296,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_mnuiRegistrarModalidadActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void mnuiRegistrarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarAulaActionPerformed
         try {
             DialogAula f = new DialogAula();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_mnuiRegistrarAulaActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void mnuiReporteAulasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteAulasActionPerformed
         try {
             DialogBuscarAula f = new DialogBuscarAula();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_mnuiReporteAulasActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void mnuiReporteModalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteModalidadesActionPerformed
         try {
             DialogBuscarModalidad f = new DialogBuscarModalidad();
             f.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_mnuiReporteModalidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,21 +363,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu mnuAreas;
+    private javax.swing.JMenu mnuAula;
+    private javax.swing.JMenu mnuCarreras;
+    private javax.swing.JMenu mnuFacultad;
+    private javax.swing.JMenu mnuModalidad;
+    private javax.swing.JMenuItem mnuiRegistrarAreas;
+    private javax.swing.JMenuItem mnuiRegistrarAula;
+    private javax.swing.JMenuItem mnuiRegistrarCarreras;
+    private javax.swing.JMenuItem mnuiRegistrarFacultad;
+    private javax.swing.JMenuItem mnuiRegistrarModalidad;
+    private javax.swing.JMenuItem mnuiReporteAreas;
+    private javax.swing.JMenuItem mnuiReporteAulas;
+    private javax.swing.JMenuItem mnuiReporteCarreras;
+    private javax.swing.JMenuItem mnuiReporteFacultad;
+    private javax.swing.JMenuItem mnuiReporteModalidades;
     // End of variables declaration//GEN-END:variables
 }
