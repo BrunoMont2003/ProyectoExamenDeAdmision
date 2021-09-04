@@ -88,9 +88,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuAula = new javax.swing.JMenu();
         mnuiRegistrarAula = new javax.swing.JMenuItem();
         mnuiReporteAulas = new javax.swing.JMenuItem();
+        mnuResponsableAula = new javax.swing.JMenu();
+        mnuiRegistrarResponsableAula = new javax.swing.JMenuItem();
+        mnuiBuscarResponsableAula = new javax.swing.JMenuItem();
         mnuExamen = new javax.swing.JMenu();
         mnuiRegistrarExamen = new javax.swing.JMenuItem();
         mnuiReporteExamens = new javax.swing.JMenuItem();
+        mnuRangoPreguntas = new javax.swing.JMenu();
+        mnuiRegistrarRangoPreguntas = new javax.swing.JMenuItem();
+        mnuiReporteRangoPreguntas = new javax.swing.JMenuItem();
+        mnuClave = new javax.swing.JMenu();
+        mnuiRegistrarClave = new javax.swing.JMenuItem();
+        mnuiReporteClaves = new javax.swing.JMenuItem();
 
         jLabel1.setText("jLabel1");
 
@@ -184,6 +193,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuModalidad.add(mnuiRegistrarModalidad);
 
         mnuiReporteModalidades.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteModalidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
         mnuiReporteModalidades.setText("Reporte de Modalidades");
         mnuiReporteModalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +228,30 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAula);
 
+        mnuResponsableAula.setText("RESPONSABLE DE AULA");
+
+        mnuiRegistrarResponsableAula.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarResponsableAula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarResponsableAula.setText("Registrar Responsable-Aula");
+        mnuiRegistrarResponsableAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiRegistrarResponsableAulaActionPerformed(evt);
+            }
+        });
+        mnuResponsableAula.add(mnuiRegistrarResponsableAula);
+
+        mnuiBuscarResponsableAula.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiBuscarResponsableAula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiBuscarResponsableAula.setText("Buscar Responsable-Aula");
+        mnuiBuscarResponsableAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiBuscarResponsableAulaActionPerformed(evt);
+            }
+        });
+        mnuResponsableAula.add(mnuiBuscarResponsableAula);
+
+        jMenuBar1.add(mnuResponsableAula);
+
         mnuExamen.setText("EXAMEN");
 
         mnuiRegistrarExamen.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -242,13 +276,61 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuExamen);
 
+        mnuRangoPreguntas.setText("RANGO PREGUNTAS");
+
+        mnuiRegistrarRangoPreguntas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarRangoPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarRangoPreguntas.setText("Registrar Rango Preguntas");
+        mnuiRegistrarRangoPreguntas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiRegistrarRangoPreguntasActionPerformed(evt);
+            }
+        });
+        mnuRangoPreguntas.add(mnuiRegistrarRangoPreguntas);
+
+        mnuiReporteRangoPreguntas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteRangoPreguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiReporteRangoPreguntas.setText("Reporte Rango Preguntas");
+        mnuiReporteRangoPreguntas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiReporteRangoPreguntasActionPerformed(evt);
+            }
+        });
+        mnuRangoPreguntas.add(mnuiReporteRangoPreguntas);
+
+        jMenuBar1.add(mnuRangoPreguntas);
+
+        mnuClave.setText("CLAVE");
+
+        mnuiRegistrarClave.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiRegistrarClave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_48px.png"))); // NOI18N
+        mnuiRegistrarClave.setText("Registrar Clave");
+        mnuiRegistrarClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiRegistrarClaveActionPerformed(evt);
+            }
+        });
+        mnuClave.add(mnuiRegistrarClave);
+
+        mnuiReporteClaves.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuiReporteClaves.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit Property_48px.png"))); // NOI18N
+        mnuiReporteClaves.setText("Reporte Clave");
+        mnuiReporteClaves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiReporteClavesActionPerformed(evt);
+            }
+        });
+        mnuClave.add(mnuiReporteClaves);
+
+        jMenuBar1.add(mnuClave);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,12 +437,54 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuiReporteModalidadesActionPerformed
 
     private void mnuiRegistrarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarExamenActionPerformed
-        // TODO add your handling code here:
+        DialogExamen f = new DialogExamen();
+        f.setVisible(true);
     }//GEN-LAST:event_mnuiRegistrarExamenActionPerformed
 
     private void mnuiReporteExamensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteExamensActionPerformed
-        // TODO add your handling code here:
+        DialogBuscarExmn f = new DialogBuscarExmn();
+        f.setVisible(true);
     }//GEN-LAST:event_mnuiReporteExamensActionPerformed
+
+    private void mnuiRegistrarResponsableAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarResponsableAulaActionPerformed
+        try {
+            DialogResponsableAula f = new DialogResponsableAula();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mnuiRegistrarResponsableAulaActionPerformed
+
+    private void mnuiBuscarResponsableAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiBuscarResponsableAulaActionPerformed
+        try {
+            DialogBuscarResponsableAula f = new DialogBuscarResponsableAula();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mnuiBuscarResponsableAulaActionPerformed
+
+    private void mnuiRegistrarRangoPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarRangoPreguntasActionPerformed
+        DialogRangoPreguntas f = new DialogRangoPreguntas();
+        f.setVisible(true);
+    }//GEN-LAST:event_mnuiRegistrarRangoPreguntasActionPerformed
+
+    private void mnuiReporteRangoPreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteRangoPreguntasActionPerformed
+        DialogBuscarRangoPreguntas f= new DialogBuscarRangoPreguntas();
+        f.setVisible(true);
+    }//GEN-LAST:event_mnuiReporteRangoPreguntasActionPerformed
+
+    private void mnuiRegistrarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiRegistrarClaveActionPerformed
+        // TODO add your handling code here:
+        DialogClave f = new DialogClave();
+        f.setVisible(true);
+        
+    }//GEN-LAST:event_mnuiRegistrarClaveActionPerformed
+
+    private void mnuiReporteClavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiReporteClavesActionPerformed
+        DialogBuscarClave f = new DialogBuscarClave();
+        f.setVisible(true);
+    }//GEN-LAST:event_mnuiReporteClavesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,24 +524,35 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu mnuAreas;
     private javax.swing.JMenu mnuAula;
     private javax.swing.JMenu mnuCarreras;
+    private javax.swing.JMenu mnuClave;
     private javax.swing.JMenu mnuExamen;
     private javax.swing.JMenu mnuFacultad;
     private javax.swing.JMenu mnuModalidad;
+    private javax.swing.JMenu mnuRangoPreguntas;
+    private javax.swing.JMenu mnuResponsableAula;
+    private javax.swing.JMenuItem mnuiBuscarResponsableAula;
     private javax.swing.JMenuItem mnuiRegistrarAreas;
     private javax.swing.JMenuItem mnuiRegistrarAula;
     private javax.swing.JMenuItem mnuiRegistrarCarreras;
+    private javax.swing.JMenuItem mnuiRegistrarClave;
     private javax.swing.JMenuItem mnuiRegistrarExamen;
     private javax.swing.JMenuItem mnuiRegistrarFacultad;
     private javax.swing.JMenuItem mnuiRegistrarModalidad;
+    private javax.swing.JMenuItem mnuiRegistrarRangoPreguntas;
+    private javax.swing.JMenuItem mnuiRegistrarResponsableAula;
     private javax.swing.JMenuItem mnuiReporteAreas;
     private javax.swing.JMenuItem mnuiReporteAulas;
     private javax.swing.JMenuItem mnuiReporteCarreras;
+    private javax.swing.JMenuItem mnuiReporteClaves;
     private javax.swing.JMenuItem mnuiReporteExamens;
     private javax.swing.JMenuItem mnuiReporteFacultad;
     private javax.swing.JMenuItem mnuiReporteModalidades;
+    private javax.swing.JMenuItem mnuiReporteRangoPreguntas;
     // End of variables declaration//GEN-END:variables
 }

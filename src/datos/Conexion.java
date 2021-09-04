@@ -26,7 +26,7 @@ public class Conexion {
         JOptionPane.showMessageDialog(null, "Error no se puede puede establecer la conexion" + e.getMessage());
     }
     try{
-        String url = "jdbc:mysql://localhost:3306/bduniversidad?useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/bduniversidad?allowPublicKeyRetrieval=true&useSSL=false";
         String user = "root";
         String password = "1234";
         cn = DriverManager.getConnection(url, user, password);
