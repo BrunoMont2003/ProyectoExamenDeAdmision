@@ -5,7 +5,7 @@
  */
 package datos;
 
-import entidades.composite2.RangoPreguntasComposite;
+import entidades.RangoPreguntas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +30,7 @@ public class RangoPreguntasDAO {
         return instancia;
     }
     
-     public void insertar(RangoPreguntasComposite rangoPreguntas ) throws SQLException {
+     public void insertar(RangoPreguntas rangoPreguntas ) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
          PreparedStatement ps = null;
         try {
@@ -50,10 +50,10 @@ public class RangoPreguntasDAO {
             cnn.close();
         }
     }
-       public RangoPreguntasComposite buscarRango(String idRangoPreguntas) throws SQLException {
+       public RangoPreguntas buscarRango(String idRangoPreguntas) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        RangoPreguntasComposite r = null;
+        RangoPreguntas r = null;
         try {
             ps = cnn.prepareStatement("call buscarRangoPreguntas(?)");
             ps.setString(1, idRangoPreguntas);
@@ -62,7 +62,7 @@ public class RangoPreguntasDAO {
                 String nombre = rs.getString("nombre");
                 double puntajeCorrecta = rs.getDouble("puntajeCorrecta");
                 double puntajeIncorrecta = rs.getDouble("puntajeIncorrecta");
-                r = new RangoPreguntasComposite(idRangoPreguntas, nombre, puntajeCorrecta, puntajeIncorrecta);
+                r = new RangoPreguntas(idRangoPreguntas, nombre, puntajeCorrecta, puntajeIncorrecta);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -74,7 +74,7 @@ public class RangoPreguntasDAO {
     }
        
 
-      public void actualizar(RangoPreguntasComposite rangoPreguntas ) throws SQLException {
+      public void actualizar(RangoPreguntas rangoPreguntas ) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
          PreparedStatement ps = null;
         try {

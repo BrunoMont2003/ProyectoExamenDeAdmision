@@ -5,8 +5,9 @@
  */
 package datos;
 
+import entidades.Clave;
 import entidades.Examen;
-import entidades.composite2.RangoPreguntasLeaf;
+import entidades.RangoPreguntas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,15 +34,16 @@ public class ClaveDAO {
         return instancia;
     }
 
-    public void insertar(RangoPreguntasLeaf clave) throws SQLException {
+    public void insertar(Clave clave) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertarClave(?,?,?,?)");
+            ps = cnn.prepareStatement("call insertarClave(?,?,?,?,?)");
             ps.setString(1, clave.getIdClave());
             ps.setInt(2, clave.getNumero());
             ps.setDouble(3, clave.getLetra());
             ps.setString(4, clave.getExamen().getIdExamen());
+            ps.setString(5, clave.getRangoPreguntas().getIdRangoPreguntas());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -52,10 +54,10 @@ public class ClaveDAO {
         }
     }
 
-    public RangoPreguntasLeaf buscarClave(String idClave) throws SQLException {
+    public Clave buscarClave(String idClave) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        RangoPreguntasLeaf c = null;
+        Clave c = null;
         try {
             ps = cnn.prepareStatement("call buscarClave(?)");
             ps.setString(1, idClave);
@@ -64,10 +66,11 @@ public class ClaveDAO {
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
                 String idExamen = rs.getString("idExamen");
+                String idRangoPreguntas = rs.getString("idRangoPreguntas");
                 ExamenDAO dao = new ExamenDAO();
                 Examen examen = dao.buscarExamen(idExamen);
-
-                c = new RangoPreguntasLeaf(idClave, numero, letra, examen);
+                RangoPreguntas rangoPreguntas = RangoPreguntasDAO.getInstancia().buscarRango(idRangoPreguntas);
+                c = new Clave(idClave, numero, letra, examen, rangoPreguntas);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -78,15 +81,16 @@ public class ClaveDAO {
         return c;
     }
 
-    public void actualizar(RangoPreguntasLeaf clave) throws SQLException {
+    public void actualizar(Clave clave) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarClave(?,?,?,?)");
+            ps = cnn.prepareStatement("call modificarClave(?,?,?,?,?)");
             ps.setString(1, clave.getIdClave());
             ps.setInt(2, clave.getNumero());
             ps.setDouble(3, clave.getLetra());
             ps.setString(4, clave.getExamen().getIdExamen());
+            ps.setString(4, clave.getRangoPreguntas().getIdRangoPreguntas());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -115,7 +119,7 @@ public class ClaveDAO {
     public void mostrarClaves(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN"};
+        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN", "ID RANGO PREGUNTAS"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -126,7 +130,8 @@ public class ClaveDAO {
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
                 String idExamen = rs.getString("idExamen");
-                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen};
+                String idRangoPreguntas = rs.getString("idRangoPreguntas");
+                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen, idRangoPreguntas};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -136,21 +141,23 @@ public class ClaveDAO {
             cnn.close();
         }
     }
-    public void mostrarClavesPorExamen(DefaultTableModel modelo, String idExamen) throws SQLException {
+    public void mostrarClavesPorExamen(DefaultTableModel modelo, String idEx) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN"};
+        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN", "ID RANGO PREGUNTAS"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
             ps = cnn.prepareStatement("call mostrarClavesDeExamen(?)");
-            ps.setString(1, idExamen);
+            ps.setString(1, idEx);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idClave = rs.getString("idClave");
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
-                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen};
+                String idRangoPreguntas = rs.getString("idRangoPreguntas");
+                String idExamen = rs.getString("idExamen");
+                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen, idRangoPreguntas};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {

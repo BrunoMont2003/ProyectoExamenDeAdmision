@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Presentacion;
+package presentacion;
 
 import datos.ExamenDAO;
 import entidades.Areas;
@@ -16,13 +16,12 @@ import java.sql.SQLException;
  *
  * @author bruno
  */
-public class DialogBuscarExamen extends javax.swing.JDialog {
+public class DialogBuscarExmn extends javax.swing.JDialog {
 
     ExamenDAO examendao = new ExamenDAO();
     Examen examenSelec = new Examen();
-
-    public DialogBuscarExamen() {
-        super(FrmPrincipal.getInstancia(), true);
+    public DialogBuscarExmn() {
+      super(FrmPrincipal.getInstancia(), true);
         initComponents();
         setLocationRelativeTo(null);
         try {
@@ -269,19 +268,12 @@ public class DialogBuscarExamen extends javax.swing.JDialog {
             txtDia.setText(String.valueOf(examen.getFecha().getDia()));
             txtMes.setText(String.valueOf(examen.getFecha().getMes()));
             txtAño.setText(String.valueOf(examen.getFecha().getAño()));
-            
+
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
 
-
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void txtNombreAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAreaKeyTyped
-        if (txtNombreArea.getText().length() >= 8) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtNombreAreaKeyTyped
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
 
@@ -292,23 +284,28 @@ public class DialogBuscarExamen extends javax.swing.JDialog {
         Modalidad modalidad = new Modalidad(txtIdModalidad.getText(), txtNombreModalidad.getText());
         examenSelec.setModalidad(modalidad);
         Areas area = new Areas(txtIdArea.getText(), txtNombreArea.getText());
-     
+
         examenSelec.setArea(area);
         this.dispose();
-
     }//GEN-LAST:event_btnSeleccionarActionPerformed
-
-    private void txtIdAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdAreaKeyTyped
-        if (txtIdArea.getText().length() >= 8) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtIdAreaKeyTyped
 
     private void txtSemestreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSemestreKeyTyped
         if (txtSemestre.getText().length() >= 10) {
             evt.consume();
         }
     }//GEN-LAST:event_txtSemestreKeyTyped
+
+    private void txtNombreAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAreaKeyTyped
+        if (txtNombreArea.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreAreaKeyTyped
+
+    private void txtIdAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdAreaKeyTyped
+        if (txtIdArea.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdAreaKeyTyped
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
         // TODO add your handling code here:
@@ -361,83 +358,20 @@ public class DialogBuscarExamen extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogBuscarExamen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogBuscarExmn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogBuscarExamen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogBuscarExmn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogBuscarExamen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogBuscarExmn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogBuscarExamen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogBuscarExmn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogBuscarExamen dialog = new DialogBuscarExamen();
+                DialogBuscarExmn dialog = new DialogBuscarExmn();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

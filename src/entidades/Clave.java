@@ -3,34 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidades.composite2;
-
-import entidades.Examen;
+package entidades;
 
 /**
  *
  * @author bruno
  */
-public class RangoPreguntasLeaf extends RangoPreguntas {
-
+public class Clave {
     private String idClave;
     private int numero;
     private char letra;
     private Examen examen;
+    private RangoPreguntas rangoPreguntas;
 
-    public RangoPreguntasLeaf() {
+    public Clave() {
     }
-    
 
-    public RangoPreguntasLeaf(String idClave, int numero, char letra, Examen examen) {
+    public Clave(String idClave, int numero, char letra, Examen examen, RangoPreguntas rangoPreguntas) {
         this.idClave = idClave;
         this.numero = numero;
         this.letra = letra;
         this.examen = examen;
+        this.rangoPreguntas = rangoPreguntas;
     }
 
-
-    
     public String getIdClave() {
         return idClave;
     }
@@ -63,25 +59,13 @@ public class RangoPreguntasLeaf extends RangoPreguntas {
         this.examen = examen;
     }
 
+    public RangoPreguntas getRangoPreguntas() {
+        return rangoPreguntas;
+    }
+
+    public void setRangoPreguntas(RangoPreguntas rangoPreguntas) {
+        this.rangoPreguntas = rangoPreguntas;
+    }
     
     
-   
-    @Override
-    void add(RangoPreguntas r) {
-        System.out.println("No se puede agregar la hoja");
-
-    }
-
-    @Override
-    void remove(RangoPreguntas r) {
-        System.out.println("No se puede quitar la hoja");
-
-    }
-
-    @Override
-    void view() {
-        System.out.println("-" + " " + idClave);
-
-    }
-
 }

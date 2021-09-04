@@ -7,8 +7,10 @@ package presentacion;
 
 import datos.ClaveDAO;
 import datos.ExamenDAO;
+import datos.RangoPreguntasDAO;
+import entidades.Clave;
 import entidades.Examen;
-import entidades.composite2.RangoPreguntasLeaf;
+import entidades.RangoPreguntas;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class DialogBuscarClave extends javax.swing.JDialog {
 
     DefaultTableModel modelo = new DefaultTableModel();
-    RangoPreguntasLeaf claveSelec = new RangoPreguntasLeaf();
+    Clave claveSelec = new Clave();
     ClaveDAO clavedao = new ClaveDAO();
     public DialogBuscarClave() {
         super(FrmPrincipal.getInstancia(), true);
@@ -53,6 +55,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
         btnBuscar = new javax.swing.JButton();
         btnTodos = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,7 +65,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel1.setText("ID Examen");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
 
         btnSeleccionar.setBackground(new java.awt.Color(168, 192, 215));
         btnSeleccionar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -72,13 +75,13 @@ public class DialogBuscarClave extends javax.swing.JDialog {
                 btnSeleccionarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
 
         Tabla.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         Tabla.setModel(modelo);
         jScrollPane1.setViewportView(Tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 570, 275));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 570, 275));
 
         txtIdExamen.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         txtIdExamen.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +94,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
                 txtIdExamenKeyReleased(evt);
             }
         });
-        jPanel1.add(txtIdExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 40, 160, -1));
+        jPanel1.add(txtIdExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 160, -1));
 
         btnBuscar.setBackground(new java.awt.Color(168, 192, 215));
         btnBuscar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -101,7 +104,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 33, -1, -1));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
 
         btnTodos.setBackground(new java.awt.Color(168, 192, 215));
         btnTodos.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -111,7 +114,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
                 btnTodosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 74, 100, -1));
+        jPanel1.add(btnTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 100, -1));
 
         btnCerrar.setBackground(new java.awt.Color(234, 107, 107));
         btnCerrar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -121,9 +124,13 @@ public class DialogBuscarClave extends javax.swing.JDialog {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 440));
+        jLabel3.setFont(new java.awt.Font("Roboto Condensed", 1, 24)); // NOI18N
+        jLabel3.setText("BUSCAR CLAVES");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,7 +145,10 @@ public class DialogBuscarClave extends javax.swing.JDialog {
                 Examen examen;
                 String idExamen = modelo.getValueAt(i, 3).toString();
                 examen = ExamenDAO.getInstancia().buscarExamen(idExamen);
+                String idRango = modelo.getValueAt(i, 4).toString();
+                RangoPreguntas rango= RangoPreguntasDAO.getInstancia().buscarRango(idRango);
                 claveSelec.setExamen(examen);
+                claveSelec.setRangoPreguntas(rango);
                 this.dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(DialogBuscarClave.class.getName()).log(Level.SEVERE, null, ex);
@@ -294,6 +304,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JButton btnTodos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtIdExamen;
