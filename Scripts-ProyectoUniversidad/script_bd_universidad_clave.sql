@@ -1,14 +1,16 @@
 use bduniversidad;
 
-create table clave(
-	idClave char(15) not null, 
-    numero smallint, 
-    letra char(4),
-    idExamen char(8) not null,
-    idRangoPreguntas char(8) not null,
-    primary key  (idClave) ,
-    foreign key(idExamen) references Examen(idExamen),
-	foreign key(idRangoPreguntas) references RangoPreguntas(idRangoPreguntas)
+CREATE TABLE clave (
+    idClave CHAR(15) NOT NULL,
+    numero SMALLINT,
+    letra CHAR(4),
+    idExamen CHAR(8) NOT NULL,
+    idRangoPreguntas CHAR(8) NOT NULL,
+    PRIMARY KEY (idClave),
+    FOREIGN KEY (idExamen)
+        REFERENCES Examen (idExamen),
+    FOREIGN KEY (idRangoPreguntas)
+        REFERENCES RangoPreguntas (idRangoPreguntas)
 );
 drop table clave;
 
@@ -47,6 +49,19 @@ begin
   DELETE FROM clave where idClave=id;
 end$$
 -- drop procedure eliminarClave;
+
+
+DELIMITER $$
+create procedure eliminarClavesDeUnExamen(in idEx char(15))
+begin
+  DELETE FROM clave where idExamen=idEx;
+end$$
+call eliminarClavesDeUnExamen("EX-0001");
+
+-- drop procedure eliminarclavedeunexamen;
+
+
+
 
 DELIMITER $$
 create procedure mostrarClavesDeExamen(in idEx char(15))

@@ -23,8 +23,8 @@ public class AreasDAO {
         }
         return instancia;
     }
-    
-     public void insertar(Areas areas) throws SQLException {
+
+    public void insertar(Areas areas) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
@@ -39,7 +39,8 @@ public class AreasDAO {
             cnn.close();
         }
     }
-       public Areas buscarArea(String idArea) throws SQLException {
+
+    public Areas buscarArea(String idArea) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         Areas are = null;
@@ -59,8 +60,8 @@ public class AreasDAO {
         }
         return are;
     }
-       
-     public void actualizar(Areas areas) throws SQLException {
+
+    public void actualizar(Areas areas) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
@@ -77,12 +78,43 @@ public class AreasDAO {
 
         }
     }
-     
-      public void eliminar(String idArea) throws SQLException {
+
+    public void eliminar(String idArea) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarArea(?)");
+            ps = cnn.prepareCall("call mostrarAulasDeUnArea(?)");
+            ps.setString(1, idArea);
+            ps.executeUpdate();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idAula = rs.getString("idAula");
+                ps = cnn.prepareCall("call eliminarAula(?)");
+                ps.setString(1, idAula);
+                ps.executeUpdate();
+            }
+            ps = cnn.prepareCall("call mostrarFacultadesDeUnArea(?)");
+            ps.setString(1, idArea);
+            ps.executeUpdate();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idFacultad = rs.getString("idFacultad");
+                ps = cnn.prepareCall("call eliminarFacultad(?)");
+                ps.setString(1, idFacultad);
+                ps.executeUpdate();
+            }
+            
+            ps = cnn.prepareCall("call mostrarExamenesDeUnArea(?)");
+            ps.setString(1, idArea);
+            ps.executeUpdate();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idExamen");
+                ps = cnn.prepareCall("call eliminarExamen(?)");
+                ps.setString(1, idExamen);
+                ps.executeUpdate();
+            }
+            ps = cnn.prepareCall("call eliminarArea(?)");
             ps.setString(1, idArea);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -92,7 +124,8 @@ public class AreasDAO {
             cnn.close();
         }
     }
-     public void mostrarAreas(DefaultTableModel modelo) throws SQLException {
+
+    public void mostrarAreas(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         String titulos[] = {"ID Area", "Nombre Area"};
@@ -114,8 +147,8 @@ public class AreasDAO {
             cnn.close();
         }
     }
-     
-      public void mostraAreaPorCodigo(String id, DefaultTableModel modelo) throws SQLException {
+
+    public void mostraAreaPorCodigo(String id, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         String titulos[] = {"ID AREA", "NOMBRE AREA"};
@@ -139,5 +172,5 @@ public class AreasDAO {
             cnn.close();
         }
     }
-    
+
 }

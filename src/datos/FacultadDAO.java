@@ -41,8 +41,8 @@ public class FacultadDAO {
             cnn.close();
         }
     }
-    
-   public Facultad buscarFacultad(String idFacultad) throws SQLException {
+
+    public Facultad buscarFacultad(String idFacultad) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         Facultad facu = null;
@@ -54,7 +54,7 @@ public class FacultadDAO {
                 String nombreAFacultad = rs.getString("nombreFacultad");
                 String idArea = rs.getString("idArea");
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
-                facu= new Facultad(idFacultad, nombreAFacultad, areas);
+                facu = new Facultad(idFacultad, nombreAFacultad, areas);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -64,8 +64,8 @@ public class FacultadDAO {
         }
         return facu;
     }
-   
-     public void actualizar(Facultad facultad) throws SQLException {
+
+    public void actualizar(Facultad facultad) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
@@ -83,8 +83,8 @@ public class FacultadDAO {
 
         }
     }
-     
-     public void eliminar(String idFacultad) throws SQLException {
+
+    public void eliminar(String idFacultad) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
@@ -98,8 +98,7 @@ public class FacultadDAO {
             cnn.close();
         }
     }
-    
-    
+
     public void mostrarFacultad(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -123,11 +122,11 @@ public class FacultadDAO {
             cnn.close();
         }
     }
-    
+
     public void mostraFacultadPorArea(String id, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID FACULTAD", "NOMBRE FACULTAD","ID AREA"};
+        String titulos[] = {"ID FACULTAD", "NOMBRE FACULTAD", "ID AREA"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
 
@@ -137,7 +136,7 @@ public class FacultadDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idFacultad = rs.getString("idFacultad");
-                String nombreFacultad= rs.getString("nombreFacultad");
+                String nombreFacultad = rs.getString("nombreFacultad");
                 String idArea = rs.getString("idArea");
                 String fila[] = {idFacultad, nombreFacultad, idArea};
                 modelo.addRow(fila);

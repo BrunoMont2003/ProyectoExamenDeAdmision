@@ -365,7 +365,7 @@ public class DialogExamen extends javax.swing.JDialog {
     }//GEN-LAST:event_txtAñoKeyTyped
 
     private void txtSemestreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSemestreKeyTyped
-        if (txtSemestre.getText().length() >= 6) {
+        if (txtSemestre.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtSemestreKeyTyped
@@ -440,7 +440,10 @@ public class DialogExamen extends javax.swing.JDialog {
                 int dia = Integer.parseInt(txtDia.getText());
                 int mes = Integer.parseInt(txtMes.getText());
 
-                Fecha fecha = new Fecha(dia, mes, año);
+                Fecha fecha = new Fecha();
+                fecha.setDia(dia);
+                fecha.setMes(mes);
+                fecha.setAño(año);
                 Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
                 examendao.insertar(x);
 
@@ -463,6 +466,7 @@ public class DialogExamen extends javax.swing.JDialog {
                 Examen x;
                 x = examendao.buscarExamen(idExamen);
                 if (x != null) {
+                    System.out.println("FORMATO NORMAL: "+x.getFecha().toString());
                     txtSemestre.setText(x.getSemestre());
                     txtAño.setText(String.valueOf(x.getFecha().getAño()));
                     txtMes.setText(String.valueOf(x.getFecha().getMes()));

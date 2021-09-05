@@ -93,3 +93,18 @@ begin
   DELETE FROM carrera where idCarrera=idCar;
 end$$
 
+DELIMITER $$
+create procedure eliminarCarrerasDeUnaFacultad(in idFac char(15))
+begin
+  DELETE FROM Carrera where idFacultad=idFac;
+end$$
+call eliminarCarrerasDeUnaFacultad("FACD-13");
+
+
+DELIMITER $$
+CREATE PROCEDURE mostrarCarrerasDeUnaFacultad(in id char(10))
+BEGIN
+  select * from Carrera where idFacultad=id;
+END$$
+-- drop procedure mostrarCarrerasDeUnaFacultad;
+call mostrarCarrerasDeUnaFacultad("FACD-13");

@@ -68,7 +68,16 @@ call modificarFacultad('FACD-13','MedicinaGod','AREA_A');
 DELIMITER $$
 create procedure eliminarFacultad(in idFa char(10))
 begin
+  call eliminarCarrerasDeUnaFacultad(idFa);
   DELETE FROM facultad where idFacultad=idFa;
 end$$
 
 call eliminarFacultad("FACD-13");
+
+DELIMITER $$
+CREATE PROCEDURE mostrarFacultadesDeUnArea(in id char(10))
+BEGIN
+  select * from Facultad where idArea=id;
+END$$
+
+call mostrarFacultadesDeUnArea("AREA_A");

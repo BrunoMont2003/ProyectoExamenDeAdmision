@@ -6,17 +6,16 @@
 package datos;
 
 import entidades.Modalidad;
-import entidades.builder.DireccionSistemas;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
  * @author Frecuencia 7
  */
 public class ModalidadDAO {
+
     private Connection cnn = null;
     private ResultSet rs = null;
 
@@ -28,24 +27,8 @@ public class ModalidadDAO {
         }
         return instancia;
     }
-    
-    public void insertar(DireccionSistemas modalidad) throws SQLException {
-        cnn = Conexion.getInstancia().miConexion();
-        PreparedStatement ps = null;
-        try {
-            ps = cnn.prepareStatement("call insertar_modalidad(?,?)");
-            ps.setString(1, modalidad.getModalidad().getIdModalidad());
-            ps.setString(2, modalidad.getModalidad().getNombreM());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
-        } finally {
-            ps.close();
-            cnn.close();
-        }
-    }
 
-public void insertar(Modalidad modalidad) throws SQLException {
+    public void insertar(Modalidad modalidad) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
@@ -60,13 +43,37 @@ public void insertar(Modalidad modalidad) throws SQLException {
             cnn.close();
         }
     }
-    
-
-         public void eliminar(String idModalidad) throws SQLException {
+    public void actualizar(Modalidad modalidad) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarModalidad(?)");
+            ps = cnn.prepareStatement("call modificarModalidad(?,?)");
+            ps.setString(1, modalidad.getIdModalidad());
+            ps.setString(2, modalidad.getNombreM());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+
+    public void eliminar(String idModalidad) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        try {
+            ps = cnn.prepareCall("call mostrarExamenesDeUnaModalidad(?)");
+            ps.setString(1, idModalidad);
+            ps.executeUpdate();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idExamen");
+                ps = cnn.prepareCall("call eliminarExamen(?)");
+                ps.setString(1, idExamen);
+                ps.executeUpdate();
+            }
+            ps = cnn.prepareCall("call eliminarModalidad(?)");
             ps.setString(1, idModalidad);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -76,11 +83,11 @@ public void insertar(Modalidad modalidad) throws SQLException {
             cnn.close();
         }
     }
-         
-   public Modalidad buscarModalidad(String idModalidad) throws SQLException {
+
+    public Modalidad buscarModalidad(String idModalidad) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        Modalidad mod= null;
+        Modalidad mod = null;
         try {
             ps = cnn.prepareStatement("call buscarmodalidad(?)");
             ps.setString(1, idModalidad);
@@ -97,7 +104,7 @@ public void insertar(Modalidad modalidad) throws SQLException {
         }
         return mod;
     }
-   
+
     public void mostrarModalidad(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -120,8 +127,8 @@ public void insertar(Modalidad modalidad) throws SQLException {
             cnn.close();
         }
 
-}
-    
+    }
+
     public void mostraModalidadPorID(String id, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;

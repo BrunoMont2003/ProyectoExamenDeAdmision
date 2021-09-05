@@ -8,14 +8,15 @@ drop procedure buscarArea;
 drop procedure eliminarArea;
 drop procedure modificarArea;
 
-create table aula(
-	idAula char(8) not null,
-    numeroAula int not null,
-    capacidad int not null,
-    numeroAusentes int not null,
-    idArea char(10) not null,
-    primary key (idAula),
-    foreign key (idArea) references areaU(idArea)
+CREATE TABLE aula (
+    idAula CHAR(8) NOT NULL,
+    numeroAula INT NOT NULL,
+    capacidad INT NOT NULL,
+    numeroAusentes INT NOT NULL,
+    idArea CHAR(10) NOT NULL,
+    PRIMARY KEY (idAula),
+    FOREIGN KEY (idArea)
+        REFERENCES areaU (idArea)
 );
 
 DELIMITER $$
@@ -23,7 +24,7 @@ CREATE PROCEDURE insertar_aula(in idAu char(8), in numA int, in cap int, numAU i
 BEGIN
   insert into aula(idAula,numeroAula,capacidad,numeroAusentes, idArea) values (idAu,numA,cap,numAu,idA);
 END$$
-
+call insertar_aula("A-00001",101,45, 44, "AREA_A");
 
 DELIMITER $$
 CREATE PROCEDURE mostrarAulas()
@@ -58,5 +59,14 @@ end$$
 DELIMITER $$
 create procedure eliminarAula(in idAu char(8))
 begin
-  DELETE FROM aula where idAula=idAu;
+	call eliminarResponsablesDeUnAula(idAu);
+    DELETE FROM aula where idAula=idAu;
 end$$
+-- drop procedure eliminarAula;
+call eliminarAula("A-00001");
+
+DELIMITER $$
+CREATE PROCEDURE mostrarAulasDeUnArea(in id char(15))
+BEGIN
+  select * from Aula where idArea=id;
+END$$

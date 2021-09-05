@@ -3,14 +3,15 @@ use bduniversidad;
 
 drop database bduniversidad;
 
-create table responsableAula(
-	idResponsable char(8) not null,
-    apellidosResp varchar(60) not null,
-    nombresResp varchar(60) not null,
-    dniResp char(8) not null,
-    idAula char(8) not null,
-    primary key (idResponsable),
-    foreign key (idAula) references aula(idAula)
+CREATE TABLE responsableAula (
+    idResponsable CHAR(8) NOT NULL,
+    apellidosResp VARCHAR(60) NOT NULL,
+    nombresResp VARCHAR(60) NOT NULL,
+    dniResp CHAR(8) NOT NULL,
+    idAula CHAR(8) NOT NULL,
+    PRIMARY KEY (idResponsable),
+    FOREIGN KEY (idAula)
+        REFERENCES aula (idAula)
 );
 
 DELIMITER $$
@@ -18,12 +19,15 @@ create procedure insertar_Responsable(in idRes char(8), in apellid varchar(60), 
 begin
 	insert into responsableAula(idResponsable, apellidosResp, nombresResp, dniResp, idAula) values (idRes, apellid, nombr, dni, idAul);
 end$$
+call insertar_Responsable("R-00001", "Gálvez Orezolli", "Daira Sofía","73901875","A-00001");
 
 DELIMITER $$
 create procedure mostrar_Responsables()
 begin
 	select * from responsableAula; 
 end$$
+
+call mostrar_Responsables();
 
 DELIMITER $$
 create procedure buscar_Responsable(in idRes char(8))
@@ -50,3 +54,9 @@ begin
 end$$
 
 
+DELIMITER $$
+create procedure eliminarResponsablesDeUnAula(in idAu char(15))
+begin
+  DELETE FROM responsableaula where idAula=idAu;
+end$$
+call eliminarResponsablesDeUnAula("A-00001");

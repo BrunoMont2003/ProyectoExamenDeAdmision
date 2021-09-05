@@ -1,14 +1,16 @@
 use bduniversidad;
 
-create table examen(
-	idExamen char(8) not null,
-    semestre varchar(10),
-    fecha date,
-    idArea char(10),
-    idModalidad char(15),
-    primary key(idExamen),
-    foreign key(idArea) references areau(idArea),
-	foreign key(idModalidad) references modalidad(idModalidad)
+CREATE TABLE examen (
+    idExamen CHAR(8) NOT NULL,
+    semestre VARCHAR(10),
+    fecha DATE,
+    idArea CHAR(10),
+    idModalidad CHAR(15),
+    PRIMARY KEY (idExamen),
+    FOREIGN KEY (idArea)
+        REFERENCES areau (idArea),
+    FOREIGN KEY (idModalidad)
+        REFERENCES modalidad (idModalidad)
 );
 drop table examen;
 
@@ -37,14 +39,38 @@ END$$
 call mostrarExamen;
 -- drop procedure mostrarExamen;
 DELIMITER $$
-create procedure modificarExamen(in id char(8), in a char(4),in sem varchar(10), in f date, IN idAr char(10), in idM char(15))
+create procedure modificarExamen(in id char(8), in sem varchar(10), in f date, IN idAr char(10), in idM char(15))
 begin
-  UPDATE Examen SET año=a, semestre=sem, fecha=f, idArea = idAr, idModalidad = idM WHERE idExamen=id;
+  -- UPDATE CLAVE set idExamen = id where idExamen = id;
+  UPDATE Examen SET semestre=sem, fecha=f, idArea = idAr, idModalidad = idM WHERE idExamen=id;
 end$$
-
+drop procedure modificarexamen;
+call modificarExamen("EX-0001", "2021-II", "2021-06-27", "AREA_B","MODD-01");
 
 DELIMITER $$
 create procedure eliminarExamen(in id char(8))
 begin
+  call eliminarClavesDeUnExamen(id);
   DELETE FROM examen where idExamen=id;
 end$$
+call eliminarExamen("EX-0001");
+drop procedure eliminarExamen;
+
+
+DELIMITER $$
+CREATE PROCEDURE mostrarExamenesDeUnaModalidad(in id char(15))
+BEGIN
+  select * from Examen where idModalidad=id;
+END$$
+call mostrarExamenesDeunamodalidad("MODD-01");
+
+
+DELIMITER $$
+CREATE PROCEDURE mostrarExamenesDeUnArea(in id char(15))
+BEGIN
+  select * from Examen where idArea=id;
+END$$
+call mostrarExamenesDeUnArea("AREA_B");
+
+
+
