@@ -46,6 +46,7 @@ public class ExamenDAO {
             cnn.close();
         }
     }
+    
 
     public Examen buscarExamen(String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
