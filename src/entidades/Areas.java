@@ -34,6 +34,11 @@ public class Areas {
     public void setNombreArea(String nombreArea) {
         this.nombreArea = nombreArea;
     }
+
+    @Override
+    public String toString() {
+        return "Areas{" + "idArea=" + idArea + ", nombreArea=" + nombreArea + '}';
+    }
     
     
     

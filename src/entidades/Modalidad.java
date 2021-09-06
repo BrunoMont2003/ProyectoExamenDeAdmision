@@ -34,6 +34,11 @@ public class Modalidad {
         this.nombreM = nombreM;
     }
 
+    @Override
+    public String toString() {
+        return "Modalidad{" + "idModalidad=" + idModalidad + ", nombreM=" + nombreM + '}';
+    }
+
   
   
    
