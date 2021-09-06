@@ -45,7 +45,7 @@ create procedure eliminarModalidad(in idMod char(10))
 begin
   DELETE FROM modalidad where idModalidad=idMod;
 end$$
-drop procedure eliminarModalidad;
+-- drop procedure eliminarModalidad;
 call eliminarModalidad("MODD-01");
 call eliminarModalidad("MODD-02");
 call eliminarModalidad("MODD-03");

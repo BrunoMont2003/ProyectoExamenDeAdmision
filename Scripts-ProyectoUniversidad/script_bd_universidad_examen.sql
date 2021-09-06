@@ -21,8 +21,9 @@ BEGIN
   insert into Examen(idExamen, semestre, fecha, idArea, idModalidad) values (id,sem, f, idAr, idM);
 END$$
 
-call insertarExamen("EX-0001", "2021-II", "2021-05-27", "AREA_A","MODD-01");
-
+call insertarExamen("EX-0001", "2021-II", "2021-10-03", "AREA_A","MODD-01");
+call insertarExamen("EX-0002", "2020-II", "2021-03-19", "AREA_D","MODD-03");
+call insertarExamen("EX-0003", "2020-I", "2019-09-28", "AREA_B","MODD-02");
 -- drop procedure insertarExamen;
 DELIMITER $$
 CREATE PROCEDURE buscarExamen(in id char(8))
@@ -53,7 +54,7 @@ begin
   call eliminarClavesDeUnExamen(id);
   DELETE FROM examen where idExamen=id;
 end$$
-call eliminarExamen("EX-0001");
+call eliminarExamen("EX-0004");
 drop procedure eliminarExamen;
 
 
