@@ -25,6 +25,7 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
 
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
+        setLocationRelativeTo(null);
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/logo-unt1.png");
         md.mostrarModalidad(modelo);
     }

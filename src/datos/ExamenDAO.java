@@ -46,8 +46,27 @@ public class ExamenDAO {
             cnn.close();
         }
     }
-    
 
+    public boolean exists(String id) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        try {
+            ps = cnn.prepareStatement("call mostrarexamen()");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idExamen");
+                if (idExamen.equals(id)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+        return false;
+    }
     public Examen buscarExamen(String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -78,27 +97,6 @@ public class ExamenDAO {
             cnn.close();
         }
         return exa;
-    }
-
-    public boolean exists(String id) throws SQLException {
-        cnn = Conexion.getInstancia().miConexion();
-        PreparedStatement ps = null;
-        try {
-            ps = cnn.prepareStatement("call mostrarexamen()");
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                String idExamen = rs.getString("idExamen");
-                if (idExamen.equals(id)) {
-                    return true;
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
-        } finally {
-            ps.close();
-            cnn.close();
-        }
-        return false;
     }
 
     public void actualizar(Examen examen) throws SQLException {

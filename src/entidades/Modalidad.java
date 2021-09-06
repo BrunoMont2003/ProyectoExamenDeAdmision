@@ -38,8 +38,6 @@ public class Modalidad {
     public String toString() {
         return "Modalidad{" + "idModalidad=" + idModalidad + ", nombreM=" + nombreM + '}';
     }
-
-  
   
    
    

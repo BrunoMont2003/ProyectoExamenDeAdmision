@@ -14,10 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author USUARIO
- */
+
 public class DialogAula extends javax.swing.JDialog {
     DefaultTableModel modelo = new DefaultTableModel();
      AulaDAO fd = new AulaDAO();
@@ -28,6 +25,7 @@ public class DialogAula extends javax.swing.JDialog {
     public DialogAula() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
+         setLocationRelativeTo(null);
        fd.mostrarAula(modelo);
         
     }

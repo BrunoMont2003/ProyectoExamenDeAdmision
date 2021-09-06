@@ -68,12 +68,11 @@ public class Examen {
     public void setModalidad(Modalidad modalidad) {
         this.modalidad = modalidad;
     }
-
+    
+    
     @Override
     public String toString() {
         return "Examen{" + "idExamen=" + idExamen + ", semestre=" + semestre + ", fecha=" + fecha.toStringFormatSql() + ", " + area.toString() + ", " + modalidad.toString() + '}';
     }
-    
-    
     
 }

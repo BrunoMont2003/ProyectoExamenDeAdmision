@@ -22,9 +22,9 @@ public class DialogAreas extends javax.swing.JDialog {
      * Creates new form DialogAreas
      */
     public DialogAreas() throws SQLException {
-        super(FrmPrincipal.getInstancia(), true);
-        setLocationRelativeTo(null);
+        super(FrmPrincipal.getInstancia(), true);       
         initComponents();
+        setLocationRelativeTo(null);
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/logo-unt1.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel5, "src/img/pdf.png");
         ad.mostrarAreas(modelo);

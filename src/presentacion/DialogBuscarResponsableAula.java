@@ -22,6 +22,7 @@ DefaultTableModel modelo = new DefaultTableModel();
     public DialogBuscarResponsableAula() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
+        setLocationRelativeTo(null);
         b.mostrarResponsable(modelo);
     }
 

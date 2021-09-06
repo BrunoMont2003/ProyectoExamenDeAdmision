@@ -31,8 +31,8 @@ public class DialogCarreras extends javax.swing.JDialog {
      */
     public DialogCarreras() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
-        setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel7, "src/img/pdf.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/logo-unt1.png");
         cd.mostrarCarreras(modelo);

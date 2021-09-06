@@ -32,8 +32,8 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
     
     public DialogBuscarFacultad() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
-        setLocationRelativeTo(null);
         initComponents();
+       setLocationRelativeTo(null);
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel2, "src/img/pdf.png");
         ad.mostrarFacultad(modelo);
     }

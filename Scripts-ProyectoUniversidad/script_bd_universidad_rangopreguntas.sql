@@ -38,7 +38,7 @@ CREATE PROCEDURE mostrarRangoPreguntasPorNombre(in nom varchar(45))
 BEGIN 
   select*from RangoPreguntas where nombre like concat(nom,"%");
 END$$
-call mostrarRangoPreguntasPorNombre("c");
+
 
 
 DELIMITER $$

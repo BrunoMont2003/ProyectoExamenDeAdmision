@@ -28,6 +28,7 @@ DefaultTableModel modelo = new DefaultTableModel();
     public DialogBuscarAula() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
+         setLocationRelativeTo(null);
         ad.mostrarAula(modelo);
     }
 

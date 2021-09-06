@@ -17,6 +17,7 @@ public class DialogResponsableAula extends javax.swing.JDialog {
     public DialogResponsableAula() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
+        setLocationRelativeTo(null);
        rd.mostrarResponsable(modelo);
     }
 
