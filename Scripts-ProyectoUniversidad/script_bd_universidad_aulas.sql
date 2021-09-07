@@ -4,7 +4,7 @@ drop procedure insertar_aula;
 drop table aula;
 drop procedure mostrarAula;
 drop procedure buscar_Area;
-drop procedure buscarArea;
+drop procedure buscarAula;
 drop procedure eliminarArea;
 drop procedure modificarArea;
 
@@ -37,8 +37,10 @@ END$$
 DELIMITER $$
 create procedure buscarAula(in idAu char(8))
 begin
-  select * from facultad where idAula=idAu;
+  select * from aula where idAula=idAu;
 end$$
+
+call buscarAula('A-00001');
 
 
 DELIMITER $$

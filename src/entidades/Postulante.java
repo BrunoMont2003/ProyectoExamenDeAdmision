@@ -5,29 +5,38 @@
  */
 package entidades;
 
+import datos.ListaPostulante_Examen;
+
 public class Postulante {
 
     private String idPostulante;
     private String nombres;
     private String apellido_paterno;
     private String apellido_materno;
-    private String modalidad;
+    private String dni;
     private Carreras carrera;
+    private Aula aula;
+    private Modalidad modalidad;
+    private ListaPostulante_Examen L;
 
     public Postulante() {
+        L= new ListaPostulante_Examen();
     }
 
-   
-    
-
-    public Postulante(String idPostulante, String nombres, String apellido_paterno, String apellido_materno, String modalidad, Carreras carrera) {
+    public Postulante(String idPostulante, String nombres, String apellido_paterno, String apellido_materno, String dni, Carreras carrera, Aula aula, Modalidad modalidad) {
         this.idPostulante = idPostulante;
         this.nombres = nombres;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
-        this.modalidad = modalidad;
+        this.dni = dni;
         this.carrera = carrera;
+        this.aula = aula;
+        this.modalidad = modalidad;
+         L= new ListaPostulante_Examen();
     }
+
+  
+
 
     public String getIdPostulante() {
         return idPostulante;
@@ -61,13 +70,31 @@ public class Postulante {
         this.apellido_materno = apellido_materno;
     }
 
-    public String getModalidad() {
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Modalidad getModalidad() {
         return modalidad;
     }
 
-    public void setModalidad(String modalidad) {
+    public void setModalidad(Modalidad modalidad) {
         this.modalidad = modalidad;
     }
+
+    public Aula getAula() {
+        return aula;
+    }
+
+    public void setAula(Aula aula) {
+        this.aula = aula;
+    }
+
+  
 
     public Carreras getCarrera() {
         return carrera;
@@ -76,5 +103,14 @@ public class Postulante {
     public void setCarrera(Carreras carrera) {
         this.carrera = carrera;
     }
+
+    public ListaPostulante_Examen getL() {
+        return L;
+    }
+
+    public void setL(ListaPostulante_Examen L) {
+        this.L = L;
+    }
+    
 
 }

@@ -13,6 +13,7 @@ import presentacion.DialogAula;
 import presentacion.DialogCarreras;
 import presentacion.DialogFacultad;
 import presentacion.DialogModalidad;
+import presentacion.DialogPostulante;
 import presentacion.DialogResponsableAula;
 import presentacion.FrmPrincipal;
 
@@ -39,7 +40,7 @@ public class pnlRegistroPostulante extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnRegistrarAreas = new rsbuttom.RSButtonMetro();
+        btnRegistrarPostulante = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -51,13 +52,13 @@ public class pnlRegistroPostulante extends javax.swing.JPanel {
         jLabel1.setText("MENU DE REGISTRO");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 499, -1));
 
-        btnRegistrarAreas.setBackground(new java.awt.Color(255, 153, 102));
-        btnRegistrarAreas.setText("REGISTRO DE  POSTULANTE");
-        btnRegistrarAreas.setColorHover(new java.awt.Color(255, 51, 51));
-        btnRegistrarAreas.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnRegistrarAreas.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarPostulante.setBackground(new java.awt.Color(255, 153, 102));
+        btnRegistrarPostulante.setText("REGISTRO DE  POSTULANTE");
+        btnRegistrarPostulante.setColorHover(new java.awt.Color(255, 51, 51));
+        btnRegistrarPostulante.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnRegistrarPostulante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarAreasActionPerformed(evt);
+                btnRegistrarPostulanteActionPerformed(evt);
             }
         });
 
@@ -67,14 +68,14 @@ public class pnlRegistroPostulante extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(btnRegistrarAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarPostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(222, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(btnRegistrarAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarPostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
         );
 
@@ -84,18 +85,18 @@ public class pnlRegistroPostulante extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAreasActionPerformed
+    private void btnRegistrarPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPostulanteActionPerformed
         try {
-            DialogAreas f = new DialogAreas();
+            DialogPostulante f = new DialogPostulante();
             f.setVisible(true);
         } catch (SQLException ex) {
     
         }
-    }//GEN-LAST:event_btnRegistrarAreasActionPerformed
+    }//GEN-LAST:event_btnRegistrarPostulanteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnRegistrarAreas;
+    private rsbuttom.RSButtonMetro btnRegistrarPostulante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

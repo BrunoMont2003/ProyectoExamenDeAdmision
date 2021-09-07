@@ -7,10 +7,12 @@ package presentacion;
 
 import datos.CarrerasDAO;
 import datos.Conexion;
+import entidades.Carreras;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -26,6 +28,8 @@ import net.sf.jasperreports.view.JasperViewer;
 public class DialogReporteCarreras extends javax.swing.JDialog {
 
    DefaultTableModel modelo = new DefaultTableModel();
+   Carreras carrerasSelec = new Carreras();
+   
     CarrerasDAO cd = new CarrerasDAO();
     /**
      * Creates new form DialogCarreras
@@ -58,7 +62,7 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         btnTodas = new javax.swing.JButton();
         BtnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         btnGener = new javax.swing.JButton();
 
@@ -81,6 +85,11 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         });
 
         btnSeleccionar.setText("SELECCIONAR");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
 
         btnTodas.setText("TODAS");
 
@@ -91,8 +100,8 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(modelo);
-        jScrollPane1.setViewportView(jTable1);
+        Tabla.setModel(modelo);
+        jScrollPane1.setViewportView(Tabla);
 
         btnGener.setBackground(new java.awt.Color(255, 102, 102));
         btnGener.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
@@ -206,10 +215,22 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnGenerActionPerformed
 
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+          int i = Tabla.getSelectedRow();
+        if (i != -1) {
+            carrerasSelec.setCodigoCarrera(modelo.getValueAt(i, 0).toString());
+            carrerasSelec.setNombreCarrera(modelo.getValueAt(i, 1).toString());
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes Seleccionar un elemento");
+        }
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSalir;
+    private javax.swing.JTable Tabla;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGener;
     private javax.swing.JButton btnSeleccionar;
@@ -220,7 +241,6 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtIdFacu;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,7 @@
 use bduniversidad;
 
 create table modalidad(
-	idModalidad char(15) not null,
+	idModalidad char(10) not null,
 	nombre varchar(20) not null,
     primary key(idModalidad)
 );

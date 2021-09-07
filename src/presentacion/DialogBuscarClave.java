@@ -81,7 +81,7 @@ public class DialogBuscarClave extends javax.swing.JDialog {
         Tabla.setModel(modelo);
         jScrollPane1.setViewportView(Tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 570, 275));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 570, 275));
 
         txtIdExamen.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         txtIdExamen.addActionListener(new java.awt.event.ActionListener() {

@@ -50,7 +50,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarAreas" min="-2" pref="256" max="-2" attributes="0"/>
+                  <Component id="btnRegistrarPostulante" min="-2" pref="256" max="-2" attributes="0"/>
                   <EmptySpace pref="222" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -59,14 +59,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="77" max="32767" attributes="0"/>
-                  <Component id="btnRegistrarAreas" min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="btnRegistrarPostulante" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="rsbuttom.RSButtonMetro" name="btnRegistrarAreas">
+        <Component class="rsbuttom.RSButtonMetro" name="btnRegistrarPostulante">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="ff" type="rgb"/>
@@ -80,7 +80,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarAreasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarPostulanteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
