@@ -21,6 +21,16 @@ END $$
 
 call insertar_postulante_Examen(120.234, 56, 30, 5, "P-00000001","EX-0001");
 
+
+DELIMITER $$
+create procedure insertar_Postulante_Examen_Base(in idPos char(10), in idEx char(8))
+BEGIN
+	insert Postulante_Examen(idPostulante, idExamen) values (idPos, idEx);
+END $$
+
+call insertar_postulante_Examen_Base("P-00000002","EX-0001");
+
+
 DELIMITER $$
 create procedure buscar_Postulante_Examen(in idPos char(10), in idEx char(8))
 BEGIN
@@ -35,8 +45,8 @@ BEGIN
 	update Postulante_Examen set puntaje=pun, numBuenas=bue, numMalas=mal, ordenMerito=orden where idPostulante = idPos and idExamen = idEx;
 END $$
 drop procedure actualizar_postulante_examen;
-call actualizar_postulante_Examen(150.234, 56, 30, 5, "P-00000001","EX-0001");
-
+call actualizar_postulante_Examen(150.234, 56, 30, 5, "P-00000002","EX-0001");
+call actualizar_postulante_Examen(200, 70, 21, 5, "P-00000001","EX-0001");
 
 
 DELIMITER $$
@@ -53,3 +63,11 @@ END $$
 
 call mostrar_postulante_examen;
 
+
+DELIMITER $$
+create procedure mostrarExamenesDeUnPostulante(in idPos char(10))
+BEGIN
+	select * from Postulante_Examen where idPostulante=idPos;
+END $$
+
+call mostrarExamenesDeUnPostulante("P-00000001");

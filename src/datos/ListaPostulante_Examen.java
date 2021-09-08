@@ -54,7 +54,7 @@ public class ListaPostulante_Examen {
     public ArrayList<Postulante_Examen> getL() {
         return L;
     }
-
+    
     public void mostrar(DefaultTableModel modelo) {
         Object datos[][] = new Object[L.size()][4];
         String titulos[] = {"ID EXAMEN", "Numero De Buenas", "Número de Malas", "Orden de Mérito"};

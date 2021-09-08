@@ -27,14 +27,17 @@ END$$
 
 
 call insertar_postulante("P-00000001","DARREN CARLOS","ABAL","MENDOZA","76512311","CBIO-01","A-00001","MODD-01");
-
+call insertar_postulante("P-00000002","JORGE JUNIOR","VIGO","VILLALOBOS","72485759","CBIO-01","A-00001","MODD-01");
+call insertar_postulante("P-00000003","DIEGO ARON","MURILLO","LOZANO","72174856","CBIO-01","A-00001","MODD-01");
+call insertar_postulante("P-00000004","STEVEN ALEXANDER","GARCIA","CRUZ","70182946","CBIO-01","A-00001","MODD-01");
+call insertar_postulante("P-00000005","CARLOS EDUARDO","MALAVER","CASTAÑEDA","70197412","CBIO-01","A-00001","MODD-01");
 DELIMITER $$
-CREATE PROCEDURE mostrarPostulante()
+CREATE PROCEDURE mostrarPostulantes()
 BEGIN 
   select*from postulante;
 END$$
-
-call mostrarPostulante();
+-- drop procedure mostraPostulantes;
+call mostrarPostulantes();
 
 call buscarpostulante('P-00000002');
 DELIMITER $$
@@ -50,7 +53,7 @@ begin
   UPDATE postulante SET nombrePostulante=nombP, apellido_paterno=apeM, apellido_materno=apeF, dni=dni, idCarrera=idcar, idAula=idla, idModalidad=idmo  WHERE idPostulante=idPos;
 end$$
 
-call modificarPostulante("P-00000001","DARREN CARLOS","ABAL","MENDOZA","76512321","CBIO-01","A-00001","MODD-01");
+call modificarPostulante("P-00000001","DARREN CARLOS","ABALES","MENDOZA","76512321","CBIO-01","A-00001","MODD-01");
 
 DELIMITER $$
 create procedure eliminarPostulante(in idPos char(10))
