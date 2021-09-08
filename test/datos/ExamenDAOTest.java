@@ -24,6 +24,13 @@ public class ExamenDAOTest {
   
 
     @Test
+    public void testGetInstancia() {
+        System.out.println("getInstancia");
+        ExamenDAO expResult = null;
+        ExamenDAO result = ExamenDAO.getInstancia();
+        assertNotEquals(expResult, result);
+    }
+    @Test
     public void testInsertar() throws Exception {
         System.out.println("Insertar Examen");
         String idExamen = "EX-0004";
@@ -36,7 +43,7 @@ public class ExamenDAOTest {
         Modalidad m = ModalidadDAO.getInstancia().buscarModalidad("MODD-03");
         assertNotNull(m);
         Examen examen = new Examen(idExamen, semestre, fecha, area, m);
-        assertFalse("PRUEBA FALLIDA", existe);
+        assertFalse(existe);
         ExamenDAO.getInstancia().insertar(examen);
 
         assertNotNull("Prueba Exitosa", examen);
@@ -56,7 +63,7 @@ public class ExamenDAOTest {
     public void testActualizar() throws Exception {
         System.out.println("Actualizar Examen");
         String idExamen = "EX-0002";
-        String semestre = "2021-I";
+        String semestre = "2020-I";
         Fecha fecha = new Fecha(29, 3, 2021);
         assertNotNull(fecha);
         Areas area = AreasDAO.getInstancia().buscarArea("AREA_D");

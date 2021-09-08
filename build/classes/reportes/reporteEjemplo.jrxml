@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEjemplo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ab65070-a925-4fe2-9f92-25659b6e72cb">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     areau.`idArea` AS areau_idArea,
+     areau.`nombreArea` AS areau_nombreArea
+FROM
+     `areau` areau]]>
+	</queryString>
+	<field name="areau_idArea" class="java.lang.String"/>
+	<field name="areau_nombreArea" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="366" y="16" width="162" height="31" uuid="770e0dc0-822e-4124-8045-acf6d79b51f3"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="183" y="16" width="183" height="43" uuid="d11b623e-dbee-4449-9e8f-adfe6a4dd08d"/>
+				<textElement>
+					<font fontName="Bauhaus 93" size="20"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE ÁREAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="1" width="100" height="20" uuid="483fa8fc-1819-4414-8659-ea7e038897ff"/>
+				<text><![CDATA[areau_idArea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="1" width="100" height="20" uuid="0f57f786-095c-49c1-95d2-d37596681bd9"/>
+				<text><![CDATA[areau_nombreArea]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="150" y="11" width="100" height="20" uuid="1dc32c62-b8fc-4961-bf2b-7289d6e40ebd"/>
+				<textFieldExpression><![CDATA[$F{areau_idArea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="11" width="100" height="20" uuid="ba7322ef-7b6a-4ee8-8379-f5e4cb70ecc6"/>
+				<textFieldExpression><![CDATA[$F{areau_nombreArea}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="196" y="0" width="97" height="38" uuid="39eb89d5-6594-4e7d-b5a7-b23ae97d6b0d"/>
+				<textElement textAlignment="Right">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="304" y="0" width="86" height="27" uuid="d73f33ec-aad6-4405-b71c-8b6dc7b37115"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="12" splitType="Stretch"/>
+	</summary>
+</jasperReport>

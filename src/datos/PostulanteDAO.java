@@ -107,7 +107,7 @@ public class PostulanteDAO {
 
                 ListaPostulante_Examen examenes = PostulanteDAO.getInstancia().buscarExamenes(idPostulante);
                 pos.setL(examenes);
-                
+
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -132,27 +132,28 @@ public class PostulanteDAO {
             ps.setString(7, postulante.getAula().getIdAula());
             ps.setString(8, postulante.getModalidad().getIdModalidad());
             ps.executeUpdate();
-            
+
             ListaPostulante_Examen examenes = postulante.getL();
-            
+
             ListaPostulante_Examen examenesEnBD = PostulanteDAO.getInstancia().buscarExamenes(postulante.getIdPostulante());
-            
-            if(examenesEnBD.getL().isEmpty()){
+
+            if (examenesEnBD.getL().isEmpty()) {
                 ps = cnn.prepareCall("call insertar_postulante_Examen_Base(?,?)");
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
                 ps.executeUpdate();
-                
-            }else{
+
+            } else {
                 for (int i = 0; i < examenes.getN(); i++) {
                     //ELIMINAR TODOS LOS EXAMENES
-//                    PostulanteDAO.getInstancia().eliminar(idPostulante);
-                    
+                    PostulanteDAO.getInstancia().eliminarExamen(postulante.getL().getElemento(i).getExamen().getIdExamen());
+                    ps = cnn.prepareCall("call insertar_postulante_Examen_Base(?,?)");
+                    ps.setString(1, postulante.getIdPostulante());
+                    ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
+                    ps.executeUpdate();
                 }
             }
-            
-            
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
@@ -167,6 +168,21 @@ public class PostulanteDAO {
         try {
             ps = cnn.prepareStatement("call eliminarPostulante(?)");
             ps.setString(1, idPostulante);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+    
+    public void eliminarExamen(String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        try {
+            ps = cnn.prepareStatement("call eliminarExamenDeUnPostulante(?)");
+            ps.setString(1, idExamen);
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
