@@ -38,11 +38,7 @@ public class ExamenDAOTest {
         Examen examen = new Examen(idExamen, semestre, fecha, area, m);
         assertFalse("PRUEBA FALLIDA", existe);
         ExamenDAO.getInstancia().insertar(examen);
-//        assertTrue("Prueba Exitosa",!existe && examen.getIdExamen().equals(idExamen)
-//                && examen.getSemestre().equals(semestre) && examen.getFecha().toString().equals(fecha.toString())
-//                && examen.getArea().getIdArea().equals(area.getIdArea())
-//                && examen.getModalidad().getIdModalidad().equals(m.getIdModalidad())
-//        );
+
         assertNotNull("Prueba Exitosa", examen);
         System.out.println(examen.toString());
     }
@@ -52,9 +48,7 @@ public class ExamenDAOTest {
         System.out.println("Buscar Examen");
         String idExamen = "EX-0001";
         Examen examen = ExamenDAO.getInstancia().buscarExamen(idExamen);
-//        boolean existe = ExamenDAO.getInstancia().exists(idExamen);
         assertNotNull("Prueba Exitosa",examen);
-//        assertTrue("Prueba Exitosa", existe && examen.getIdExamen().equals(idExamen));
         System.out.println(examen.toString());
     }
 
@@ -62,7 +56,6 @@ public class ExamenDAOTest {
     public void testActualizar() throws Exception {
         System.out.println("Actualizar Examen");
         String idExamen = "EX-0002";
-//        boolean existe = ExamenDAO.getInstancia().exists(idExamen);
         String semestre = "2021-I";
         Fecha fecha = new Fecha(29, 3, 2021);
         assertNotNull(fecha);
@@ -72,11 +65,7 @@ public class ExamenDAOTest {
         assertNotNull(m);
         Examen examen = new Examen(idExamen, semestre, fecha, area, m);
         ExamenDAO.getInstancia().actualizar(examen);
-//        assertTrue("Prueba Exitosa", existe && examen.getIdExamen().equals(idExamen)
-//                && examen.getSemestre().equals(semestre) && examen.getFecha().toString().equals(fecha.toString())
-//                && examen.getArea().getIdArea().equals(area.getIdArea())
-//                && examen.getModalidad().getIdModalidad().equals(m.getIdModalidad())
-//        );
+
         assertNotNull("Prueba Exitosa",examen);
         System.out.println(examen.toString());
     }
