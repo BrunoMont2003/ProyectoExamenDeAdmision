@@ -1,7 +1,7 @@
 create database bduniversidad;
 use bduniversidad;
 
-drop database bduniversidad;
+drop table responsableAula;
 
 CREATE TABLE responsableAula (
     idResponsable CHAR(8) NOT NULL,
