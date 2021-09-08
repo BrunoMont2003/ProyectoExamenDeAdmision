@@ -137,7 +137,7 @@ public class PostulanteDAO {
 
             ListaPostulante_Examen examenesEnBD = PostulanteDAO.getInstancia().buscarExamenes(postulante.getIdPostulante());
 
-            if (examenesEnBD.getL().isEmpty()) {
+            if (examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty()) {
                 ps = cnn.prepareCall("call insertar_postulante_Examen_Base(?,?)");
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
@@ -162,6 +162,38 @@ public class PostulanteDAO {
         }
     }
 
+    public ArrayList<Postulante> listarPostulantes() throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        ArrayList<Postulante> lista = new ArrayList<>();
+
+        try {
+            ps = cnn.prepareCall("call mostrarPostulantes()");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                String nombres = rs.getString("nombrePostulante");
+                String apellido_paterno = rs.getString("apellido_paterno");
+                String apellido_materno = rs.getString("apellido_materno");
+                String dni = rs.getString("dni");
+                String idCarrera = rs.getString("idCarrera");
+                Carreras carrera = CarrerasDAO.getInstancia().buscarCarreras(idCarrera);
+                String idAula = rs.getString("idAula");
+                Aula aula = AulaDAO.getInstancia().buscarAula(idAula);
+                String idModalidad = rs.getString("idModalidad");
+                Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
+                Postulante postulante = new Postulante(idPostulante, nombres, apellido_paterno, apellido_materno, dni, carrera, aula, modalidad);
+                lista.add(postulante);
+            }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+        }
+        return lista;
+    }
+
     public void eliminar(String idPostulante) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -176,7 +208,7 @@ public class PostulanteDAO {
             cnn.close();
         }
     }
-    
+
     public void eliminarExamen(String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -218,6 +250,25 @@ public class PostulanteDAO {
         } finally {
             ps.close();
             cnn.close();
+        }
+    }
+
+    public void mostrarExamenes(String idPostulante, DefaultTableModel modelo) throws SQLException {
+        try {
+
+            Object datos[][] = new Object[buscarExamenes(idPostulante).getN()][5];
+            String titulos[] = {"ID Examen", "Semestre", "Fecha", "Id Area", "IdModalidad"};
+            for (int i = 0; i < buscarExamenes(idPostulante).getN(); i++) {
+                Postulante_Examen x = buscarExamenes(idPostulante).getElemento(i);
+                datos[i][0] = x.getExamen().getIdExamen();
+                datos[i][0] = x.getExamen().getSemestre();
+                datos[i][0] = x.getExamen().getFecha().toStringFormatSql();
+                datos[i][0] = x.getExamen().getArea().getIdArea();
+                datos[i][0] = x.getExamen().getModalidad().getIdModalidad();
+            }
+            modelo.setDataVector(datos, titulos);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
         }
     }
 
