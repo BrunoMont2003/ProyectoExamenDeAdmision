@@ -45,9 +45,10 @@ public class PostulanteDAO {
             ps.setString(8, postulante.getModalidad().getIdModalidad());
             ps.executeUpdate();
 
-            ListaPostulante_Examen examenes = new ListaPostulante_Examen();
+            ListaPostulante_Examen examenes = postulante.getL();
             for (int i = 0; i < examenes.getN(); i++) {
-                ps = cnn.prepareCall("insertar_postulante_Examen_Base(?,?)");
+                ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
+
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(i).getExamen().getIdExamen());
                 ps.executeUpdate();
@@ -118,6 +119,27 @@ public class PostulanteDAO {
         return pos;
     }
 
+    public boolean exists(String id) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        try {
+            ps = cnn.prepareStatement("call mostrarPostulantes()");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idPostulante");
+                if (idExamen.equals(id)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+        return false;
+    }
+
     public void actualizar(Postulante postulante) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -138,7 +160,7 @@ public class PostulanteDAO {
             ListaPostulante_Examen examenesEnBD = PostulanteDAO.getInstancia().buscarExamenes(postulante.getIdPostulante());
 
             if (examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty()) {
-                ps = cnn.prepareCall("call insertar_postulante_Examen_Base(?,?)");
+                ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
                 ps.executeUpdate();
@@ -231,7 +253,7 @@ public class PostulanteDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarPostulante()");
+            ps = cnn.prepareStatement("call mostrarPostulantes()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idPostulante = rs.getString("idPostulante");
@@ -257,14 +279,14 @@ public class PostulanteDAO {
         try {
 
             Object datos[][] = new Object[buscarExamenes(idPostulante).getN()][5];
-            String titulos[] = {"ID Examen", "Semestre", "Fecha", "Id Area", "IdModalidad"};
+            String titulos[] = {"ID Examen", "Semestre", "Fecha", "Area", "Modalidad"};
             for (int i = 0; i < buscarExamenes(idPostulante).getN(); i++) {
                 Postulante_Examen x = buscarExamenes(idPostulante).getElemento(i);
                 datos[i][0] = x.getExamen().getIdExamen();
-                datos[i][0] = x.getExamen().getSemestre();
-                datos[i][0] = x.getExamen().getFecha().toStringFormatSql();
-                datos[i][0] = x.getExamen().getArea().getIdArea();
-                datos[i][0] = x.getExamen().getModalidad().getIdModalidad();
+                datos[i][1] = x.getExamen().getSemestre();
+                datos[i][2] = x.getExamen().getFecha().toStringFormatSql();
+                datos[i][3] = x.getExamen().getArea().getNombreArea();
+                datos[i][4] = x.getExamen().getModalidad().getNombreM();
             }
             modelo.setDataVector(datos, titulos);
         } catch (SQLException ex) {

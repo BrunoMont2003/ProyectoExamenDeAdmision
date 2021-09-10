@@ -5,6 +5,7 @@
  */
 package datos;
 
+import entidades.Areas;
 import entidades.Carreras;
 import entidades.Facultad;
 import java.sql.*;
@@ -63,6 +64,26 @@ public class CarrerasDAO {
             cnn.close();
         }
         return car;
+    }
+    public Areas buscarAreaDeUnaCarrera(String idCarrera) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        Areas area = null;
+        try {
+            ps = cnn.prepareStatement("call buscarAreaDeUnaCarrera(?)");
+            ps.setString(1, idCarrera);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String idArea = rs.getString("idArea");
+                area = AreasDAO.getInstancia().buscarArea(idArea);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+        return area;
     }
 
     public void actualizar(Carreras carreras) throws SQLException {

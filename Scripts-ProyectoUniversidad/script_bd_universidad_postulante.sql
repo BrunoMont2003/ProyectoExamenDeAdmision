@@ -39,14 +39,14 @@ END$$
 -- drop procedure mostraPostulantes;
 call mostrarPostulantes();
 
-call buscarpostulante('P-00000002');
+call buscarpostulante('P-00000006');
 DELIMITER $$
 CREATE PROCEDURE buscarpostulante(in idPos char(10))
 BEGIN
   select * from postulante where idPostulante=idPos;
 END$$
 
-drop procedure modificarPostulante;
+-- drop procedure modificarPostulante;
 DELIMITER $$
 create procedure modificarPostulante(in idPos char(10), in nombP varchar(40), in apeM varchar(20), in apeF varchar(20), in dni char(8), in idcar char(10),in idla char(10), in idmo char(10))
 begin
@@ -60,3 +60,4 @@ create procedure eliminarPostulante(in idPos char(10))
 begin
   DELETE FROM postulante where idPostulante=idPos;
 end$$
+call eliminarPostulante("P-00000006");

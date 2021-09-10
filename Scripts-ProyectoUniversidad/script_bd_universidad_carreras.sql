@@ -108,3 +108,26 @@ BEGIN
 END$$
 -- drop procedure mostrarCarrerasDeUnaFacultad;
 call mostrarCarrerasDeUnaFacultad("FACD-13");
+
+
+DELIMITER $$
+CREATE PROCEDURE contarCarrerasDeUnaFacultad(in id char(10))
+BEGIN
+  select count(*) from Carrera where idFacultad=id;
+END$$
+-- drop procedure mostrarCarrerasDeUnaFacultad;
+call contarCarrerasDeUnaFacultad("FACD-01");
+
+
+DELIMITER $$
+CREATE PROCEDURE buscarAreaDeUnaCarrera(in idCar char(10))
+BEGIN
+  select a.idArea from areau as a
+  inner join facultad as f
+  on a.idArea=f.idArea
+  inner join carrera as c
+  on c.idFacultad=f.idFacultad
+  where idCarrera = idCar;
+END$$
+drop procedure buscarAreaDeUnaCarrera;
+call buscarAreaDeUnaCarrera("INGN-08");

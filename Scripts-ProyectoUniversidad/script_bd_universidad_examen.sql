@@ -30,7 +30,7 @@ CREATE PROCEDURE buscarExamen(in id char(8))
 BEGIN
   select * from Examen where idExamen=id;
 END$$
-call buscarExamen("EX-0001");
+call buscarExamen("EX-0003");
 
 DELIMITER $$
 CREATE PROCEDURE mostrarExamen()
@@ -52,9 +52,10 @@ DELIMITER $$
 create procedure eliminarExamen(in id char(8))
 begin
   call eliminarClavesDeUnExamen(id);
+  call eliminarExamenDeUnPostulante(id);
   DELETE FROM examen where idExamen=id;
 end$$
-call eliminarExamen("EX-0004");
+call eliminarExamen("EX-0002");
 drop procedure eliminarExamen;
 
 
@@ -75,3 +76,10 @@ call mostrarExamenesDeUnArea("AREA_B");
 
 
 
+DELIMITER $$
+CREATE PROCEDURE mostrarExamenesDeUnaModalidadYArea(in idM char(15), in idA char(15))
+BEGIN
+  select * from Examen where idModalidad=idM and idArea=idA;
+END$$
+
+call mostrarExamenesDeUnaModalidadYArea("MODD-01","AREA_A");

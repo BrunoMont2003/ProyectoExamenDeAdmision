@@ -67,6 +67,7 @@ public class ExamenDAO {
         }
         return false;
     }
+
     public Examen buscarExamen(String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -157,6 +158,37 @@ public class ExamenDAO {
                 lista.add(ex);
             }
         } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return lista;
+    }
+
+    public ArrayList<Examen> listarExamenesDeUnaModalidadYArea(String idModalidad, String idArea) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        ArrayList<Examen> lista = new ArrayList<Examen>();
+        try {
+            ps = cnn.prepareCall("call mostrarExamenesDeUnaModalidadYArea(?,?)");
+            ps.setString(1, idModalidad);
+            ps.setString(2, idArea);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idExamen");
+                String semestre = rs.getString("semestre");
+                String fechaSql = rs.getString("fecha");
+                Areas area = AreasDAO.getInstancia().buscarArea(idArea);
+                Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
+                String fechaArray[] = fechaSql.split("-");
+                int añoF = Integer.parseInt(fechaArray[0]);
+                int mes = Integer.parseInt(fechaArray[1]);
+                int dia = Integer.parseInt(fechaArray[2]);
+                Fecha fecha = new Fecha(añoF, mes, dia);
+                Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
+                lista.add(ex);
+            }
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println("ERROR: " + e.getMessage());
+
         }
         return lista;
     }

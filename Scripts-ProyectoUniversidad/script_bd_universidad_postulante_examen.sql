@@ -16,17 +16,18 @@ create table Postulante_Examen(
 DELIMITER $$
 create procedure insertar_Postulante_Examen(in pun double, in bue smallint, in mal smallint, in orden smallint, in idPos char(10), in idEx char(8))
 BEGIN
-	insert Postulante_Examen values (pun, bue, mal, orden, idPos, idEx);
+	insert into Postulante_Examen values (pun, bue, mal, orden, idPos, idEx);
 END $$
-
+drop procedure insertar_Postulante_Examen;
 call insertar_postulante_Examen(120.234, 56, 30, 5, "P-00000001","EX-0001");
 
 
 DELIMITER $$
-create procedure insertar_Postulante_Examen_Base(in idPos char(10), in idEx char(8))
+CREATE PROCEDURE insertar_Postulante_Examen_Base(in idPos char(10),in idEx char(8))
 BEGIN
-	insert Postulante_Examen(idPostulante, idExamen) values (idPos, idEx);
-END $$
+  insert into Postulante_Examen (idPostulante, idExamen) values (idPos, idEx);
+END$$
+drop procedure insertar_Postulante_Examen_Base;
 
 call insertar_postulante_Examen_Base("P-00000002","EX-0001");
 
@@ -56,6 +57,12 @@ BEGIN
 END $$
 
 DELIMITER $$
+create procedure eliminarExamenDeUnPostulante(in idEx char(8))
+BEGIN
+	Delete from Postulante_Examen where idExamen = idEx;
+END $$
+
+DELIMITER $$
 create procedure mostrar_Postulante_Examen()
 BEGIN
 	select * from Postulante_Examen;
@@ -70,4 +77,4 @@ BEGIN
 	select * from Postulante_Examen where idPostulante=idPos;
 END $$
 
-call mostrarExamenesDeUnPostulante("P-00000001");
+call mostrarExamenesDeUnPostulante("P-00000006");

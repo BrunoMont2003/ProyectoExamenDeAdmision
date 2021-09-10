@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import datos.CarrerasDAO;
 import datos.ExamenDAO;
 import entidades.Areas;
 import entidades.Examen;
@@ -29,6 +30,22 @@ public class DialogBuscarExmn extends javax.swing.JDialog {
         try {
             for (int i = 0; i < examendao.listarExamenes().size(); i++) {
                 cboIdExamen.addItem(examendao.listarExamenes().get(i).getIdExamen());
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
+    public DialogBuscarExmn(String idModalidad, String idCarrera) {
+      super(FrmPrincipal.getInstancia(), true);
+        initComponents();
+        setLocationRelativeTo(null);
+        btnSeleccionar.setEnabled(false);
+
+        try {
+            Areas area = CarrerasDAO.getInstancia().buscarAreaDeUnaCarrera(idCarrera);
+            String idArea = area.getIdArea();
+            for (int i = 0; i < examendao.listarExamenesDeUnaModalidadYArea(idModalidad, idArea).size(); i++) {
+                cboIdExamen.addItem(examendao.listarExamenesDeUnaModalidadYArea(idModalidad, idArea).get(i).getIdExamen());
             }
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
