@@ -30,7 +30,7 @@ public class CarrerasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_carreras(?,?,?)");
+            ps = cnn.prepareCall("call insertar_carreras(?,?,?)");
             ps.setString(1, carreras.getCodigoCarrera());
             ps.setString(2, carreras.getNombreCarrera());
             ps.setString(3, carreras.getFacultad().getIdFacultad());
@@ -48,7 +48,7 @@ public class CarrerasDAO {
         PreparedStatement ps = null;
         Carreras car = null;
         try {
-            ps = cnn.prepareStatement("call buscarCarrera(?)");
+            ps = cnn.prepareCall("call buscarCarrera(?)");
             ps.setString(1, idCarrera);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -70,7 +70,7 @@ public class CarrerasDAO {
         PreparedStatement ps = null;
         Areas area = null;
         try {
-            ps = cnn.prepareStatement("call buscarAreaDeUnaCarrera(?)");
+            ps = cnn.prepareCall("call buscarAreaDeUnaCarrera(?)");
             ps.setString(1, idCarrera);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -90,7 +90,7 @@ public class CarrerasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarCarrera(?,?,?)");
+            ps = cnn.prepareCall("call modificarCarrera(?,?,?)");
             ps.setString(1, carreras.getCodigoCarrera());
             ps.setString(2, carreras.getNombreCarrera());
             ps.setString(3, carreras.getFacultad().getIdFacultad());
@@ -107,7 +107,7 @@ public class CarrerasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarCarrera(?)");
+            ps = cnn.prepareCall("call eliminarCarrera(?)");
             ps.setString(1, idCarrera);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -125,7 +125,7 @@ public class CarrerasDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarCarreras()");
+            ps = cnn.prepareCall("call mostrarCarreras()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idCarrera = rs.getString("idCarrera");
@@ -150,7 +150,7 @@ public class CarrerasDAO {
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("call buscar_carrera(?)");
+            ps = cnn.prepareCall("call buscar_carrera(?)");
             ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {

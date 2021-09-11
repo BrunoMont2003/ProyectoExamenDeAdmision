@@ -28,7 +28,7 @@ public class ResponsableAulaDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_Responsable(?,?,?,?,?)");
+            ps = cnn.prepareCall("call insertar_Responsable(?,?,?,?,?)");
             ps.setString(1, responsable.getResponsableAula().getIdResponsable());
             ps.setString(2, responsable.getResponsableAula().getApellidos());
             ps.setString(3, responsable.getResponsableAula().getNombres());
@@ -48,7 +48,7 @@ public class ResponsableAulaDAO {
         PreparedStatement ps = null;
         ResponsableAulaAdapter resp = null;
         try {
-            ps = cnn.prepareStatement("call buscar_Responsable(?)");
+            ps = cnn.prepareCall("call buscar_Responsable(?)");
             ps.setString(1, idResponsable);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -77,7 +77,7 @@ public class ResponsableAulaDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificar_Responsable(?,?,?,?,?)");
+            ps = cnn.prepareCall("call modificar_Responsable(?,?,?,?,?)");
             ps.setString(1, responsable.getResponsableAula().getIdResponsable());
             ps.setString(2, responsable.getResponsableAula().getApellidos());
             ps.setString(3, responsable.getResponsableAula().getNombres());
@@ -97,7 +97,7 @@ public class ResponsableAulaDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminar_Responsable(?)");
+            ps = cnn.prepareCall("call eliminar_Responsable(?)");
             ps.setString(1, idResponsable);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -115,7 +115,7 @@ public class ResponsableAulaDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrar_Responsables()");
+            ps = cnn.prepareCall("call mostrar_Responsables()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idResponsable = rs.getString("idResponsable");
@@ -142,7 +142,7 @@ public class ResponsableAulaDAO {
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("call buscarResponsable_PorNombre(?)");
+            ps = cnn.prepareCall("call buscarResponsable_PorNombre(?)");
             ps.setString(1, nombre);
             rs = ps.executeQuery();
             while (rs.next()) {

@@ -21,9 +21,39 @@ BEGIN
   insert into Examen(idExamen, semestre, fecha, idArea, idModalidad) values (id,sem, f, idAr, idM);
 END$$
 
-call insertarExamen("EX-0001", "2021-II", "2021-10-03", "AREA_A","MODD-01");
-call insertarExamen("EX-0002", "2020-II", "2021-03-19", "AREA_D","MODD-03");
-call insertarExamen("EX-0003", "2020-I", "2019-09-28", "AREA_B","MODD-02");
+
+call insertarExamen("EX-0001", "2021-I", "2020-11-05", "AREA_A","MODD-04");
+call insertarExamen("EX-0002", "2021-I", "2020-11-06", "AREA_B","MODD-04");
+call insertarExamen("EX-0003", "2021-I", "2020-11-07", "AREA_C","MODD-04");
+call insertarExamen("EX-0004", "2021-I", "2020-11-07", "AREA_D","MODD-04");
+call insertarExamen("EX-0005", "2021-I", "2020-11-21", "AREA_A","MODD-02");
+call insertarExamen("EX-0006", "2021-I", "2020-11-21", "AREA_B","MODD-02");
+call insertarExamen("EX-0007", "2021-I", "2020-11-21", "AREA_C","MODD-02");
+call insertarExamen("EX-0008", "2021-I", "2020-11-21", "AREA_D","MODD-02");
+call insertarExamen("EX-0009", "2021-I", "2020-11-21", "AREA_A","MODD-03");
+call insertarExamen("EX-0010", "2021-I", "2020-11-21", "AREA_B","MODD-03");
+call insertarExamen("EX-0011", "2021-I", "2020-11-21", "AREA_C","MODD-03");
+call insertarExamen("EX-0012", "2021-I", "2020-11-21", "AREA_D","MODD-03");
+call insertarExamen("EX-0013", "2021-I", "2020-12-02", "AREA_A","MODD-01");
+call insertarExamen("EX-0014", "2021-I", "2020-11-03", "AREA_B","MODD-01");
+call insertarExamen("EX-0015", "2021-I", "2020-11-04", "AREA_C","MODD-01");
+call insertarExamen("EX-0016", "2021-I", "2020-11-05", "AREA_D","MODD-01");
+call insertarExamen("EX-0017", "2021-II", "2021-05-12", "AREA_A","MODD-02");
+call insertarExamen("EX-0018", "2021-II", "2021-05-12", "AREA_B","MODD-02");
+call insertarExamen("EX-0019", "2021-II", "2021-05-12", "AREA_C","MODD-02");
+call insertarExamen("EX-0020", "2021-II", "2021-05-12", "AREA_D","MODD-02");
+call insertarExamen("EX-0021", "2021-II", "2021-05-12", "AREA_A","MODD-03");
+call insertarExamen("EX-0022", "2021-II", "2021-05-12", "AREA_B","MODD-03");
+call insertarExamen("EX-0023", "2021-II", "2021-05-12", "AREA_C","MODD-03");
+call insertarExamen("EX-0024", "2021-II", "2021-05-12", "AREA_D","MODD-03");
+call insertarExamen("EX-0025", "2021-II", "2021-05-13", "AREA_A","MODD-04");
+call insertarExamen("EX-0026", "2021-II", "2021-05-14", "AREA_B","MODD-04");
+call insertarExamen("EX-0027", "2021-Ii", "2021-05-15", "AREA_C","MODD-04");
+call insertarExamen("EX-0028", "2021-II", "2021-05-15", "AREA_D","MODD-04");
+call insertarExamen("EX-0029", "2021-II", "2021-05-27", "AREA_A","MODD-01");
+call insertarExamen("EX-0030", "2021-II", "2021-05-28", "AREA_B","MODD-01");
+call insertarExamen("EX-0031", "2021-Ii", "2021-05-29", "AREA_C","MODD-01");
+call insertarExamen("EX-0032", "2021-II", "2021-05-29", "AREA_D","MODD-01");
 -- drop procedure insertarExamen;
 DELIMITER $$
 CREATE PROCEDURE buscarExamen(in id char(8))
@@ -55,7 +85,7 @@ begin
   call eliminarExamenDeUnPostulante(id);
   DELETE FROM examen where idExamen=id;
 end$$
-call eliminarExamen("EX-0002");
+call eliminarExamen("EX-0003");
 drop procedure eliminarExamen;
 
 

@@ -55,12 +55,13 @@ create procedure eliminar_Postulante_Examen(in idPos char(10), in idEx char(8))
 BEGIN
 	Delete from Postulante_Examen where idPostulante = idPos and idExamen = idEx;
 END $$
-
+call eliminar_Postulante_Examen("P-00000006", "EX-0014");
 DELIMITER $$
 create procedure eliminarExamenDeUnPostulante(in idEx char(8))
 BEGIN
 	Delete from Postulante_Examen where idExamen = idEx;
 END $$
+
 
 DELIMITER $$
 create procedure mostrar_Postulante_Examen()

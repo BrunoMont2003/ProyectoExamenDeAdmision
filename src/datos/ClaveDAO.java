@@ -38,7 +38,7 @@ public class ClaveDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertarClave(?,?,?,?,?)");
+            ps = cnn.prepareCall("call insertarClave(?,?,?,?,?)");
             ps.setString(1, clave.getIdClave());
             ps.setInt(2, clave.getNumero());
             ps.setDouble(3, clave.getLetra());
@@ -59,7 +59,7 @@ public class ClaveDAO {
         PreparedStatement ps = null;
         Clave c = null;
         try {
-            ps = cnn.prepareStatement("call buscarClave(?)");
+            ps = cnn.prepareCall("call buscarClave(?)");
             ps.setString(1, idClave);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -85,7 +85,7 @@ public class ClaveDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarClave(?,?,?,?,?)");
+            ps = cnn.prepareCall("call modificarClave(?,?,?,?,?)");
             ps.setString(1, clave.getIdClave());
             ps.setInt(2, clave.getNumero());
             ps.setDouble(3, clave.getLetra());
@@ -105,7 +105,7 @@ public class ClaveDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarClave(?)");
+            ps = cnn.prepareCall("call eliminarClave(?)");
             ps.setString(1, idClave);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -123,7 +123,7 @@ public class ClaveDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarClaves()");
+            ps = cnn.prepareCall("call mostrarClaves()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idClave = rs.getString("idClave");
@@ -148,7 +148,7 @@ public class ClaveDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarClavesDeExamen(?)");
+            ps = cnn.prepareCall("call mostrarClavesDeExamen(?)");
             ps.setString(1, idEx);
             rs = ps.executeQuery();
             while (rs.next()) {

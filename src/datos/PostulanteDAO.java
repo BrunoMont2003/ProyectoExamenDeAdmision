@@ -34,7 +34,7 @@ public class PostulanteDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_postulante(?,?,?,?,?,?,?,?)");
+            ps = cnn.prepareCall("call insertar_postulante(?,?,?,?,?,?,?,?)");
             ps.setString(1, postulante.getIdPostulante());
             ps.setString(2, postulante.getNombres());
             ps.setString(3, postulante.getApellido_paterno());
@@ -68,7 +68,7 @@ public class PostulanteDAO {
 
         ListaPostulante_Examen lista = new ListaPostulante_Examen();
         try {
-            ps = cnn.prepareStatement("call mostrarExamenesDeUnPostulante(?)");
+            ps = cnn.prepareCall("call mostrarExamenesDeUnPostulante(?)");
             ps.setString(1, idPostulante);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -89,7 +89,7 @@ public class PostulanteDAO {
         PreparedStatement ps = null;
         Postulante pos = null;
         try {
-            ps = cnn.prepareStatement("call buscarpostulante(?)");
+            ps = cnn.prepareCall("call buscarpostulante(?)");
             ps.setString(1, idPostulante);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -123,7 +123,7 @@ public class PostulanteDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call mostrarPostulantes()");
+            ps = cnn.prepareCall("call mostrarPostulantes()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idExamen = rs.getString("idPostulante");
@@ -144,7 +144,7 @@ public class PostulanteDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarPostulante(?,?,?,?,?,?,?,?)");
+            ps = cnn.prepareCall("call modificarPostulante(?,?,?,?,?,?,?,?)");
             ps.setString(1, postulante.getIdPostulante());
             ps.setString(2, postulante.getNombres());
             ps.setString(3, postulante.getApellido_paterno());
@@ -160,6 +160,7 @@ public class PostulanteDAO {
             ListaPostulante_Examen examenesEnBD = PostulanteDAO.getInstancia().buscarExamenes(postulante.getIdPostulante());
 
             if (examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty()) {
+                System.out.println("examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty() "+examenesEnBD.getN()+" && "+examenes.getN());
                 ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
@@ -169,9 +170,9 @@ public class PostulanteDAO {
                 for (int i = 0; i < examenes.getN(); i++) {
                     //ELIMINAR TODOS LOS EXAMENES
                     PostulanteDAO.getInstancia().eliminarExamen(postulante.getL().getElemento(i).getExamen().getIdExamen());
-                    ps = cnn.prepareCall("call insertar_postulante_Examen_Base(?,?)");
+                    ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
                     ps.setString(1, postulante.getIdPostulante());
-                    ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
+                    ps.setString(2, examenes.getElemento(i).getExamen().getIdExamen());
                     ps.executeUpdate();
                 }
             }
@@ -220,7 +221,7 @@ public class PostulanteDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarPostulante(?)");
+            ps = cnn.prepareCall("call eliminarPostulante(?)");
             ps.setString(1, idPostulante);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -235,7 +236,7 @@ public class PostulanteDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarExamenDeUnPostulante(?)");
+            ps = cnn.prepareCall("call eliminarExamenDeUnPostulante(?)");
             ps.setString(1, idExamen);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -253,7 +254,7 @@ public class PostulanteDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarPostulantes()");
+            ps = cnn.prepareCall("call mostrarPostulantes()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idPostulante = rs.getString("idPostulante");
@@ -302,7 +303,7 @@ public class PostulanteDAO {
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("call buscar_postulante(?)");
+            ps = cnn.prepareCall("call buscar_postulante(?)");
             ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {

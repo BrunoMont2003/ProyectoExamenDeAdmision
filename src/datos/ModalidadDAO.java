@@ -32,7 +32,7 @@ public class ModalidadDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_modalidad(?,?)");
+            ps = cnn.prepareCall("call insertar_modalidad(?,?)");
             ps.setString(1, modalidad.getIdModalidad());
             ps.setString(2, modalidad.getNombreM());
             ps.executeUpdate();
@@ -47,7 +47,7 @@ public class ModalidadDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarModalidad(?,?)");
+            ps = cnn.prepareCall("call modificarModalidad(?,?)");
             ps.setString(1, modalidad.getIdModalidad());
             ps.setString(2, modalidad.getNombreM());
             ps.executeUpdate();
@@ -89,7 +89,7 @@ public class ModalidadDAO {
         PreparedStatement ps = null;
         Modalidad mod = null;
         try {
-            ps = cnn.prepareStatement("call buscarmodalidad(?)");
+            ps = cnn.prepareCall("call buscarmodalidad(?)");
             ps.setString(1, idModalidad);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -112,7 +112,7 @@ public class ModalidadDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarModalidad()");
+            ps = cnn.prepareCall("call mostrarModalidad()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idModalidad = rs.getString("idModalidad");
@@ -137,7 +137,7 @@ public class ModalidadDAO {
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("call buscar_modalidad(?)");
+            ps = cnn.prepareCall("call buscar_modalidad(?)");
             ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {

@@ -29,7 +29,7 @@ public class FacultadDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_facultad(?,?,?)");
+            ps = cnn.prepareCall("call insertar_facultad(?,?,?)");
             ps.setString(1, facultad.getIdFacultad());
             ps.setString(2, facultad.getNombreFacultad());
             ps.setString(3, facultad.getAreas().getIdArea());
@@ -47,7 +47,7 @@ public class FacultadDAO {
         PreparedStatement ps = null;
         Facultad facu = null;
         try {
-            ps = cnn.prepareStatement("call buscarfacultad(?)");
+            ps = cnn.prepareCall("call buscarfacultad(?)");
             ps.setString(1, idFacultad);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -69,7 +69,7 @@ public class FacultadDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarFacultad(?,?,?)");
+            ps = cnn.prepareCall("call modificarFacultad(?,?,?)");
             ps.setString(1, facultad.getIdFacultad());
             ps.setString(2, facultad.getNombreFacultad());
             ps.setString(3, facultad.getAreas().getIdArea());
@@ -88,7 +88,7 @@ public class FacultadDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarFacultad(?)");
+            ps = cnn.prepareCall("call eliminarFacultad(?)");
             ps.setString(1, idFacultad);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -106,7 +106,7 @@ public class FacultadDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarFacultades()");
+            ps = cnn.prepareCall("call mostrarFacultades()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idFacultad = rs.getString("idFacultad");
@@ -131,7 +131,7 @@ public class FacultadDAO {
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("call buscar_facultad(?)");
+            ps = cnn.prepareCall("call buscar_facultad(?)");
             ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {

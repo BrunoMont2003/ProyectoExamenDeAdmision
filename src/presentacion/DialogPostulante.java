@@ -5,8 +5,11 @@
  */
 package presentacion;
 
+import datos.AulaDAO;
+import datos.CarrerasDAO;
 import datos.ExamenDAO;
 import datos.ListaPostulante_Examen;
+import datos.ModalidadDAO;
 import datos.PostulanteDAO;
 import entidades.Aula;
 import entidades.Carreras;
@@ -15,6 +18,7 @@ import entidades.Modalidad;
 import entidades.Postulante;
 import entidades.Postulante_Examen;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -48,7 +52,17 @@ public class DialogPostulante extends javax.swing.JDialog {
         modelo.setColumnIdentifiers(nombreColumnas);
         desHabilitar();
         deshabilitarExamen();
+        deshabilitarAula();
 
+    }
+
+    public void deshabilitarAula() {
+        btnSeleccionarAula.setEnabled(false);
+
+    }
+
+    public void habilitarAula() {
+        btnSeleccionarAula.setEnabled(true);
     }
 
     public void habilitarExamen() {
@@ -412,9 +426,19 @@ public class DialogPostulante extends javax.swing.JDialog {
                 txtIdPostulanteActionPerformed(evt);
             }
         });
+        txtIdPostulante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdPostulanteKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtIdPostulante, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 82, 179, 40));
 
         txtNombres.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 146, 179, 40));
 
         txtPaterno.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
@@ -423,12 +447,27 @@ public class DialogPostulante extends javax.swing.JDialog {
                 txtPaternoActionPerformed(evt);
             }
         });
+        txtPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPaternoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 207, 179, 40));
 
         txtMaterno.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        txtMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaternoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 263, 179, 40));
 
         txtDni.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 329, 179, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -498,7 +537,6 @@ public class DialogPostulante extends javax.swing.JDialog {
         jLabel21.setText("MODALIDAD");
         jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
 
-        btnEliminarExamen.setBackground(new java.awt.Color(255, 102, 102));
         btnEliminarExamen.setText("ELIMINAR");
         btnEliminarExamen.setColorHover(new java.awt.Color(230, 58, 58));
         btnEliminarExamen.setColorNormal(new java.awt.Color(255, 0, 0));
@@ -511,7 +549,6 @@ public class DialogPostulante extends javax.swing.JDialog {
         });
         jPanel5.add(btnEliminarExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 130, 134, -1));
 
-        btnLimpiarExamen.setBackground(new java.awt.Color(255, 102, 102));
         btnLimpiarExamen.setText("LIMPIAR");
         btnLimpiarExamen.setColorHover(new java.awt.Color(230, 58, 58));
         btnLimpiarExamen.setColorNormal(new java.awt.Color(255, 0, 0));
@@ -565,7 +602,7 @@ public class DialogPostulante extends javax.swing.JDialog {
         });
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 840, 134, -1));
 
-        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setText("Restaurar");
         btnLimpiar.setColorBorde(null);
         btnLimpiar.setColorHover(new java.awt.Color(228, 171, 172));
         btnLimpiar.setColorNormal(new java.awt.Color(237, 197, 212));
@@ -591,7 +628,7 @@ public class DialogPostulante extends javax.swing.JDialog {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 840, 134, -1));
 
-        btnModificar.setText("Modificar");
+        btnModificar.setText("Actualizar");
         btnModificar.setColorBorde(null);
         btnModificar.setColorHover(new java.awt.Color(194, 210, 228));
         btnModificar.setColorNormal(new java.awt.Color(194, 224, 228));
@@ -662,6 +699,7 @@ public class DialogPostulante extends javax.swing.JDialog {
             carreras = f.carrerasSelec;
             txtIdCarrera.setText(carreras.getCodigoCarrera());
             txtNCarrera.setText(carreras.getNombreCarrera());
+            habilitarAula();
         } catch (SQLException ex) {
 
         }
@@ -669,7 +707,7 @@ public class DialogPostulante extends javax.swing.JDialog {
 
     private void btnSeleccionarAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarAulaActionPerformed
         try {
-            DialogBuscarAula f = new DialogBuscarAula();
+            DialogBuscarAula f = new DialogBuscarAula(txtIdCarrera.getText());
             f.setVisible(true);
             aula = f.aulaSelec;
             txtIDAULA.setText(aula.getIdAula());
@@ -698,20 +736,19 @@ public class DialogPostulante extends javax.swing.JDialog {
                 || txtModalidad.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "NO DEJE EL CAMPO VACÍO");
         } else {
-            if (txtNomModalidad.getText().equals(txtModalidad.getText())) {
 
-                String idExamen = txtIdExamen.getText();
-                String semestre = txtSemestre.getText();
-                String fecha = txtFecha.getText();
-                String area = txtArea.getText();
-                String mod = txtModalidad.getText();
-                Object[] fila = {idExamen, semestre, fecha, area, mod};
-                modelo.addRow(fila);
+            String idExamen = txtIdExamen.getText();
+            String semestre = txtSemestre.getText();
+            String fecha = txtFecha.getText();
+            String area = txtArea.getText();
+            String mod = txtModalidad.getText();
+            Examen aux = new Examen();
+            aux.setIdExamen(idExamen);
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Seleccione la modalidad corecta");
+            Object[] fila = {idExamen, semestre, fecha, area, mod};
+            modelo.addRow(fila);
+            btnAgregarExamen.setEnabled(false);
 
-            }
         }
     }//GEN-LAST:event_btnAgregarExamenActionPerformed
 
@@ -741,6 +778,7 @@ public class DialogPostulante extends javax.swing.JDialog {
 
     private void btnLimpiarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarExamenActionPerformed
         limpiarEntradasExamen();
+        btnAgregarExamen.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarExamenActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -749,6 +787,8 @@ public class DialogPostulante extends javax.swing.JDialog {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarEntradas();
+        deshabilitarAula();
+        deshabilitarExamen();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -778,8 +818,17 @@ public class DialogPostulante extends javax.swing.JDialog {
             String apellido_paterno = txtPaterno.getText();
             String apellido_materno = txtMaterno.getText();
             String dni = txtDni.getText();
-            Postulante x = new Postulante(idPostulante, nombre, apellido_paterno, apellido_materno, dni, carreras, aula, modalidad);
             try {
+                String idCarrera = txtIdCarrera.getText();
+                Carreras c = CarrerasDAO.getInstancia().buscarCarreras(idCarrera);
+
+                String idAula = txtIDAULA.getText();
+                Aula a = AulaDAO.getInstancia().buscarAula(idAula);
+
+                String idModalidad = txtIdModalidad.getText();
+                Modalidad m = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
+
+                Postulante x = new Postulante(idPostulante, nombre, apellido_paterno, apellido_materno, dni, c, a, m);
                 x.setL(examenes);
                 pd.actualizar(x);
                 desHabilitar();
@@ -813,6 +862,8 @@ public class DialogPostulante extends javax.swing.JDialog {
 
                 pd.mostrarExamenes(idPostulante, modelo);
                 habilitar();
+                habilitarAula();
+                habilitarExamen();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
             }
@@ -839,7 +890,7 @@ public class DialogPostulante extends javax.swing.JDialog {
 
             }
         } catch (Exception ex) {
-            System.out.println("Error: "+ex.getMessage());
+            System.out.println("Error: " + ex.getMessage());
         }
 
     }//GEN-LAST:event_btnBuscarExamenActionPerformed
@@ -869,6 +920,7 @@ public class DialogPostulante extends javax.swing.JDialog {
                     pd.insertar(x);
                     limpiarEntradas();
                     deshabilitarExamen();
+                    deshabilitarAula();
 
                 }
             } catch (SQLException ex) {
@@ -876,6 +928,37 @@ public class DialogPostulante extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtIdPostulanteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPostulanteKeyTyped
+        if (txtIdPostulante.getText().length() >= 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdPostulanteKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        if (txtNombres.getText().length() >= 40) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaternoKeyTyped
+        if (txtPaterno.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPaternoKeyTyped
+
+    private void txtMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaternoKeyTyped
+        if (txtMaterno.getText().length() >= 20) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMaternoKeyTyped
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+        char c = evt.getKeyChar();
+        if (txtDni.getText().length() >= 8 || (c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;

@@ -34,7 +34,7 @@ public class RangoPreguntasDAO {
         cnn = Conexion.getInstancia().miConexion();
          PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertarRangoPreguntas(?,?,?,?)");
+            ps = cnn.prepareCall("call insertarRangoPreguntas(?,?,?,?)");
             ps.setString(1, rangoPreguntas.getIdRangoPreguntas());
             ps.setString(2, rangoPreguntas.getNombre());
             ps.setDouble(3, rangoPreguntas.getPuntajeCorrecta());
@@ -55,7 +55,7 @@ public class RangoPreguntasDAO {
         PreparedStatement ps = null;
         RangoPreguntas r = null;
         try {
-            ps = cnn.prepareStatement("call buscarRangoPreguntas(?)");
+            ps = cnn.prepareCall("call buscarRangoPreguntas(?)");
             ps.setString(1, idRangoPreguntas);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -78,7 +78,7 @@ public class RangoPreguntasDAO {
         cnn = Conexion.getInstancia().miConexion();
          PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarRangoPreguntas(?,?,?,?)");
+            ps = cnn.prepareCall("call modificarRangoPreguntas(?,?,?,?)");
             ps.setString(1, rangoPreguntas.getIdRangoPreguntas());
             ps.setString(2, rangoPreguntas.getNombre());
             ps.setDouble(3, rangoPreguntas.getPuntajeCorrecta());
@@ -96,7 +96,7 @@ public class RangoPreguntasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarRangoPreguntas(?)");
+            ps = cnn.prepareCall("call eliminarRangoPreguntas(?)");
             ps.setString(1, idRango);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -113,7 +113,7 @@ public class RangoPreguntasDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarRangoPreguntas()");
+            ps = cnn.prepareCall("call mostrarRangoPreguntas()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idRango = rs.getString("idRangoPreguntas");
@@ -137,7 +137,7 @@ public class RangoPreguntasDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarRangoPreguntasPorNombre(?)");
+            ps = cnn.prepareCall("call mostrarRangoPreguntasPorNombre(?)");
             ps.setString(1, nom);
             rs = ps.executeQuery();
             while (rs.next()) {

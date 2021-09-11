@@ -7,6 +7,8 @@ package presentacion;
 
 import datos.AreasDAO;
 import datos.AulaDAO;
+import datos.CarrerasDAO;
+import entidades.Areas;
 import entidades.Aula;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,6 +32,13 @@ DefaultTableModel modelo = new DefaultTableModel();
         initComponents();
          setLocationRelativeTo(null);
         ad.mostrarAula(modelo);
+    }
+    public DialogBuscarAula(String idCarrera) throws SQLException {
+        super(FrmPrincipal.getInstancia(), true);
+        Areas area = CarrerasDAO.getInstancia().buscarAreaDeUnaCarrera(idCarrera);
+        initComponents();
+         setLocationRelativeTo(null);
+        ad.mostrarAulaPorArea(area.getIdArea(), modelo);
     }
 
     /**

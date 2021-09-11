@@ -32,7 +32,7 @@ public class ExamenDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertarExamen(?,?,?,?,?)");
+            ps = cnn.prepareCall("call insertarExamen(?,?,?,?,?)");
             ps.setString(1, examen.getIdExamen());
             ps.setString(2, examen.getSemestre());
             ps.setString(3, examen.getFecha().toStringFormatSql());
@@ -51,7 +51,7 @@ public class ExamenDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call mostrarexamen()");
+            ps = cnn.prepareCall("call mostrarexamen()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idExamen = rs.getString("idExamen");
@@ -73,7 +73,7 @@ public class ExamenDAO {
         PreparedStatement ps = null;
         Examen exa = null;
         try {
-            ps = cnn.prepareStatement("call buscarexamen(?)");
+            ps = cnn.prepareCall("call buscarexamen(?)");
             ps.setString(1, idExamen);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -104,7 +104,7 @@ public class ExamenDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarExamen(?,?, ?, ?, ?)");
+            ps = cnn.prepareCall("call modificarExamen(?,?, ?, ?, ?)");
             ps.setString(1, examen.getIdExamen());
             ps.setString(2, examen.getSemestre());
             ps.setString(3, examen.getFecha().toStringFormatSql());
@@ -123,7 +123,7 @@ public class ExamenDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call eliminarExamen(?)");
+            ps = cnn.prepareCall("call eliminarExamen(?)");
             ps.setString(1, idExamen);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -200,7 +200,7 @@ public class ExamenDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarExamen()");
+            ps = cnn.prepareCall("call mostrarExamen()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idExamen = rs.getString("idExamen");

@@ -28,7 +28,7 @@ public class AreasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call insertar_areaU(?,?)");
+            ps = cnn.prepareCall("call insertar_areaU(?,?)");
             ps.setString(1, areas.getIdArea());
             ps.setString(2, areas.getNombreArea());
             ps.executeUpdate();
@@ -45,7 +45,7 @@ public class AreasDAO {
         PreparedStatement ps = null;
         Areas are = null;
         try {
-            ps = cnn.prepareStatement("call buscararea(?)");
+            ps = cnn.prepareCall("call buscararea(?)");
             ps.setString(1, idArea);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -65,7 +65,7 @@ public class AreasDAO {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareStatement("call modificarArea(?,?)");
+            ps = cnn.prepareCall("call modificarArea(?,?)");
             ps.setString(1, areas.getIdArea());
             ps.setString(2, areas.getNombreArea());
             ps.executeUpdate();
@@ -132,7 +132,7 @@ public class AreasDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call mostrarAreas()");
+            ps = cnn.prepareCall("call mostrarAreas()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idArea = rs.getString("idArea");
@@ -156,7 +156,7 @@ public class AreasDAO {
         modelo.setColumnIdentifiers(titulos);
 
         try {
-            ps = cnn.prepareStatement("call buscar_area(?)");
+            ps = cnn.prepareCall("call buscar_area(?)");
             ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {

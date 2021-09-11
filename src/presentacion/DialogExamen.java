@@ -359,7 +359,8 @@ public class DialogExamen extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIdExamenKeyTyped
 
     private void txtAñoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAñoKeyTyped
-        if (txtAño.getText().length() >= 4) {
+        char c = evt.getKeyChar();
+        if (txtAño.getText().length() >= 4 || (c < '0' || c > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtAñoKeyTyped
@@ -371,14 +372,18 @@ public class DialogExamen extends javax.swing.JDialog {
     }//GEN-LAST:event_txtSemestreKeyTyped
 
     private void txtDiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaKeyTyped
-        if (txtDia.getText().length() >= 2) {
+        char c = evt.getKeyChar();
+
+        if (txtDia.getText().length() >= 2 || (c < '0' || c > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDiaKeyTyped
 
     private void txtMesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMesKeyTyped
         // TODO add your handling code here:
-        if (txtMes.getText().length() >= 2) {
+        char c = evt.getKeyChar();
+
+        if (txtMes.getText().length() >= 2 || (c < '0' || c > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtMesKeyTyped
@@ -408,7 +413,7 @@ public class DialogExamen extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarModalidadActionPerformed
 
     private void btnBuscarModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModalidadActionPerformed
-          try {
+        try {
             // TODO add your handling code here:
             DialogBuscarModalidad f = new DialogBuscarModalidad();
             f.setVisible(true);
@@ -466,7 +471,7 @@ public class DialogExamen extends javax.swing.JDialog {
                 Examen x;
                 x = examendao.buscarExamen(idExamen);
                 if (x != null) {
-                    System.out.println("FORMATO NORMAL: "+x.getFecha().toString());
+                    System.out.println("FORMATO NORMAL: " + x.getFecha().toString());
                     txtSemestre.setText(x.getSemestre());
                     txtAño.setText(String.valueOf(x.getFecha().getAño()));
                     txtMes.setText(String.valueOf(x.getFecha().getMes()));
@@ -487,7 +492,7 @@ public class DialogExamen extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-      if (txtIdExamen.getText().equals("")
+        if (txtIdExamen.getText().equals("")
                 || txtAño.getText().equals("")
                 || txtSemestre.getText().equals("")
                 || txtDia.getText().equals("")

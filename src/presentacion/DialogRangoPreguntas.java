@@ -216,11 +216,17 @@ public class DialogRangoPreguntas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCorrectaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorrectaKeyTyped
-        // TODO add your handling code here:
+        char  c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCorrectaKeyTyped
 
     private void txtIncorrectaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIncorrectaKeyTyped
-        // TODO add your handling code here:
+        char  c = evt.getKeyChar();
+        if(c<'0' || c>'9'){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtIncorrectaKeyTyped
 
     private void txtIdRangoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdRangoKeyTyped
