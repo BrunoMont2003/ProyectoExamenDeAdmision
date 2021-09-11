@@ -82,6 +82,7 @@ DELIMITER $$
 create procedure eliminarExamen(in id char(8))
 begin
   call eliminarClavesDeUnExamen(id);
+  call eliminarRespuestasDeUnExamen(id);
   call eliminarExamenDeUnPostulante(id);
   DELETE FROM examen where idExamen=id;
 end$$

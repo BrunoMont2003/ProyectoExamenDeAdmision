@@ -58,6 +58,8 @@ call modificarPostulante("P-00000001","DARREN CARLOS","ABALES","MENDOZA","765123
 DELIMITER $$
 create procedure eliminarPostulante(in idPos char(10))
 begin
+  call eliminarRespuestasDeUnPostulante(idPos);
   DELETE FROM postulante where idPostulante=idPos;
 end$$
+drop procedure eliminarPostulante;
 call eliminarPostulante("P-00000006");

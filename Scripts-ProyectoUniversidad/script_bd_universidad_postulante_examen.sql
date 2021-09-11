@@ -29,7 +29,7 @@ BEGIN
 END$$
 drop procedure insertar_Postulante_Examen_Base;
 
-call insertar_postulante_Examen_Base("P-00000002","EX-0001");
+call insertar_postulante_Examen_Base("P-00000006","EX-0014");
 
 
 DELIMITER $$

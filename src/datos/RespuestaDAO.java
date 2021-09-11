@@ -5,9 +5,10 @@
  */
 package datos;
 
-import entidades.Clave;
+import entidades.Respuesta;
 import entidades.Examen;
-import entidades.RangoPreguntas;
+import entidades.Postulante;
+import entidades.Respuesta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,30 +21,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author bruno
  */
-public class ClaveDAO {
+public class RespuestaDAO {
 
     private Connection cnn = null;
     private ResultSet rs = null;
 
-    private static ClaveDAO instancia;
+    private static RespuestaDAO instancia;
 
-    public static ClaveDAO getInstancia() {
+    public static RespuestaDAO getInstancia() {
         if (instancia == null) {
-            instancia = new ClaveDAO();
+            instancia = new RespuestaDAO();
         }
         return instancia;
     }
 
-    public void insertar(Clave clave) throws SQLException {
+    public void insertar(Respuesta respuesta) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareCall("call insertarClave(?,?,?,?,?)");
-            ps.setString(1, clave.getIdClave());
-            ps.setInt(2, clave.getNumero());
-            ps.setDouble(3, clave.getLetra());
-            ps.setString(4, clave.getExamen().getIdExamen());
-            ps.setString(5, clave.getRangoPreguntas().getIdRangoPreguntas());
+            ps = cnn.prepareCall("call insertar_respuesta(?,?,?,?,?)");
+            ps.setString(1, respuesta.getIdRespuesta());
+            ps.setInt(2, respuesta.getNumero());
+            ps.setDouble(3, respuesta.getLetra());
+            ps.setString(4, respuesta.getPostulante().getIdPostulante());
+            ps.setString(5, respuesta.getExamen().getIdExamen());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -54,23 +55,23 @@ public class ClaveDAO {
         }
     }
 
-    public Clave buscarClave(String idClave) throws SQLException {
+    public Respuesta buscarRespuesta(String idRespuesta) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        Clave c = null;
+        Respuesta c = null;
         try {
-            ps = cnn.prepareCall("call buscarClave(?)");
-            ps.setString(1, idClave);
+            ps = cnn.prepareCall("call buscarRespuesta(?)");
+            ps.setString(1, idRespuesta);
             rs = ps.executeQuery();
             if (rs.next()) {
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
+                String idPostulante = rs.getString("idPostulante");
                 String idExamen = rs.getString("idExamen");
-                String idRangoPreguntas = rs.getString("idRangoPreguntas");
                 ExamenDAO dao = new ExamenDAO();
                 Examen examen = dao.buscarExamen(idExamen);
-                RangoPreguntas rangoPreguntas = RangoPreguntasDAO.getInstancia().buscarRango(idRangoPreguntas);
-                c = new Clave(idClave, numero, letra, examen, rangoPreguntas);
+                Postulante postulante = PostulanteDAO.getInstancia().buscarPostulante(idPostulante);
+                c = new Respuesta(idRespuesta, numero, letra,postulante, examen);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -81,16 +82,16 @@ public class ClaveDAO {
         return c;
     }
 
-    public void actualizar(Clave clave) throws SQLException {
+    public void actualizar(Respuesta respuesta) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareCall("call modificarClave(?,?,?,?,?)");
-            ps.setString(1, clave.getIdClave());
-            ps.setInt(2, clave.getNumero());
-            ps.setDouble(3, clave.getLetra());
-            ps.setString(4, clave.getExamen().getIdExamen());
-            ps.setString(5, clave.getRangoPreguntas().getIdRangoPreguntas());
+            ps = cnn.prepareCall("call modificarRespuesta(?,?,?,?,?)");
+            ps.setString(1, respuesta.getIdRespuesta());
+            ps.setInt(2, respuesta.getNumero());
+            ps.setDouble(3, respuesta.getLetra());
+            ps.setString(4, respuesta.getPostulante().getIdPostulante());
+            ps.setString(5, respuesta.getExamen().getIdExamen());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -101,12 +102,12 @@ public class ClaveDAO {
         }
     }
 
-    public void eliminar(String idClave) throws SQLException {
+    public void eliminar(String idRespuesta) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareCall("call eliminarClave(?)");
-            ps.setString(1, idClave);
+            ps = cnn.prepareCall("call eliminarRespuesta(?)");
+            ps.setString(1, idRespuesta);
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -116,22 +117,22 @@ public class ClaveDAO {
         }
     }
 
-    public void mostrarClaves(DefaultTableModel modelo) throws SQLException {
+    public void mostrarRespuestas(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN", "ID RANGO PREGUNTAS"};
+        String titulos[] = {"ID Respuesta", "NUMERO", "LETRA", "ID POSTULANTE", "ID EXAMEN"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareCall("call mostrarClaves()");
+            ps = cnn.prepareCall("call mostrarRespuestas()");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String idClave = rs.getString("idClave");
+                String idRespuesta = rs.getString("idRespuesta");
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
+                String idPostulante = rs.getString("idPostulante");
                 String idExamen = rs.getString("idExamen");
-                String idRangoPreguntas = rs.getString("idRangoPreguntas");
-                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen, idRangoPreguntas};
+                String fila[] = {idRespuesta, String.valueOf(numero), String.valueOf(letra), idPostulante, idExamen};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -141,23 +142,23 @@ public class ClaveDAO {
             cnn.close();
         }
     }
-    public void mostrarClavesPorExamen(DefaultTableModel modelo, String idEx) throws SQLException {
+    public void mostrarRespuestasPorPostulante(DefaultTableModel modelo, String idPos) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID CLAVE", "NUMERO", "LETRA", "ID EXAMEN", "ID RANGO PREGUNTAS"};
+        String titulos[] = {"ID Respuesta", "NUMERO", "LETRA", "ID POSTULANTE", "ID EXAMEN"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareCall("call mostrarClavesDeExamen(?)");
-            ps.setString(1, idEx);
+            ps = cnn.prepareCall("call mostrarRespuestasDePostulante(?)");
+            ps.setString(1, idPos);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String idClave = rs.getString("idClave");
+                String idRespuesta = rs.getString("idRespuesta");
                 int numero = rs.getInt("numero");
                 char letra = rs.getString("letra").charAt(0);
-                String idRangoPreguntas = rs.getString("idRangoPreguntas");
                 String idExamen = rs.getString("idExamen");
-                String fila[] = {idClave, String.valueOf(numero), String.valueOf(letra), idExamen, idRangoPreguntas};
+                String idPostulante = rs.getString("idPostulante");
+                String fila[] = {idRespuesta, String.valueOf(numero), String.valueOf(letra), idPostulante, idExamen};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
