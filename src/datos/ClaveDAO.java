@@ -81,6 +81,32 @@ public class ClaveDAO {
         return c;
     }
 
+    public Clave buscarClavePorExamenYNumero(String idExamen, int numero) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        Clave c = null;
+        try {
+            ps = cnn.prepareCall("call buscarClavePorExamenYNumero(?,?)");
+            ps.setString(1, idExamen);
+            ps.setInt(2, numero);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String idClave = rs.getString("idClave");
+                char letra = rs.getString("letra").charAt(0);
+                String idRangoPreguntas = rs.getString("idRangoPreguntas");
+                Examen examen = ExamenDAO.getInstancia().buscarExamen(idExamen);
+                RangoPreguntas rangoPreguntas = RangoPreguntasDAO.getInstancia().buscarRango(idRangoPreguntas);
+                c = new Clave(idClave, numero, letra, examen, rangoPreguntas);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+        return c;
+    }
+
     public void actualizar(Clave clave) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;

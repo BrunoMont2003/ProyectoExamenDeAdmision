@@ -54,6 +54,9 @@ call insertarExamen("EX-0029", "2021-II", "2021-05-27", "AREA_A","MODD-01");
 call insertarExamen("EX-0030", "2021-II", "2021-05-28", "AREA_B","MODD-01");
 call insertarExamen("EX-0031", "2021-Ii", "2021-05-29", "AREA_C","MODD-01");
 call insertarExamen("EX-0032", "2021-II", "2021-05-29", "AREA_D","MODD-01");
+
+select * from examen where idarea="AREA_B" and idModalidad="MODD-04";
+
 -- drop procedure insertarExamen;
 DELIMITER $$
 CREATE PROCEDURE buscarExamen(in id char(8))

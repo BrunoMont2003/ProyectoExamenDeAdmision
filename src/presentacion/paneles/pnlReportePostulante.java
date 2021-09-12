@@ -5,16 +5,8 @@
  */
 package presentacion.paneles;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import presentacion.DialogAreas;
-import presentacion.DialogAula;
-import presentacion.DialogCarreras;
-import presentacion.DialogFacultad;
-import presentacion.DialogModalidad;
-import presentacion.DialogResponsableAula;
-import presentacion.FrmPrincipal;
+
+import presentacion.DialogBuscarPostulante;
 
 /**
  *
@@ -39,7 +31,8 @@ public class pnlReportePostulante extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnRegistrarAreas = new rsbuttom.RSButtonMetro();
+        btnReportePostulante = new rsbuttom.RSButtonMetro();
+        btnReporteRespuestas = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -51,13 +44,23 @@ public class pnlReportePostulante extends javax.swing.JPanel {
         jLabel1.setText("MENU DE REPORTES");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 499, -1));
 
-        btnRegistrarAreas.setBackground(new java.awt.Color(255, 153, 102));
-        btnRegistrarAreas.setText("REPORTE DE  POSTULANTE");
-        btnRegistrarAreas.setColorHover(new java.awt.Color(255, 51, 51));
-        btnRegistrarAreas.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnRegistrarAreas.addActionListener(new java.awt.event.ActionListener() {
+        btnReportePostulante.setBackground(new java.awt.Color(255, 153, 102));
+        btnReportePostulante.setText("REPORTE DE  POSTULANTE");
+        btnReportePostulante.setColorHover(new java.awt.Color(255, 51, 51));
+        btnReportePostulante.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnReportePostulante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarAreasActionPerformed(evt);
+                btnReportePostulanteActionPerformed(evt);
+            }
+        });
+
+        btnReporteRespuestas.setBackground(new java.awt.Color(255, 153, 102));
+        btnReporteRespuestas.setText("REPORTE DE  RESPUESTAS");
+        btnReporteRespuestas.setColorHover(new java.awt.Color(255, 51, 51));
+        btnReporteRespuestas.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnReporteRespuestas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteRespuestasActionPerformed(evt);
             }
         });
 
@@ -66,16 +69,20 @@ public class pnlReportePostulante extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(btnRegistrarAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReportePostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporteRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(btnRegistrarAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(btnReportePostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReporteRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 520, -1));
@@ -84,18 +91,19 @@ public class pnlReportePostulante extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAreasActionPerformed
-        try {
-            DialogAreas f = new DialogAreas();
-            f.setVisible(true);
-        } catch (SQLException ex) {
-    
-        }
-    }//GEN-LAST:event_btnRegistrarAreasActionPerformed
+    private void btnReportePostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePostulanteActionPerformed
+        DialogBuscarPostulante f = new DialogBuscarPostulante();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnReportePostulanteActionPerformed
+
+    private void btnReporteRespuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteRespuestasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReporteRespuestasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnRegistrarAreas;
+    private rsbuttom.RSButtonMetro btnReportePostulante;
+    private rsbuttom.RSButtonMetro btnReporteRespuestas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -42,7 +42,7 @@ public class RespuestaDAO {
             ps = cnn.prepareCall("call insertar_respuesta(?,?,?,?,?)");
             ps.setString(1, respuesta.getIdRespuesta());
             ps.setInt(2, respuesta.getNumero());
-            ps.setDouble(3, respuesta.getLetra());
+            ps.setString(3, String.valueOf(respuesta.getLetra()));
             ps.setString(4, respuesta.getPostulante().getIdPostulante());
             ps.setString(5, respuesta.getExamen().getIdExamen());
 
@@ -71,7 +71,7 @@ public class RespuestaDAO {
                 ExamenDAO dao = new ExamenDAO();
                 Examen examen = dao.buscarExamen(idExamen);
                 Postulante postulante = PostulanteDAO.getInstancia().buscarPostulante(idPostulante);
-                c = new Respuesta(idRespuesta, numero, letra,postulante, examen);
+                c = new Respuesta(idRespuesta, numero, letra, postulante, examen);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -89,7 +89,7 @@ public class RespuestaDAO {
             ps = cnn.prepareCall("call modificarRespuesta(?,?,?,?,?)");
             ps.setString(1, respuesta.getIdRespuesta());
             ps.setInt(2, respuesta.getNumero());
-            ps.setDouble(3, respuesta.getLetra());
+            ps.setString(3, String.valueOf(respuesta.getLetra()));
             ps.setString(4, respuesta.getPostulante().getIdPostulante());
             ps.setString(5, respuesta.getExamen().getIdExamen());
 
@@ -117,6 +117,30 @@ public class RespuestaDAO {
         }
     }
 
+    public ArrayList<Respuesta> mostrarRespuestasDePostulanteEnUnExamen(String idPostulante, String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        ArrayList<Respuesta> lista = new ArrayList<Respuesta>();
+        try {
+            ps = cnn.prepareCall("call mostrarRespuestasDePostulanteEnUnExamen(?,?)");
+            ps.setString(1, idPostulante);
+            ps.setString(2, idExamen);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idRespuesta = rs.getString("idRespuesta");
+                int numero = rs.getInt("numero");
+                char letra = rs.getString("letra").charAt(0);
+                Postulante postulante = PostulanteDAO.getInstancia().buscarPostulante(idPostulante);
+                Examen examen = ExamenDAO.getInstancia().buscarExamen(idExamen);
+                Respuesta r = new Respuesta(idRespuesta, numero, letra, postulante, examen);
+                lista.add(r);
+            }
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println("ERROR: " + e.getMessage());
+
+        }
+        return lista;
+    }
     public void mostrarRespuestas(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -142,6 +166,7 @@ public class RespuestaDAO {
             cnn.close();
         }
     }
+
     public void mostrarRespuestasPorPostulante(DefaultTableModel modelo, String idPos) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;

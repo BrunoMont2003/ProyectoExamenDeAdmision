@@ -11,8 +11,6 @@ import datos.RespuestaDAO;
 import entidades.Respuesta;
 import entidades.Examen;
 import entidades.Postulante;
-import entidades.RangoPreguntas;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -459,11 +457,13 @@ public class DialogRespuesta extends javax.swing.JDialog {
                     txtFecha.setText(x.getExamen().getFecha().toStringFormatSql());
                     txtArea.setText(x.getExamen().getArea().getNombreArea());
                     txtModalidad.setText(x.getExamen().getModalidad().getNombreM());
+                    examen = x.getExamen();
                     txtIdPostulante.setText(x.getPostulante().getIdPostulante());
                     txtNombre.setText(x.getPostulante().getNombres());
                     txtApellidoPaterno.setText(x.getPostulante().getApellido_paterno());
                     txtApellidoMaterno.setText(x.getPostulante().getApellido_materno());
-                    txtApellidoMaterno.setText(x.getPostulante().getDni());
+                    txtDni.setText(x.getPostulante().getDni());
+                    postulante = x.getPostulante();
                     habilitar();
                 } else {
                     JOptionPane.showMessageDialog(this, "Dicha Respuesta no existe");
@@ -482,13 +482,10 @@ public class DialogRespuesta extends javax.swing.JDialog {
             String idRespuesta = txtIdRespuesta.getText();
             int numero = Integer.parseInt(cboNumero.getSelectedItem().toString());
             char letra = cboLetra.getSelectedItem().toString().charAt(0);
-            String idPostulante = txtIdPostulante.getText();
-            String idExamen = txtIdExamen.getText();
+            System.out.println("letra "+letra);
             try {
-                Postulante pos = PostulanteDAO.getInstancia().buscarPostulante(idPostulante);
-                Examen ex = ExamenDAO.getInstancia().buscarExamen(idExamen);
 
-                Respuesta x = new Respuesta(idRespuesta, numero, letra, pos, ex);
+                Respuesta x = new Respuesta(idRespuesta, numero, letra, postulante, examen);
 
                 dao.actualizar(x);
             } catch (SQLException ex) {
@@ -590,14 +587,14 @@ public class DialogRespuesta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoMaternoKeyTyped
 
     private void btnSeleccionarPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarPostulanteActionPerformed
-        //vengo a crear el buscar postulante
-        f = new DialogBuscarRangoPreguntas();
+        DialogBuscarPostulante f = new DialogBuscarPostulante();
         f.setVisible(true);
-        rango = f.rangoselec;
-        txtIdPostulante.setText(rango.getIdRangoPreguntas());
-        txtNombre.setText(rango.getNombre());
-        txtApellidoPaterno.setText(String.valueOf(rango.getPuntajeCorrecta()));
-        txtApellidoMaterno.setText(String.valueOf(rango.getPuntajeIncorrecta()));
+        postulante = f.postulanteSelec;
+        txtIdPostulante.setText(postulante.getIdPostulante());
+        txtNombre.setText(postulante.getNombres());
+        txtApellidoPaterno.setText(postulante.getApellido_paterno());
+        txtApellidoMaterno.setText(postulante.getApellido_materno());
+        txtDni.setText(postulante.getDni());
 
     }//GEN-LAST:event_btnSeleccionarPostulanteActionPerformed
 

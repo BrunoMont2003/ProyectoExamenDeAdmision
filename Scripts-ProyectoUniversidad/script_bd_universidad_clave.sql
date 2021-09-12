@@ -71,6 +71,15 @@ end$$
 -- drop procedure mostrarclavesdeexamen;
 call mostrarClavesDeExamen("EX");
 
+DELIMITER $$
+create procedure buscarClavePorExamenYNumero(in idEx char(15), in num smallint)
+begin
+  select * from clave where idExamen= idEx and numero=num;
+end$$
+-- drop procedure mostrarclavesdeexamen;
+call buscarClavePorExamenYNumero("EX-0001", 2);
+
+
 
 
 

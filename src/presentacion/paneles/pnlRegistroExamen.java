@@ -5,19 +5,11 @@
  */
 package presentacion.paneles;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import presentacion.DialogAreas;
-import presentacion.DialogAula;
-import presentacion.DialogCarreras;
+
 import presentacion.DialogClave;
+import presentacion.DialogError;
 import presentacion.DialogExamen;
-import presentacion.DialogFacultad;
-import presentacion.DialogModalidad;
 import presentacion.DialogRangoPreguntas;
-import presentacion.DialogResponsableAula;
-import presentacion.FrmPrincipal;
 
 
 public class pnlRegistroExamen extends javax.swing.JPanel {
@@ -44,7 +36,7 @@ public class pnlRegistroExamen extends javax.swing.JPanel {
         btn1 = new rsbuttom.RSButtonMetro();
         jPanel3 = new javax.swing.JPanel();
         btnRegistroClave = new rsbuttom.RSButtonMetro();
-        btn2 = new rsbuttom.RSButtonMetro();
+        btnRegistroError = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -121,12 +113,13 @@ public class pnlRegistroExamen extends javax.swing.JPanel {
             }
         });
 
-        btn2.setBackground(new java.awt.Color(255, 153, 102));
-        btn2.setColorHover(new java.awt.Color(255, 51, 51));
-        btn2.setColorNormal(new java.awt.Color(255, 153, 102));
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroError.setBackground(new java.awt.Color(255, 153, 102));
+        btnRegistroError.setText("REGISTRO ERROR");
+        btnRegistroError.setColorHover(new java.awt.Color(255, 51, 51));
+        btnRegistroError.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnRegistroError.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btnRegistroErrorActionPerformed(evt);
             }
         });
 
@@ -137,7 +130,7 @@ public class pnlRegistroExamen extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistroError, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(219, Short.MAX_VALUE))
         );
@@ -147,7 +140,7 @@ public class pnlRegistroExamen extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistroError, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -157,9 +150,10 @@ public class pnlRegistroExamen extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-       
-    }//GEN-LAST:event_btn2ActionPerformed
+    private void btnRegistroErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroErrorActionPerformed
+       DialogError f = new DialogError();
+       f.setVisible(true);
+    }//GEN-LAST:event_btnRegistroErrorActionPerformed
 
     private void btnRegistroRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroRangoActionPerformed
         DialogRangoPreguntas f = new DialogRangoPreguntas();
@@ -183,8 +177,8 @@ public class pnlRegistroExamen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btn1;
-    private rsbuttom.RSButtonMetro btn2;
     private rsbuttom.RSButtonMetro btnRegistroClave;
+    private rsbuttom.RSButtonMetro btnRegistroError;
     private rsbuttom.RSButtonMetro btnRegistroExamen;
     private rsbuttom.RSButtonMetro btnRegistroRango;
     private javax.swing.JLabel jLabel1;

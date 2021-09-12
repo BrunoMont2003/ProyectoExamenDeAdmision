@@ -40,7 +40,7 @@ call mostrarRespuestas();
 DELIMITER $$
 create procedure modificarRespuesta(in id char(15),  in num smallint, in let char(4), in idPos char(10), in idEx char(8))
 begin
-  UPDATE respuesta SET numero=num, letra=letra, idPostulante = idPos,idExamen = idEx WHERE idRespuesta=id;
+  UPDATE respuesta SET numero=num, letra=let, idPostulante = idPos,idExamen = idEx WHERE idRespuesta=id;
 end$$
 -- drop procedure modificarRespuesta;
 DELIMITER $$
@@ -76,7 +76,12 @@ end$$
 -- drop procedure mostrarrespuestasdepostulante;
 call mostrarRespuestasDePostulante("P-");
 
-
+DELIMITER $$
+create procedure mostrarRespuestasDePostulanteEnUnExamen(in idPos char(10), in idEx char(15))
+begin
+  select * from respuesta where idPostulante = idPos and idExamen=idEx;
+end$$
+call mostrarRespuestasDePostulanteEnUnExamen("P-00000001","EX-0001");
 
 
 call insertar_respuesta("R-00001", 1, 'd', "P-00000001","EX-0001");

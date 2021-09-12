@@ -139,7 +139,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btn2" min="-2" pref="256" max="-2" attributes="0"/>
+                      <Component id="btnReporteErrores" min="-2" pref="256" max="-2" attributes="0"/>
                       <Component id="btnRegistroClave" min="-2" pref="256" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="219" max="32767" attributes="0"/>
@@ -152,7 +152,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="btnRegistroClave" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace pref="28" max="32767" attributes="0"/>
-                  <Component id="btn2" min="-2" pref="53" max="-2" attributes="0"/>
+                  <Component id="btnReporteErrores" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -176,11 +176,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistroClaveActionPerformed"/>
           </Events>
         </Component>
-        <Component class="rsbuttom.RSButtonMetro" name="btn2">
+        <Component class="rsbuttom.RSButtonMetro" name="btnReporteErrores">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="ff" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="REPORTE ERRORES"/>
             <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
@@ -189,7 +190,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteErroresActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

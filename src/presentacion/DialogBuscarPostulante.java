@@ -8,15 +8,12 @@ package presentacion;
 import datos.AulaDAO;
 import datos.CarrerasDAO;
 import datos.PostulanteDAO;
-import entidades.Areas;
 import entidades.Aula;
 import entidades.Carreras;
 import entidades.Postulante;
-import entidades.Fecha;
 import entidades.Modalidad;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +23,7 @@ public class DialogBuscarPostulante extends javax.swing.JDialog {
 
     PostulanteDAO postulantedao = new PostulanteDAO();
     Postulante postulanteSelec = new Postulante();
+    DefaultTableModel modelo = new DefaultTableModel();
     public DialogBuscarPostulante() {
       super(FrmPrincipal.getInstancia(), true);
         initComponents();
@@ -320,12 +318,14 @@ public class DialogBuscarPostulante extends javax.swing.JDialog {
             txtNombres.setText(postulante.getNombres());
             txtApellidoPaterno.setText(postulante.getApellido_paterno());
             txtApellidoMaterno.setText(postulante.getApellido_materno());
+            txtDni.setText(postulante.getDni());
             txtIdAula.setText(postulante.getAula().getIdAula());
             txtNumeroAula.setText(String.valueOf(postulante.getAula().getnAula()));
             txtIdCarrera.setText(postulante.getCarrera().getCodigoCarrera());
             txtNombreCarrera.setText(postulante.getCarrera().getNombreCarrera());
             txtIdModalidad.setText(postulante.getModalidad().getIdModalidad());
             txtNombreModalidad.setText(postulante.getModalidad().getNombreM());
+            postulantedao.mostrarExamenes(idPostulante, modelo);
             btnSeleccionar.setEnabled(true);
 
         } catch (SQLException ex) {
@@ -384,6 +384,7 @@ public class DialogBuscarPostulante extends javax.swing.JDialog {
         txtApellidoPaterno.setText("");
         txtNombreModalidad.setText("");
         txtIdModalidad.setText("");
+        modelo.setColumnCount(0);
         cboIdPostulante.setSelectedIndex(0);
         cboIdPostulante.requestFocus();
     }//GEN-LAST:event_btnRestaurarActionPerformed

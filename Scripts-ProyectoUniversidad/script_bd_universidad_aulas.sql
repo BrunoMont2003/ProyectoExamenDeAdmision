@@ -101,6 +101,7 @@ BEGIN
 	select * from aula where concat(idAula,numeroAula,capacidad,numeroAusentes,idArea) like concat('%','%','%','%',idare);
 END$$
 
+select * from aula order by idAula;
 
 
 DELIMITER $$

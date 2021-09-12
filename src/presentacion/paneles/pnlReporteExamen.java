@@ -34,7 +34,7 @@ public class pnlReporteExamen extends javax.swing.JPanel {
         btn1 = new rsbuttom.RSButtonMetro();
         jPanel3 = new javax.swing.JPanel();
         btnRegistroClave = new rsbuttom.RSButtonMetro();
-        btn2 = new rsbuttom.RSButtonMetro();
+        btnReporteErrores = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -111,12 +111,13 @@ public class pnlReporteExamen extends javax.swing.JPanel {
             }
         });
 
-        btn2.setBackground(new java.awt.Color(255, 153, 102));
-        btn2.setColorHover(new java.awt.Color(255, 51, 51));
-        btn2.setColorNormal(new java.awt.Color(255, 153, 102));
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        btnReporteErrores.setBackground(new java.awt.Color(255, 153, 102));
+        btnReporteErrores.setText("REPORTE ERRORES");
+        btnReporteErrores.setColorHover(new java.awt.Color(255, 51, 51));
+        btnReporteErrores.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnReporteErrores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                btnReporteErroresActionPerformed(evt);
             }
         });
 
@@ -127,7 +128,7 @@ public class pnlReporteExamen extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(219, Short.MAX_VALUE))
         );
@@ -137,7 +138,7 @@ public class pnlReporteExamen extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -147,9 +148,8 @@ public class pnlReporteExamen extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-       
-    }//GEN-LAST:event_btn2ActionPerformed
+    private void btnReporteErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteErroresActionPerformed
+    }//GEN-LAST:event_btnReporteErroresActionPerformed
 
     private void btnRegistroRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroRangoActionPerformed
         DialogBuscarRangoPreguntas f = new DialogBuscarRangoPreguntas();
@@ -173,10 +173,10 @@ public class pnlReporteExamen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btn1;
-    private rsbuttom.RSButtonMetro btn2;
     private rsbuttom.RSButtonMetro btnRegistroClave;
     private rsbuttom.RSButtonMetro btnRegistroExamen;
     private rsbuttom.RSButtonMetro btnRegistroRango;
+    private rsbuttom.RSButtonMetro btnReporteErrores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

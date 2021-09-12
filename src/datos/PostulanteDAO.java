@@ -160,7 +160,7 @@ public class PostulanteDAO {
             ListaPostulante_Examen examenesEnBD = PostulanteDAO.getInstancia().buscarExamenes(postulante.getIdPostulante());
 
             if (examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty()) {
-                System.out.println("examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty() "+examenesEnBD.getN()+" && "+examenes.getN());
+                System.out.println("examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty() " + examenesEnBD.getN() + " && " + examenes.getN());
                 ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
@@ -210,6 +210,39 @@ public class PostulanteDAO {
             }
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+        }
+        return lista;
+    }
+
+    public ArrayList<Postulante> listarPostulantesPorExamen(String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        ArrayList<Postulante> lista = new ArrayList<>();
+
+        try {
+            ps = cnn.prepareCall("call mostrarPostulantesPorExamen(?)");
+            ps.setString(1, idExamen);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                String nombres = rs.getString("nombrePostulante");
+                String apellido_paterno = rs.getString("apellido_paterno");
+                String apellido_materno = rs.getString("apellido_materno");
+                String dni = rs.getString("dni");
+                String idCarrera = rs.getString("idCarrera");
+                Carreras carrera = CarrerasDAO.getInstancia().buscarCarreras(idCarrera);
+                String idAula = rs.getString("idAula");
+                Aula aula = AulaDAO.getInstancia().buscarAula(idAula);
+                String idModalidad = rs.getString("idModalidad");
+                Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
+                Postulante postulante = new Postulante(idPostulante, nombres, apellido_paterno, apellido_materno, dni, carrera, aula, modalidad);
+                lista.add(postulante);
+            }
+        } catch (SQLException ex) {
+            System.out.println("ERROR dx: " + ex.getMessage());
         } finally {
             cnn.close();
             ps.close();
@@ -275,6 +308,38 @@ public class PostulanteDAO {
             cnn.close();
         }
     }
+
+    public void mostrarPostulantesPorExamen(DefaultTableModel modelo, String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Postulante", "Nombres", "Apellido Paterno", "Apellido Materno", "DNI", "ID Carrera", "ID AULA", "ID Modalidad"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareCall("call mostrarPostulantesPorExamen(?)");
+            ps.setString(1, idExamen);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                String nombres = rs.getString("nombrePostulante");
+                String apellido_paterno = rs.getString("apellido_paterno");
+                String apellido_materno = rs.getString("apellido_materno");
+                String dni = rs.getString("dni");
+                String idCarrera = rs.getString("idCarrera");
+                String idAula = rs.getString("idAula");
+                String idModalidad = rs.getString("idModalidad");
+                String fila[] = {idPostulante, nombres, apellido_paterno, apellido_materno, dni, idCarrera, idAula, idModalidad};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+
 
     public void mostrarExamenes(String idPostulante, DefaultTableModel modelo) throws SQLException {
         try {
