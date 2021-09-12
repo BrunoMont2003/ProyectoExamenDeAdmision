@@ -223,13 +223,14 @@ public class ExamenDAO {
     }
 
     public void RevisarExamen(Examen examen) throws SQLException {
-        double puntaje = 0;
-        int numBuenas = 0;
-        int numMalas = 0;
+
         String idExamen = examen.getIdExamen();
         System.out.println("Reconoce el examen: " + examen.getIdExamen());
         ArrayList<Postulante> postulantes = PostulanteDAO.getInstancia().listarPostulantesPorExamen(idExamen);
         for (int i = 0; i < postulantes.size(); i++) {
+            double puntaje = 0;
+            int numBuenas = 0;
+            int numMalas = 0;
             Postulante pos = postulantes.get(i);
             String idPostulante = pos.getIdPostulante();
             System.out.println("Reconoce el postulante: " + idPostulante);
@@ -262,7 +263,7 @@ public class ExamenDAO {
                     ps.setInt(4, 0);
                     ps.setString(5, idPostulante);
                     ps.setString(6, idExamen);
-
+                    ps.executeUpdate();
                 } catch (SQLException e) {
                     System.out.println("ERROR EN REVISAR EXAMEN: " + e.getMessage());
                 } finally {
@@ -277,7 +278,7 @@ public class ExamenDAO {
     public void mostrarResultadoDeExamen(DefaultTableModel modelo, String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"Postulante", "Puntaje", "Numero de Malas", "Numero de Buenas", "Orden de Mérito"};
+        String titulos[] = {"Postulante", "Carrera", "Puntaje", "Numero de Buenas", "Numero de Malas", "Orden de Mérito"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -289,12 +290,13 @@ public class ExamenDAO {
                 String idPostulante = rs.getString("idPostulante");
                 Postulante pos = PostulanteDAO.getInstancia().buscarPostulante(idPostulante);
                 String nombre = pos.getApellido_paterno() + " " + pos.getApellido_materno() + ", " + " " + pos.getNombres();
+                String carrera = pos.getCarrera().getNombreCarrera();
                 double puntaje = rs.getDouble("puntaje");
                 int numBuenas = rs.getInt("numBuenas");
                 int numMalas = rs.getInt("numMalas");
                 int ordenMerito = rs.getInt("ordenMerito");
 
-                Object fila[] = {nombre, puntaje, numBuenas, numMalas, ordenMerito};
+                Object fila[] = {nombre, carrera, puntaje, numBuenas, numMalas, ordenMerito};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
