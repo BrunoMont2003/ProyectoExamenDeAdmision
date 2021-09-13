@@ -28,6 +28,12 @@ begin
 end$$
 call buscarArea("AREA_A");
 
+DELIMITER $$
+create procedure buscar_Area(in idAr char(10))
+begin
+	select * from areau where idarea like idar;
+end$$
+
 
 DELIMITER $$
 create procedure modificarArea(in idar char(10), in nom varchar(40))
