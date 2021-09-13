@@ -49,16 +49,17 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnSeleccionar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         txtIDARea = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnGenerarFacultad = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        btnSeleccionarFacultad = new rsbuttom.RSButtonMetro();
+        btnSalir = new rsbuttom.RSButtonMetro();
+        btnBuscar = new rsbuttom.RSButtonMetro();
+        btnTodos = new rsbuttom.RSButtonMetro();
+        btnReporteFacultad = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,97 +76,147 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnSeleccionar.setText("Seleccionar");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
-            }
-        });
-
-        Tabla.setModel(modelo);
-        jScrollPane2.setViewportView(Tabla);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("ID AREA");
 
+        Tabla.setModel(modelo);
+        jScrollPane2.setViewportView(Tabla);
+
+        btnSeleccionarFacultad.setBackground(new java.awt.Color(153, 255, 153));
+        btnSeleccionarFacultad.setText("SELECCIONAR");
+        btnSeleccionarFacultad.setColorHover(new java.awt.Color(148, 237, 148));
+        btnSeleccionarFacultad.setColorNormal(new java.awt.Color(153, 255, 153));
+        btnSeleccionarFacultad.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnSeleccionarFacultad.setColorTextPressed(new java.awt.Color(153, 153, 153));
+        btnSeleccionarFacultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarFacultadActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.setColorBorde(null);
+        btnSalir.setColorHover(new java.awt.Color(228, 171, 172));
+        btnSalir.setColorNormal(new java.awt.Color(237, 197, 212));
+        btnSalir.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnSalir.setColorTextPressed(new java.awt.Color(0, 0, 0));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         btnBuscar.setText("Buscar");
+        btnBuscar.setColorBorde(null);
+        btnBuscar.setColorHover(new java.awt.Color(194, 210, 228));
+        btnBuscar.setColorNormal(new java.awt.Color(194, 224, 228));
+        btnBuscar.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnBuscar.setColorTextPressed(new java.awt.Color(0, 0, 0));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Todos");
-
-        jButton3.setText("Salir");
-
-        btnGenerarFacultad.setText("GENERAR REPORTE");
-        btnGenerarFacultad.addActionListener(new java.awt.event.ActionListener() {
+        btnTodos.setText("Todos");
+        btnTodos.setColorBorde(null);
+        btnTodos.setColorHover(new java.awt.Color(194, 210, 228));
+        btnTodos.setColorNormal(new java.awt.Color(194, 224, 228));
+        btnTodos.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnTodos.setColorTextPressed(new java.awt.Color(0, 0, 0));
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarFacultadActionPerformed(evt);
+                btnTodosActionPerformed(evt);
             }
         });
+
+        btnReporteFacultad.setBackground(new java.awt.Color(255, 51, 51));
+        btnReporteFacultad.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        btnReporteFacultad.setText("GENERAR REPORTE DE FACULTAD");
+        btnReporteFacultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteFacultadActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(54, 54, 54)
+                        .addComponent(txtIDARea, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSeleccionarFacultad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(btnReporteFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSeleccionarFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIDARea, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(btnReporteFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addGap(58, 58, 58)
-                .addComponent(txtIDARea, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175)
-                .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(btnGenerarFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1))
-                    .addComponent(txtIDARea, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnSeleccionar))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(btnGenerarFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-         int i = Tabla.getSelectedRow();
+    private void btnSeleccionarFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarFacultadActionPerformed
+        int i = Tabla.getSelectedRow();
         if (i != -1) {
             facultadSelec.setIdFacultad(modelo.getValueAt(i, 0).toString());
             facultadSelec.setNombreFacultad(modelo.getValueAt(i, 1).toString());
@@ -173,10 +224,14 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(null, "Debes Seleccionar un elemento");
         }
-    }//GEN-LAST:event_btnSeleccionarActionPerformed
+    }//GEN-LAST:event_btnSeleccionarFacultadActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-          String idArea = txtIDARea.getText();
+        String idArea = txtIDARea.getText();
         try {
             ad.mostraFacultadPorArea(idArea, modelo);
         } catch (SQLException ex) {
@@ -184,37 +239,46 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnGenerarFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarFacultadActionPerformed
-        String idArea = txtIDARea.getText();
-        try {
-            Conexion con = new Conexion();
-            Connection conn = con.miConexion();
-            JasperReport reporte  = null;
-            Map  parametro = new HashMap();
-            parametro.put("idar",idArea);
-            String path = "src\\reportes\\reporteFACULTAD.jasper";
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
-            JasperViewer view = new JasperViewer(jprint,false);
-            view.setTitle("Facultad Segun Area");
-            view.setVisible(true);
-            view.setAlwaysOnTop(true);
-            dispose();
-        } catch (JRException ex) {
-            
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTodosActionPerformed
+
+    private void btnReporteFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteFacultadActionPerformed
+        if(!txtIDARea.getText().equalsIgnoreCase("")){
+            String idArea = txtIDARea.getText();
+            try {
+                Conexion con = new Conexion();
+                Connection conn = con.miConexion();
+                JasperReport reporte  = null;
+                Map  parametro = new HashMap();
+                parametro.put("idar",idArea);
+                String path = "src\\reportes\\reporteFACULTAD.jasper";
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
+                JasperViewer view = new JasperViewer(jprint,false);
+                view.setTitle("Facultad Segun Area");
+                view.setVisible(true);
+                view.setAlwaysOnTop(true);
+                dispose();
+            } catch (JRException ex) {
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor ingrese el idArea antes de reportar.");
         }
-    }//GEN-LAST:event_btnGenerarFacultadActionPerformed
+    }//GEN-LAST:event_btnReporteFacultadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnGenerarFacultad;
-    private javax.swing.JButton btnSeleccionar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private rsbuttom.RSButtonMetro btnBuscar;
+    private javax.swing.JButton btnReporteFacultad;
+    private rsbuttom.RSButtonMetro btnSalir;
+    private rsbuttom.RSButtonMetro btnSeleccionarFacultad;
+    private rsbuttom.RSButtonMetro btnTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

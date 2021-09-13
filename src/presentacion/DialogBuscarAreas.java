@@ -28,7 +28,7 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
     DefaultTableModel modelo = new DefaultTableModel();
     Areas areasSelec = new Areas();
     AreasDAO ad = new AreasDAO();
-     
+
     public DialogBuscarAreas() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
@@ -47,127 +47,104 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCodig = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        btnSeleccionar = new javax.swing.JButton();
+        btnGenerarReportePorParametro = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
+        btnTodo = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        txtCodig = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        btnSalir = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        btnGenerarReportePorParametro = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        txtCodig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Codigo");
-
-        jButton1.setText("BUSCAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        btnSeleccionar.setText("Seleccionar");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
-            }
-        });
-
-        Tabla.setModel(modelo);
-        jScrollPane1.setViewportView(Tabla);
-
-        btnSalir.setText("SALIR");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Todo");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGenerarReportePorParametro.setBackground(new java.awt.Color(255, 51, 51));
+        btnGenerarReportePorParametro.setFont(new java.awt.Font("Roboto Slab SemiBold", 1, 11)); // NOI18N
         btnGenerarReportePorParametro.setText("GENERAR REPORTE");
         btnGenerarReportePorParametro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarReportePorParametroActionPerformed(evt);
             }
         });
+        getContentPane().add(btnGenerarReportePorParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 210, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtCodig, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
-                .addComponent(btnGenerarReportePorParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodig, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSeleccionar)
-                            .addComponent(jButton1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalir)
-                            .addComponent(jButton4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btnGenerarReportePorParametro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        jPanel1.setBackground(new java.awt.Color(198, 222, 239));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 121, 97));
+
+        btnSalir.setBackground(new java.awt.Color(255, 153, 153));
+        btnSalir.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 87, 30));
+
+        btnTodo.setBackground(new java.awt.Color(106, 240, 166));
+        btnTodo.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        btnTodo.setText("Todo");
+        btnTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 73, 30));
+
+        btnSeleccionar.setBackground(new java.awt.Color(106, 240, 166));
+        btnSeleccionar.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, 30));
+
+        btnBuscar.setBackground(new java.awt.Color(106, 240, 166));
+        btnBuscar.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, 30));
+
+        txtCodig.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
+        txtCodig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigActionPerformed(evt);
+            }
+        });
+        txtCodig.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtCodig, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 300, 29));
+
+        Tabla.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        Tabla.setModel(modelo);
+        jScrollPane1.setViewportView(Tabla);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 690, 170));
+
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel1.setText("Codigo");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 80, 66));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 760, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,7 +158,7 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-         int i = Tabla.getSelectedRow();
+        int i = Tabla.getSelectedRow();
         if (i != -1) {
             areasSelec.setIdArea(modelo.getValueAt(i, 0).toString());
             areasSelec.setNombreArea(modelo.getValueAt(i, 1).toString());
@@ -196,42 +173,71 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
         try {
             Conexion con = new Conexion();
             Connection conn = con.miConexion();
-            JasperReport reporte  = null;
-            Map  parametro = new HashMap();
-            parametro.put("idar",idArea);
+            JasperReport reporte = null;
+            Map parametro = new HashMap();
+            parametro.put("idar", idArea);
             String path = "src\\reportes\\reporteAREAS.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
-            JasperViewer view = new JasperViewer(jprint,false);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
+            JasperViewer view = new JasperViewer(jprint, false);
             view.setTitle("Areas");
             view.setVisible(true);
             view.setAlwaysOnTop(true);
             dispose();
         } catch (JRException ex) {
-            Logger.getLogger(DialogBuscarAreas.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnGenerarReportePorParametroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtCodig.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un ID ");
+        } else {
+
+            String idArea = txtCodig.getText();
+            try {
+                ad.mostraAreaPorCodigo(idArea, modelo);
+            } catch (SQLException ex) {
+                System.out.println("ERROR: " + ex.getMessage());;
+
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodoActionPerformed
+        try {
+            ad.mostrarAreas(modelo);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());;
+        }
+    }//GEN-LAST:event_btnTodoActionPerformed
+
+    private void txtCodigKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigKeyTyped
+
+    }//GEN-LAST:event_txtCodigKeyTyped
+
+    private void txtCodigKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigKeyReleased
          String idArea = txtCodig.getText();
         try {
             ad.mostraAreaPorCodigo(idArea, modelo);
         } catch (SQLException ex) {
-          
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+            System.out.println("ERROR: " + ex.getMessage());;
 
-  
+        }
+    }//GEN-LAST:event_txtCodigKeyReleased
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGenerarReportePorParametro;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnTodo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCodig;
     // End of variables declaration//GEN-END:variables

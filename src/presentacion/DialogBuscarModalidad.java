@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package presentacion;
+
 ;
 import datos.ModalidadDAO;
 import entidades.Modalidad;
@@ -14,10 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
+
 public class DialogBuscarModalidad extends javax.swing.JDialog {
-  DefaultTableModel modelo = new DefaultTableModel();
+
+    DefaultTableModel modelo = new DefaultTableModel();
     ModalidadDAO md = new ModalidadDAO();
     Modalidad modalidadSelec = new Modalidad();
+
     /**
      * Creates new form DialogModalidad
      */
@@ -29,6 +33,7 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/logo-unt1.png");
         md.mostrarModalidad(modelo);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,112 +43,100 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         txtIdModalidad = new javax.swing.JTextField();
         txtNombreM = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnSeleccionar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 135));
 
-        txtIdModalidad.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID Modalidad"));
+        jPanel1.setBackground(new java.awt.Color(211, 222, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombreM.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "NombreModalidad"));
+        txtIdModalidad.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        txtIdModalidad.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID Modalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto Condensed", 1, 14))); // NOI18N
+        jPanel1.add(txtIdModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 158, 44));
 
+        txtNombreM.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        txtNombreM.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "NombreModalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto Condensed", 1, 14))); // NOI18N
+        jPanel1.add(txtNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 163, 44));
+
+        Tabla.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         Tabla.setModel(modelo);
         jScrollPane1.setViewportView(Tabla);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 490, 160));
+
+        btnSalir.setBackground(new java.awt.Color(255, 153, 153));
+        btnSalir.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 90, 30));
 
+        btnBuscar.setBackground(new java.awt.Color(162, 238, 231));
+        btnBuscar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, 30));
 
+        btnSeleccionar.setBackground(new java.awt.Color(162, 238, 231));
+        btnSeleccionar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnSeleccionar.setText("Seleccionar");
         btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, 31));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBuscar)
-                                .addGap(67, 67, 67)
-                                .addComponent(btnSeleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(63, 63, 63)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtIdModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombreM, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(9, 9, 9)))
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIdModalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(txtNombreM))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBuscar)
-                        .addComponent(btnSalir))
-                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
+        btnLimpiar.setBackground(new java.awt.Color(255, 153, 153));
+        btnLimpiar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 90, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 550, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-      try {
-          md.eliminar("MODD-01");
-          md.eliminar("MODD-02");
-          md.eliminar("MODD-03");
-          md.eliminar("MODD-04");
-          dispose();
-      } catch (SQLException ex) {
-          Logger.getLogger(DialogBuscarModalidad.class.getName()).log(Level.SEVERE, null, ex);
-      }
+        dispose();
+
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-      try {
-          String idModalidad =txtIdModalidad.getText();
-          md.mostraModalidadPorID(idModalidad, modelo);
-      } catch (SQLException ex) {
-          Logger.getLogger(DialogBuscarModalidad.class.getName()).log(Level.SEVERE, null, ex);
-      }
+        try {
+            if (txtIdModalidad.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese ID");
+            } else {
+
+                String idModalidad = txtIdModalidad.getText();
+                md.mostraModalidadPorID(idModalidad, modelo);
+            }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
@@ -157,14 +150,20 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
-   
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtIdModalidad.setText("");
+        txtNombreM.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtIdModalidad;
     private javax.swing.JTextField txtNombreM;
