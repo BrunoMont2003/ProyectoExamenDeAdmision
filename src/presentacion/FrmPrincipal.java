@@ -70,6 +70,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCentro = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        btnCambiarDiagrama = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlPrincipal = new javax.swing.JPanel();
 
@@ -426,6 +427,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(128, 128, 131));
         jLabel4.setText("TABLERO");
 
+        btnCambiarDiagrama.setBackground(new java.awt.Color(255, 102, 102));
+        btnCambiarDiagrama.setForeground(new java.awt.Color(0, 0, 0));
+        btnCambiarDiagrama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/grf.png"))); // NOI18N
+        btnCambiarDiagrama.setText("Graficos Estadisticos");
+        btnCambiarDiagrama.setColorHover(new java.awt.Color(204, 204, 204));
+        btnCambiarDiagrama.setColorNormal(new java.awt.Color(255, 102, 102));
+        btnCambiarDiagrama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarDiagramaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -433,7 +446,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(594, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 382, Short.MAX_VALUE)
+                .addComponent(btnCambiarDiagrama, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,6 +455,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnCambiarDiagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jScrollPane1.setBorder(null);
@@ -459,7 +474,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlCentroLayout.setVerticalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCentroLayout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -957,6 +972,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nueveActionPerformed
 
+    private void btnCambiarDiagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarDiagramaActionPerformed
+         new CambiaPanel(pnlPrincipal, new presentacion.paneles.pnlGeneradorDiagramas());
+    }//GEN-LAST:event_btnCambiarDiagramaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -999,6 +1018,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rsbuttom.RSButtonMetro btnCambiarDiagrama;
     private rsbuttom.RSButtonMetro cinco;
     private rsbuttom.RSButtonMetro cuatro;
     private rsbuttom.RSButtonMetro dos;

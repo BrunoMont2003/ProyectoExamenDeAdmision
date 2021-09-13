@@ -8,7 +8,6 @@ package presentacion.paneles;
 import presentacion.DialogBuscarClave;
 import presentacion.DialogBuscarExmn;
 import presentacion.DialogBuscarRangoPreguntas;
-import presentacion.DialogError;
 
 
 public class pnlReporteExamen extends javax.swing.JPanel {
@@ -150,9 +149,6 @@ public class pnlReporteExamen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReporteErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteErroresActionPerformed
-        DialogError f = new DialogError();
-        f.setVisible(true);
-        
     }//GEN-LAST:event_btnReporteErroresActionPerformed
 
     private void btnRegistroRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroRangoActionPerformed

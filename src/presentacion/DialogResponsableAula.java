@@ -292,15 +292,20 @@ public class DialogResponsableAula extends javax.swing.JDialog {
 
                 String idResponsable = txtIDResponsable.getText();
                 ResponsableAula x;
-                x = rd.buscarResponsable(idResponsable).getResponsableAula();
-                txtNombres.setText(x.getNombres());
-                txtApellidos.setText(x.getApellidos());
-                txtDni.setText(x.getDni());
-                txtIDResponsable.setText(x.getIdResponsable());
-                aula = x.getAula();
-                txtIdAula.setText(x.getAula().getIdAula());
-                txtNumeroAula.setText(String.valueOf(x.getAula().getnAula()));
-                habilitar();
+                if (rd.exists(idResponsable)) {
+                    x = rd.buscarResponsable(idResponsable).getResponsableAula();
+
+                    txtNombres.setText(x.getNombres());
+                    txtApellidos.setText(x.getApellidos());
+                    txtDni.setText(x.getDni());
+                    txtIDResponsable.setText(x.getIdResponsable());
+                    aula = x.getAula();
+                    txtIdAula.setText(x.getAula().getIdAula());
+                    txtNumeroAula.setText(String.valueOf(x.getAula().getnAula()));
+                    habilitar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ese responsable no existe");
+                }
             }
 
         } catch (SQLException ex) {
@@ -392,7 +397,7 @@ public class DialogResponsableAula extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidosKeyTyped
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
-      
+
     }//GEN-LAST:event_txtNombresActionPerformed
 
     private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped

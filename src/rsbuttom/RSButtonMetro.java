@@ -17,9 +17,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 
-/**
-* @author Rojeru San
- */
+
 public class RSButtonMetro extends JButton implements MouseListener, MouseMotionListener {
     /**
      * Color para el fondo del boton

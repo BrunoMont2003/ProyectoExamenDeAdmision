@@ -26,6 +26,7 @@ public class DialogCarreras extends javax.swing.JDialog {
     DefaultTableModel modelo = new DefaultTableModel();
     CarrerasDAO cd = new CarrerasDAO();
     Facultad facultad;
+
     /**
      * Creates new form DialogCarreras
      */
@@ -82,6 +83,12 @@ public class DialogCarreras extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("CODIGO CARRERA");
+
+        txtCodigoCarrera.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoCarreraKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("NOMBRE CARRERA");
@@ -354,14 +361,14 @@ public class DialogCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreFActionPerformed
 
     private void btnReporteCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteCarrerasActionPerformed
-          GestionReportes fr = new  GestionReportes();
-         try {
-             fr.ReporteCarreras();
-             dispose();
-         } catch (JRException ex) {
-             Logger.getLogger(DialogFacultad.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
+        GestionReportes fr = new GestionReportes();
+        try {
+            fr.ReporteCarreras();
+            dispose();
+        } catch (JRException ex) {
+            Logger.getLogger(DialogFacultad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnReporteCarrerasActionPerformed
 
     private void btnSeleccionarCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarCarreraActionPerformed
@@ -392,12 +399,18 @@ public class DialogCarreras extends javax.swing.JDialog {
 
     private void btnConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultar1ActionPerformed
         try {
-            String idCarreras= txtCodigoCarrera.getText();
+            String idCarreras = txtCodigoCarrera.getText();
             Carreras x;
             x = cd.buscarCarreras(idCarreras);
-            txtNombreCarrera.setText(x.getNombreCarrera());
-            txtIdFacu.setText(x.getFacultad().getIdFacultad());
-            txtNombreF.setText(x.getFacultad().getNombreFacultad());
+            if (x == null) {
+                JOptionPane.showMessageDialog(null, "Esa carrera no existe");
+            } else {
+
+                txtNombreCarrera.setText(x.getNombreCarrera());
+                txtIdFacu.setText(x.getFacultad().getIdFacultad());
+                txtNombreF.setText(x.getFacultad().getNombreFacultad());
+                facultad=x.getFacultad();
+            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
@@ -407,7 +420,6 @@ public class DialogCarreras extends javax.swing.JDialog {
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
         String idCarrera = txtCodigoCarrera.getText();
         String nombreCarrera = txtNombreCarrera.getText();
-        String idFacultad= txtIdFacu.getText();
         Carreras x = new Carreras(idCarrera, nombreCarrera, facultad);
         try {
             cd.actualizar(x);
@@ -439,6 +451,13 @@ public class DialogCarreras extends javax.swing.JDialog {
     private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalir1ActionPerformed
+
+    private void txtCodigoCarreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoCarreraKeyTyped
+      
+        if(txtCodigoCarrera.getText().length()>=7){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoCarreraKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

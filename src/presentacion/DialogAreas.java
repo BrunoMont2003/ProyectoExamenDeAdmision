@@ -47,7 +47,8 @@ public class DialogAreas extends javax.swing.JDialog {
         btnGuardar.setEnabled(true);
         btnBuscar.setEnabled(true);
     }
-    public void limpiarEntradas(){
+
+    public void limpiarEntradas() {
         txtArea.setText("");
         txtNombre.setText("");
         txtArea.requestFocus();
@@ -245,8 +246,13 @@ public class DialogAreas extends javax.swing.JDialog {
             Areas x;
             try {
                 x = ad.buscarArea(idArea);
-                txtNombre.setText(x.getNombreArea());
-                habilitar();
+                if (x == null) {
+                    JOptionPane.showMessageDialog(null, "Esa area no existe");
+                } else {
+
+                    txtNombre.setText(x.getNombreArea());
+                    habilitar();
+                }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
             }
@@ -303,15 +309,15 @@ public class DialogAreas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaKeyTyped
-       if(txtArea.getText().length()>=6){
-           evt.consume();
-       }
+        if (txtArea.getText().length() >= 6) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtAreaKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if(txtNombre.getText().length()>=40){
-           evt.consume();
-       }
+        if (txtNombre.getText().length() >= 40) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
 

@@ -47,6 +47,7 @@ public class DialogModalidad extends javax.swing.JDialog {
         btnGuardar.setEnabled(true);
         btnConsultar.setEnabled(true);
     }
+
     public void limpiarEntradas() {
         txtIdModalidad.setText("");
         txtNombreM.setText("");
@@ -75,10 +76,20 @@ public class DialogModalidad extends javax.swing.JDialog {
 
         txtIdModalidad.setFont(new java.awt.Font("Roboto Condensed", 1, 18)); // NOI18N
         txtIdModalidad.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "IDModalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        txtIdModalidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdModalidadKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtIdModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 146, 190, -1));
 
         txtNombreM.setFont(new java.awt.Font("Roboto Condensed", 1, 18)); // NOI18N
         txtNombreM.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "NombreModalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        txtNombreM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreMKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 146, 226, -1));
 
         btnGuardar.setBackground(new java.awt.Color(168, 192, 215));
@@ -215,10 +226,15 @@ public class DialogModalidad extends javax.swing.JDialog {
             try {
                 String idModalidad = txtIdModalidad.getText();
                 Modalidad x = md.buscarModalidad(idModalidad);
-                txtNombreM.setText(x.getNombreM());
-                habilitar();
+                if (x == null) {
+                    JOptionPane.showMessageDialog(null, "Esa modalidad no existe");
+                } else {
+
+                    txtNombreM.setText(x.getNombreM());
+                    habilitar();
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(DialogModalidad.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("ERROR: " + ex.getMessage());
             }
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
@@ -226,6 +242,18 @@ public class DialogModalidad extends javax.swing.JDialog {
     private void btnRestarurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarurarActionPerformed
         limpiarEntradas();
     }//GEN-LAST:event_btnRestarurarActionPerformed
+
+    private void txtIdModalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdModalidadKeyTyped
+        if(txtIdModalidad.getText().length()>=6){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdModalidadKeyTyped
+
+    private void txtNombreMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMKeyTyped
+        if(txtNombreM.getText().length()>=20){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreMKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

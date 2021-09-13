@@ -132,7 +132,7 @@ public class ErrorDAO {
     public void mostrarErrorporClave(String idClave, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"IdError", "Descripcion","IdClave"};
+        String titulos[] = {"ID Resposable-Aula", "Apellidos","Nombres" , "DNI", "ID-Aula"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
 

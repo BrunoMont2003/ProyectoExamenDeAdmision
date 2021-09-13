@@ -43,6 +43,27 @@ public class ResponsableAulaDAO {
         }
     }
     
+     public boolean exists(String id) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        try {
+            ps = cnn.prepareCall("call mostrar_Responsables()");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idExamen = rs.getString("idResponsable");
+                if (idExamen.equals(id)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+        }
+        return false;
+    }
+    
     public ResponsableAulaAdapter buscarResponsable(String idResponsable) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;

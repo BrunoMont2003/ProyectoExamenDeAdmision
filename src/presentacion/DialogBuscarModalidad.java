@@ -115,7 +115,7 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
         });
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 90, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 550, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 550, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

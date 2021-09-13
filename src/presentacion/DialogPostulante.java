@@ -849,21 +849,26 @@ public class DialogPostulante extends javax.swing.JDialog {
             try {
                 Postulante x;
                 x = pd.buscarPostulante(idPostulante);
-                txtNombres.setText(x.getNombres());
-                txtPaterno.setText(x.getApellido_paterno());
-                txtMaterno.setText(x.getApellido_materno());
-                txtDni.setText(x.getDni());
-                txtIdCarrera.setText(x.getCarrera().getCodigoCarrera());
-                txtNCarrera.setText(x.getCarrera().getNombreCarrera());
-                txtIDAULA.setText(x.getAula().getIdAula());
-                txtNAula.setText(String.valueOf(x.getAula().getnAula()));
-                txtIdModalidad.setText(x.getModalidad().getIdModalidad());
-                txtNomModalidad.setText(x.getModalidad().getNombreM());
+                if(x!=null){
+                    
+                    txtNombres.setText(x.getNombres());
+                    txtPaterno.setText(x.getApellido_paterno());
+                    txtMaterno.setText(x.getApellido_materno());
+                    txtDni.setText(x.getDni());
+                    txtIdCarrera.setText(x.getCarrera().getCodigoCarrera());
+                    txtNCarrera.setText(x.getCarrera().getNombreCarrera());
+                    txtIDAULA.setText(x.getAula().getIdAula());
+                    txtNAula.setText(String.valueOf(x.getAula().getnAula()));
+                    txtIdModalidad.setText(x.getModalidad().getIdModalidad());
+                    txtNomModalidad.setText(x.getModalidad().getNombreM());
 
-                pd.mostrarExamenes(idPostulante, modelo);
-                habilitar();
-                habilitarAula();
-                habilitarExamen();
+                    pd.mostrarExamenes(idPostulante, modelo);
+                    habilitar();
+                    habilitarAula();
+                    habilitarExamen();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ese postulante no existe");
+                }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error en SQL " + ex.getMessage());
             }
