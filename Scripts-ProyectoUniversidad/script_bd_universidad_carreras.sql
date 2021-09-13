@@ -75,6 +75,13 @@ begin
   select * from carrera where idcarrera=idCar;
 end$$
 
+
+DELIMITER $$
+create procedure buscarCarreraPorNombre(in nom varchar(40))
+begin
+  select * from carrera where nombreCarrera=nom;
+end$$
+
 DELIMITER $$
 CREATE PROCEDURE buscar_carrera(in idfac char(10))
 BEGIN
@@ -117,6 +124,21 @@ BEGIN
 END$$
 -- drop procedure mostrarCarrerasDeUnaFacultad;
 call contarCarrerasDeUnaFacultad("FACD-01");
+
+
+DELIMITER $$
+CREATE PROCEDURE mostrarCarrerasDeUnArea(in id char(10))
+BEGIN
+  select * from Carrera as c
+  inner join facultad as f
+  on f.idfacultad=c.idFacultad
+  inner join areau as a
+  on a.idArea = f.idArea
+  where a.idArea=id;
+END$$
+drop procedure mostrarCarrerasDeUnArea;
+call mostrarCarrerasDeUnArea("AREA_A");
+
 
 
 DELIMITER $$

@@ -14,6 +14,8 @@ import entidades.Postulante;
 import entidades.Respuesta;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,8 +47,8 @@ public class ExamenDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
         }
     }
 
@@ -65,8 +67,8 @@ public class ExamenDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
         }
         return false;
     }
@@ -97,8 +99,41 @@ public class ExamenDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
+        }
+        return exa;
+    }
+
+    public Examen buscarExamen(String semestre, String idCarrera, String idModalidad) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        Examen exa = null;
+        try {
+            ps = cnn.prepareCall("call buscarExamenPorSemestreYCarreraYModalidad(?,?,?)");
+            ps.setString(1, semestre);
+            ps.setString(2, idCarrera);
+            ps.setString(3, idModalidad);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String idExamen = rs.getString("idExamen");
+                String fechaSql = rs.getString("fecha");
+                String idArea = rs.getString("idArea");
+                String fechaArray[] = fechaSql.split("-");
+                int añoF = Integer.parseInt(fechaArray[0]);
+                int mes = Integer.parseInt(fechaArray[1]);
+                int dia = Integer.parseInt(fechaArray[2]);
+                Fecha fecha = new Fecha(añoF, mes, dia);
+                Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
+                Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
+
+                exa = new Examen(idExamen, semestre, fecha, areas, modalidad);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
         }
         return exa;
     }
@@ -117,8 +152,8 @@ public class ExamenDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
         }
     }
 
@@ -132,8 +167,8 @@ public class ExamenDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
         }
     }
 
@@ -162,6 +197,9 @@ public class ExamenDAO {
             }
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
         }
         return lista;
     }
@@ -192,6 +230,9 @@ public class ExamenDAO {
         } catch (NumberFormatException | SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
 
+        } finally {
+            cnn.close();
+            ps.close();
         }
         return lista;
     }
@@ -217,8 +258,8 @@ public class ExamenDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
         }
     }
 
@@ -227,7 +268,7 @@ public class ExamenDAO {
         String idExamen = examen.getIdExamen();
         System.out.println("Reconoce el examen: " + examen.getIdExamen());
         ArrayList<Postulante> postulantes = PostulanteDAO.getInstancia().listarPostulantesPorExamen(idExamen);
-        for (int i = 0; i < postulantes.size(); i++) {
+        for (int i = postulantes.size() - 1; i < postulantes.size(); i++) {
             double puntaje = 0;
             int numBuenas = 0;
             int numMalas = 0;
@@ -267,18 +308,81 @@ public class ExamenDAO {
                 } catch (SQLException e) {
                     System.out.println("ERROR EN REVISAR EXAMEN: " + e.getMessage());
                 } finally {
-                    ps.close();
                     cnn.close();
+                    ps.close();
                 }
 
             }
         }
     }
 
+    public void setOrdenDeMerito(Examen examen) throws SQLException {
+
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        PreparedStatement pse = null;
+        int i = 1;
+        String idExamen = examen.getIdExamen();
+        try {
+            ps = cnn.prepareCall("call mostrarResultadosDeUnExamenOrdenados(?)");
+            ps.setString(1, idExamen);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                pse = cnn.prepareCall("call setOrdenMerito(?,?,?)");
+                pse.setInt(1, i);
+                pse.setString(2, idPostulante);
+                pse.setString(3, idExamen);
+                pse.executeUpdate();
+                i++;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("ERROR EN EL SET: " + ex.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+            pse.close();
+        }
+
+    }
+
+    public void setOrdenDeMerito(Examen examen, String idCarrera) throws SQLException {
+
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        PreparedStatement pse = null;
+        int i = 1;
+        String idExamen = examen.getIdExamen();
+        try {
+            ps = cnn.prepareCall("call mostrarResultadosDeUnExamenOrdenadosDeUnaCarrera(?,?)");
+            ps.setString(1, idExamen);
+            ps.setString(2, idCarrera);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                pse = cnn.prepareCall("call setOrdenMerito(?,?,?)");
+                pse.setInt(1, i);
+                pse.setString(2, idPostulante);
+                pse.setString(3, idExamen);
+                pse.executeUpdate();
+                i++;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("ERROR EN EL SET: " + ex.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+            pse.close();
+        }
+
+    }
+
     public void mostrarResultadoDeExamen(DefaultTableModel modelo, String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"Postulante", "Carrera", "Puntaje", "Numero de Buenas", "Numero de Malas", "Orden de Mérito"};
+        String titulos[] = {"Postulante", "Carrera", "Puntaje", "Numero de Buenas", "Numero de Malas"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -294,16 +398,76 @@ public class ExamenDAO {
                 double puntaje = rs.getDouble("puntaje");
                 int numBuenas = rs.getInt("numBuenas");
                 int numMalas = rs.getInt("numMalas");
-                int ordenMerito = rs.getInt("ordenMerito");
 
-                Object fila[] = {nombre, carrera, puntaje, numBuenas, numMalas, ordenMerito};
+                Object fila[] = {nombre, carrera, String.format("%.2f",puntaje), numBuenas, numMalas};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
         } finally {
-            ps.close();
             cnn.close();
+            ps.close();
+        }
+    }
+
+    public void mostrarResultadoDeExamenOrden(DefaultTableModel modelo, String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"Postulante", "Carrera", "Puntaje", "Oden de Merito"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareCall("call mostrarResultadosDeUnExamenOrdenados(?)");
+            ps.setString(1, idExamen);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                Postulante pos = PostulanteDAO.getInstancia().buscarPostulante(idPostulante);
+                String nombre = pos.getApellido_paterno() + " " + pos.getApellido_materno() + ", " + " " + pos.getNombres();
+                String carrera = pos.getCarrera().getNombreCarrera();
+                double puntaje = rs.getDouble("puntaje");
+                int ordenMerito = rs.getInt("ordenMerito");
+                Object fila[] = {nombre, carrera, String.format("%.2f",puntaje), ordenMerito};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+        }
+    }
+
+    public void mostrarPostulantesPorExamenDeUnaCarrera(DefaultTableModel modelo, String idExamen, String idCarrera) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"idPostulante", "Nombre", "DNI", "Puntaje", "Oden de Merito", "Carrera"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareCall("call mostrarPostulantesPorExamenDeUnaCarrera(?, ?)");
+            ps.setString(1, idExamen);
+            ps.setString(2, idCarrera);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                String nombre = rs.getString("NombrePostulante");
+                String apPaterno = rs.getString("apellido_paterno");
+                String apMaterno = rs.getString("apellido_materno");
+                String dni = rs.getString("dni");
+                String carrera = rs.getString("nombreCarrera");
+                double puntaje = rs.getDouble("puntaje");
+                int ordenMerito = rs.getInt("ordenMerito");
+                Object fila[] = {idPostulante, apPaterno + " " + apMaterno + ", " + nombre, dni, String.format("%.2f",puntaje), ordenMerito, carrera};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
         }
     }
 }

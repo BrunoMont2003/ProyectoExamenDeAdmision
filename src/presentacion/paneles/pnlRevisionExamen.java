@@ -5,9 +5,11 @@
  */
 package presentacion.paneles;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import presentacion.DialogReporteRevision;
 import presentacion.DialogRevisarExamen;
 
 /**
@@ -32,7 +34,7 @@ public class pnlRevisionExamen extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnReportePostulante = new rsbuttom.RSButtonMetro();
+        btnRevisarExamen = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -41,16 +43,16 @@ public class pnlRevisionExamen extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 39)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MENU DE REPORTES");
+        jLabel1.setText("MENU DE CALIFICACION");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 499, -1));
 
-        btnReportePostulante.setBackground(new java.awt.Color(255, 153, 102));
-        btnReportePostulante.setText("REVISAR EXAMEN");
-        btnReportePostulante.setColorHover(new java.awt.Color(255, 51, 51));
-        btnReportePostulante.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnReportePostulante.addActionListener(new java.awt.event.ActionListener() {
+        btnRevisarExamen.setBackground(new java.awt.Color(255, 153, 102));
+        btnRevisarExamen.setText("REVISAR EXAMEN");
+        btnRevisarExamen.setColorHover(new java.awt.Color(255, 51, 51));
+        btnRevisarExamen.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnRevisarExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportePostulanteActionPerformed(evt);
+                btnRevisarExamenActionPerformed(evt);
             }
         });
 
@@ -59,16 +61,16 @@ public class pnlRevisionExamen extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnReportePostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addComponent(btnRevisarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btnReportePostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(btnRevisarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 520, -1));
@@ -77,19 +79,19 @@ public class pnlRevisionExamen extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReportePostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePostulanteActionPerformed
+    private void btnRevisarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisarExamenActionPerformed
         DialogRevisarExamen f;
         try {
             f = new DialogRevisarExamen();
             f.setVisible(true);
         } catch (SQLException ex) {
-            System.out.println("ERROR: "+ex.getMessage());
+            System.out.println("ERROR: " + ex.getMessage());
         }
-    }//GEN-LAST:event_btnReportePostulanteActionPerformed
+    }//GEN-LAST:event_btnRevisarExamenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnReportePostulante;
+    private rsbuttom.RSButtonMetro btnRevisarExamen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

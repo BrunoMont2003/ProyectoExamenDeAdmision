@@ -62,6 +62,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         siete = new rsbuttom.RSButtonMetro();
         ocho = new rsbuttom.RSButtonMetro();
+        jLabel6 = new javax.swing.JLabel();
+        nueve = new rsbuttom.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -78,6 +80,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnlMenu.setBackground(new java.awt.Color(239, 238, 244));
         pnlMenu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(239, 238, 244)));
+        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         uno.setForeground(new java.awt.Color(128, 128, 131));
         uno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
@@ -101,29 +104,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 unoActionPerformed(evt);
             }
         });
+        pnlMenu.add(uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 75, 258, 50));
 
         jPanel4.setBackground(new java.awt.Color(239, 238, 244));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(128, 128, 131));
         jLabel1.setText("ADMISION");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 41, -1, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
-        );
+        pnlMenu.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 278, -1));
 
         tres.setBackground(new java.awt.Color(239, 238, 244));
         tres.setForeground(new java.awt.Color(128, 128, 131));
@@ -148,6 +139,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 tresActionPerformed(evt);
             }
         });
+        pnlMenu.add(tres, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 180, 258, 50));
 
         dos.setBackground(new java.awt.Color(239, 238, 244));
         dos.setForeground(new java.awt.Color(128, 128, 131));
@@ -172,6 +164,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 dosActionPerformed(evt);
             }
         });
+        pnlMenu.add(dos, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 125, 258, 50));
 
         jPanel5.setBackground(new java.awt.Color(239, 238, 244));
 
@@ -196,6 +189,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        pnlMenu.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 248, 278, -1));
+
         seis.setBackground(new java.awt.Color(239, 238, 244));
         seis.setForeground(new java.awt.Color(128, 128, 131));
         seis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/web.png"))); // NOI18N
@@ -219,6 +214,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 seisActionPerformed(evt);
             }
         });
+        pnlMenu.add(seis, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 478, 258, 50));
 
         cuatro.setBackground(new java.awt.Color(239, 238, 244));
         cuatro.setForeground(new java.awt.Color(128, 128, 131));
@@ -243,6 +239,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 cuatroActionPerformed(evt);
             }
         });
+        pnlMenu.add(cuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 310, 258, 50));
 
         cinco.setBackground(new java.awt.Color(239, 238, 244));
         cinco.setForeground(new java.awt.Color(128, 128, 131));
@@ -267,10 +264,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 cincoActionPerformed(evt);
             }
         });
+        pnlMenu.add(cinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 190, 50));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(128, 128, 131));
-        jLabel5.setText("EXAMEN");
+        jLabel5.setText("PROCESO");
+        pnlMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, -1, -1));
 
         siete.setBackground(new java.awt.Color(239, 238, 244));
         siete.setForeground(new java.awt.Color(128, 128, 131));
@@ -295,6 +294,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 sieteActionPerformed(evt);
             }
         });
+        pnlMenu.add(siete, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 534, 258, 50));
 
         ocho.setBackground(new java.awt.Color(239, 238, 244));
         ocho.setForeground(new java.awt.Color(128, 128, 131));
@@ -319,56 +319,37 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 ochoActionPerformed(evt);
             }
         });
+        pnlMenu.add(ocho, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, 258, 65));
 
-        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
-        pnlMenu.setLayout(pnlMenuLayout);
-        pnlMenuLayout.setHorizontalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(cuatro, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cinco, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(uno, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(dos, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(tres, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(seis, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(siete, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                    .addComponent(ocho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        pnlMenuLayout.setVerticalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(uno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(dos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(tres, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cuatro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cinco, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel5)
-                .addGap(12, 12, 12)
-                .addComponent(seis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(siete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ocho, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(128, 128, 131));
+        jLabel6.setText("EXAMEN");
+        pnlMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
+
+        nueve.setBackground(new java.awt.Color(239, 238, 244));
+        nueve.setForeground(new java.awt.Color(128, 128, 131));
+        nueve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf3.png"))); // NOI18N
+        nueve.setText("RESULTADOS");
+        nueve.setColorHover(new java.awt.Color(204, 204, 204));
+        nueve.setColorNormal(new java.awt.Color(239, 238, 244));
+        nueve.setColorPressed(new java.awt.Color(204, 204, 204));
+        nueve.setColorTextHover(new java.awt.Color(128, 128, 131));
+        nueve.setColorTextNormal(new java.awt.Color(128, 128, 131));
+        nueve.setColorTextPressed(new java.awt.Color(128, 128, 131));
+        nueve.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nueve.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        nueve.setIconTextGap(19);
+        nueve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                nueveMousePressed(evt);
+            }
+        });
+        nueve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nueveActionPerformed(evt);
+            }
+        });
+        pnlMenu.add(nueve, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, 258, 65));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -500,7 +481,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
         );
 
         pack();
@@ -931,6 +912,51 @@ public class FrmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ochoActionPerformed
 
+    private void nueveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nueveMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nueveMousePressed
+
+    private void nueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nueveActionPerformed
+          new CambiaPanel(pnlPrincipal, new presentacion.paneles.pnlReporteResultados());
+        if (this.siete.isSelected()) {
+            this.uno.setColorNormal(new Color(239, 238, 244));
+            this.uno.setColorHover(new Color(204, 204, 204));
+            this.uno.setColorPressed(new Color(204, 204, 204));
+
+            this.dos.setColorNormal(new Color(239, 238, 244));
+            this.dos.setColorHover(new Color(204, 204, 204));
+            this.dos.setColorPressed(new Color(204, 204, 204));
+
+            this.tres.setColorNormal(new Color(239, 238, 244));
+            this.tres.setColorHover(new Color(204, 204, 204));
+            this.tres.setColorPressed(new Color(204, 204, 204));
+
+            this.cuatro.setColorNormal(new Color(239, 238, 244));
+            this.cuatro.setColorHover(new Color(204, 204, 204));
+            this.cuatro.setColorPressed(new Color(204, 204, 204));
+
+            this.cinco.setColorNormal(new Color(239, 238, 244));
+            this.cinco.setColorHover(new Color(204, 204, 204));
+            this.cinco.setColorPressed(new Color(204, 204, 204));
+
+            this.cuatro.setColorNormal(new Color(239, 238, 244));
+            this.cuatro.setColorHover(new Color(204, 204, 204));
+            this.cuatro.setColorPressed(new Color(204, 204, 204));
+
+            this.seis.setColorNormal(new Color(239, 238, 244));
+            this.seis.setColorHover(new Color(204, 204, 204));
+            this.seis.setColorPressed(new Color(204, 204, 204));
+
+            this.siete.setColorNormal(new Color(204, 204, 204));
+            this.siete.setColorHover(new Color(204, 204, 204));
+            this.siete.setColorPressed(new Color(204, 204, 204));
+        } else {
+            this.siete.setColorNormal(new Color(239, 238, 244));
+            this.siete.setColorHover(new Color(204, 204, 204));
+            this.siete.setColorPressed(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_nueveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -982,12 +1008,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private rsbuttom.RSButtonMetro nueve;
     private rsbuttom.RSButtonMetro ocho;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlMenu;

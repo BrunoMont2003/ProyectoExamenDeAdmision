@@ -66,6 +66,22 @@ END$$
 call buscarExamen("EX-0003");
 
 DELIMITER $$
+CREATE PROCEDURE buscarExamenPorSemestreYCarreraYModalidad(in sem char(10), in car char(10), in moda char(15))
+BEGIN
+  select * from Examen as ex
+  inner join areau as a
+  on ex.idArea = a.idArea
+  inner join facultad as f
+  on a.idArea = f.idArea
+  inner join carrera as c
+  on f.idFacultad=c.idFacultad
+  where semestre=sem and idmodalidad=moda and c.idCarrera=car;
+END$$
+drop procedure buscarExamenPorSemestreYCarreraYModalidad;
+call buscarExamenPorSemestreYCarreraYModalidad("2021-II","CBIO-04", "MODD-01");
+
+
+DELIMITER $$
 CREATE PROCEDURE mostrarExamen()
 BEGIN 
   select*from Examen;
@@ -117,3 +133,6 @@ BEGIN
 END$$
 
 call mostrarExamenesDeUnaModalidadYArea("MODD-01","AREA_A");
+
+show variables like "max_connections";
+set global max_connections = 1500;

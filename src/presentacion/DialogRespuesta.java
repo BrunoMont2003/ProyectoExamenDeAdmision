@@ -133,7 +133,7 @@ public class DialogRespuesta extends javax.swing.JDialog {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel2.setText("Id Clave");
+        jLabel2.setText("Id Respuesta");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -146,7 +146,7 @@ public class DialogRespuesta extends javax.swing.JDialog {
                 txtIdRespuestaKeyTyped(evt);
             }
         });
-        jPanel1.add(txtIdRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, -1));
+        jPanel1.add(txtIdRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 230, -1));
 
         btnGuardar.setBackground(new java.awt.Color(168, 192, 215));
         btnGuardar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N

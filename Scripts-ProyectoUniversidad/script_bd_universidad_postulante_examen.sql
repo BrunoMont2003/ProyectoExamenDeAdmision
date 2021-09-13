@@ -51,11 +51,19 @@ call actualizar_postulante_Examen(200, 70, 21, 5, "P-00000001","EX-0001");
 
 
 DELIMITER $$
+create procedure setOrdenMerito(in orden smallint, in idPos char(10), in idEx char(8))
+BEGIN
+	update Postulante_Examen set ordenMerito=orden where idPostulante = idPos and idExamen = idEx;
+END $$
+
+call setOrdenMerito(1,"P-00000006", "EX-0013");
+
+DELIMITER $$
 create procedure eliminar_Postulante_Examen(in idPos char(10), in idEx char(8))
 BEGIN
 	Delete from Postulante_Examen where idPostulante = idPos and idExamen = idEx;
 END $$
-call eliminar_Postulante_Examen("P-00000006", "EX-0014");
+call eliminar_Postulante_Examen("P-00000006", "EX-0013");
 DELIMITER $$
 create procedure eliminarExamenDeUnPostulante(in idEx char(8))
 BEGIN
@@ -84,15 +92,26 @@ call mostrarExamenesDeUnPostulante("P-00000006");
 DELIMITER $$
 create procedure mostrarResultadosDeUnExamen(in idEx char(10))
 BEGIN
-	select * from Postulante_Examen where idExamen=idEx;
+	select * from Postulante_Examen 
+    where idExamen=idEx;
 END $$
+drop procedure mostrarResultadosDeUnExamen;
+call mostrarResultadosDeUnExamen("EX-0002");
 
-call mostrarResultadosDeUnExamen("EX-0001");
+DELIMITER $$
+create procedure mostrarResultadosDeUnExamenOrdenados(in idEx char(10))
+BEGIN
+	select * from Postulante_Examen 
+    where idExamen=idEx
+        order by puntaje desc;
+END $$
+drop procedure mostrarResultadosDeUnExamenOrdenados;
+call mostrarResultadosDeUnExamenOrdenados("EX-0002");
 
 DELIMITER $$
 create procedure mostrarPostulantesPorExamen(in idEx char(8))
 BEGIN
--- select p.idPostulante, p.NombrePostulante, p.apellido_paterno, p.apellido_materno, p.dni 
+-- select p.idPostulante, p.NombrePostulante, p.apellido_paterno, p.apellido_materno, p.dni				
     select *
     from Postulante as p
     inner join postulante_examen as pe
@@ -101,6 +120,7 @@ BEGIN
 END $$
 drop procedure mostrarPostulantesPorExamen;
 call mostrarPostulantesPorExamen("EX-0002");
+
 
 
 -- idarea="AREA_A" and idModalidad="MODD-01"

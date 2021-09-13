@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogBuscarPostulante.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogBuscarExmn.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogRevisarExamen.java</file>
             <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/PostulanteDAO.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/ExamenDAO.java</file>
             <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogPostulante.java</file>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogRespuesta.java</file>
         </group>
     </open-files>
 </project-private>

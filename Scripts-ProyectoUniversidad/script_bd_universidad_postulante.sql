@@ -462,11 +462,11 @@ call insertar_postulante("P-00000397","HECTOR RICARDO","SERRATO","CASCO","726305
 call insertar_postulante("P-00000398","YESICA MILAGROS","PEREZ","ORTÍZ","70247014","CCEE-02","D-00001","MODD-03");
 call insertar_postulante("P-00000399","YEISON SAMIR","MENDOZA","SALDAÑA","70646108","CCEE-02","D-00001","MODD-03");
 call insertar_postulante("P-00000400","MARCO ALDAIR","CASANA","SANDOVAL","75264841","CCEE-02","D-00001","MODD-03");
-call insertar_postulante("P-00000400","NOELIA MEDALIT","ESCATE","LAYZA","74631050","CCEE-02","D-00001","MODD-03");
 -- apartir de aca modd-04
 
 call insertar_postulante("P-00000401","SUSAN YANINA","VIDAL","RUIZ","74032810","CCEE-02","D-00001","MODD-04");
 call insertar_postulante("P-00000402","MARCO ANTONIO","LAMELA","RODRIGUEZ","74105410","CCEE-02","D-00001","MODD-04");
+
 call insertar_postulante("P-00000403","SOFIA ARIANA","RENGIFO","GALLEGOS","74241030","DOCP-01","C-00023","MODD-04");
 call insertar_postulante("P-00000404","LESLY SOLIMAR","CUEVAS","VARAS","74508107","DOCP-01","C-00023","MODD-04");
 call insertar_postulante("P-00000405","NORELY AINET","CHAVEZ","PAREDES","71611061","DOCP-01","C-00023","MODD-04");
@@ -482,6 +482,7 @@ call insertar_postulante("P-00000414","NADYA XIOMARA ","TERRONES","VARGAS","7306
 call insertar_postulante("P-00000415","KIARA FABIOLA","LOPEZ","TALARA","70316031","DOCP-01","C-00023","MODD-04");
 call insertar_postulante("P-00000416","MILAGROS ELIZABETH","VERA","ARQUEROS","70603616","DOCP-01","C-00023","MODD-04");
 call insertar_postulante("P-00000417","NAYELI SARAI","LOPEZ","QUIROZ","74520051","DOCP-01","C-00023","MODD-04");
+
 call insertar_postulante("P-00000418","AMANDA NANCY","VASQUEZ","LAYZA","74163010","INGN-01","B-00002","MODD-04");
 call insertar_postulante("P-00000419","CARLOS ALEXANDER","GUEVARA","LOYOLA","70320514","INGN-01","B-00002","MODD-04");
 call insertar_postulante("P-00000420","ELIASER ISAI","AVILA","ZAMUDIO","70360614","INGN-01","B-00002","MODD-04");

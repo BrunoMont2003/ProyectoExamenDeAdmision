@@ -104,6 +104,26 @@ public class ModalidadDAO {
         }
         return mod;
     }
+    public Modalidad buscarModalidadPorNombre(String nom) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        Modalidad mod = null;
+        try {
+            ps = cnn.prepareCall("call buscarmodalidadpornombre(?)");
+            ps.setString(1, nom);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String idModalidad = rs.getString("idModalidad");
+                mod = new Modalidad(idModalidad, nom);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+        return mod;
+    }
 
     public void mostrarModalidad(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();

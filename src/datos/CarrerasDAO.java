@@ -9,6 +9,7 @@ import entidades.Areas;
 import entidades.Carreras;
 import entidades.Facultad;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -65,6 +66,29 @@ public class CarrerasDAO {
         }
         return car;
     }
+    public Carreras buscarCarrerasPorNombre(String nombreCarrera) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        Carreras car = null;
+        try {
+            ps = cnn.prepareCall("call buscarCarreraPorNombre(?)");
+            ps.setString(1, nombreCarrera);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String idCarrera = rs.getString("idCarrera");
+                String idFacultad = rs.getString("idFacultad");
+                Facultad facultad = FacultadDAO.getInstancia().buscarFacultad(idFacultad);
+                car = new Carreras(idCarrera, nombreCarrera, facultad);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+        return car;
+    }
+
     public Areas buscarAreaDeUnaCarrera(String idCarrera) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -118,6 +142,32 @@ public class CarrerasDAO {
         }
     }
 
+    public ArrayList<Carreras> listarCarrerasDeUnArea(String idArea) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        ArrayList<Carreras> lista = new ArrayList<>();
+
+        try {
+            ps = cnn.prepareCall("call mostrarCarrerasDeUnArea(?)");
+            ps.setString(1, idArea);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idCarrera = rs.getString("idCarrera");
+                String nombre = rs.getString("nombreCarrera");
+                String idFacultad = rs.getString("idFacultad");
+                Facultad f = FacultadDAO.getInstancia().buscarFacultad(idFacultad);
+                Carreras c = new Carreras(idCarrera, nombre, f);
+                lista.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println("ERROR sos: " + ex.getMessage());
+        } finally {
+            cnn.close();
+            ps.close();
+        }
+        return lista;
+    }
+
     public void mostrarCarreras(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -154,7 +204,7 @@ public class CarrerasDAO {
             ps.setString(1, id + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                String idCarrera= rs.getString("idCarrera");
+                String idCarrera = rs.getString("idCarrera");
                 String nombreCarrera = rs.getString("nombreCarrera");
                 String idFacultad = rs.getString("idFacultad");
                 String fila[] = {idCarrera, nombreCarrera, idFacultad};
