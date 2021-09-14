@@ -88,3 +88,31 @@ begin
 	update error set descripcion=des, idClave=idC where idError=idE; 
 end$$
 
+DELIMITER $$
+CREATE PROCEDURE BuscarClavesConMayorError(in id char(7))
+BEGIN
+  select  idClave ,  count(*)  CantidadDeErrores  from Error where idClave=id;
+END$$
+
+drop procedure clavesConMayorError;
+
+call BuscarClavesConMayorError('C-00011');
+
+DELIMITER $$
+CREATE PROCEDURE clavesConMayorErrora()
+BEGIN
+  select  idClave ,  count(*)  CantidadDeErrores  from Error
+  group by idClave;
+END$$
+
+
+call clavesConMayorErrora();
+
+DELIMITER $$
+CREATE PROCEDURE erroresyclaves()
+BEGIN
+  select  idError ,  count(*)  CantidadDeClaves from Error
+  group by idError;
+END$$
+
+call erroresyclaves();

@@ -8,6 +8,7 @@ package presentacion.paneles;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import presentacion.DialogGenerarVacantes;
 import presentacion.DialogReportePorCarrera;
 import presentacion.DialogReporteRevision;
 import presentacion.DialogRevisarExamen;
@@ -35,8 +36,7 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnPorCarrera = new rsbuttom.RSButtonMetro();
-        btnModalidad = new rsbuttom.RSButtonMetro();
-        btnPorArea = new rsbuttom.RSButtonMetro();
+        btnVacantes = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -49,7 +49,7 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 499, -1));
 
         btnPorCarrera.setBackground(new java.awt.Color(255, 153, 102));
-        btnPorCarrera.setText("POR CARRERA");
+        btnPorCarrera.setText("RESULTADOS");
         btnPorCarrera.setColorHover(new java.awt.Color(255, 51, 51));
         btnPorCarrera.setColorNormal(new java.awt.Color(255, 153, 102));
         btnPorCarrera.addActionListener(new java.awt.event.ActionListener() {
@@ -58,23 +58,13 @@ public class pnlReporteResultados extends javax.swing.JPanel {
             }
         });
 
-        btnModalidad.setBackground(new java.awt.Color(255, 153, 102));
-        btnModalidad.setText("POR MODALIDAD");
-        btnModalidad.setColorHover(new java.awt.Color(255, 51, 51));
-        btnModalidad.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnModalidad.addActionListener(new java.awt.event.ActionListener() {
+        btnVacantes.setBackground(new java.awt.Color(255, 153, 102));
+        btnVacantes.setText("VACANTES");
+        btnVacantes.setColorHover(new java.awt.Color(255, 51, 51));
+        btnVacantes.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnVacantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModalidadActionPerformed(evt);
-            }
-        });
-
-        btnPorArea.setBackground(new java.awt.Color(255, 153, 102));
-        btnPorArea.setText("POR AREA");
-        btnPorArea.setColorHover(new java.awt.Color(255, 51, 51));
-        btnPorArea.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnPorArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPorAreaActionPerformed(evt);
+                btnVacantesActionPerformed(evt);
             }
         });
 
@@ -83,23 +73,20 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(104, 104, 104)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnPorArea, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPorCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                    .addComponent(btnVacantes, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPorCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(51, 51, 51)
                 .addComponent(btnPorCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(btnPorArea, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(btnModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(btnVacantes, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 520, 240));
@@ -118,19 +105,19 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnPorCarreraActionPerformed
 
-    private void btnModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModalidadActionPerformed
-
-    }//GEN-LAST:event_btnModalidadActionPerformed
-
-    private void btnPorAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPorAreaActionPerformed
+    private void btnVacantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacantesActionPerformed
+        try {
+            DialogGenerarVacantes f = new DialogGenerarVacantes();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            System.out.println("error: "+ex.getMessage());
+        }
+    }//GEN-LAST:event_btnVacantesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnModalidad;
-    private rsbuttom.RSButtonMetro btnPorArea;
     private rsbuttom.RSButtonMetro btnPorCarrera;
+    private rsbuttom.RSButtonMetro btnVacantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

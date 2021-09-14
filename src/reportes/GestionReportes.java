@@ -74,4 +74,18 @@ public class GestionReportes {
         view.setAlwaysOnTop(true);
 
     }
+    
+    public void ReporteCantidadError() throws JRException {
+        Conexion con = new Conexion();
+        Connection conn = con.miConexion();
+        JasperReport reporte = null;
+        String path = "src\\reportes\\reportCantidadDeErroresPorClave.jasper";
+        reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+        JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
+        JasperViewer view = new JasperViewer(jprint, false);
+        view.setTitle("Errores");
+        view.setVisible(true);
+        view.setAlwaysOnTop(true);
+
+    }
 }

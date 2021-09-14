@@ -25,6 +25,13 @@ BEGIN
   select * from modalidad where idModalidad=idMod;
 END$$
 
+DELIMITER $$
+CREATE PROCEDURE buscarmodalidadpornombre(in nom char(20))
+BEGIN
+  select * from modalidad where nombre=nom;
+END$$
+drop procedure buscarmodalidadpornombre;
+call buscarmodalidadpornombre("ORDINARIO");
 
 DELIMITER $$
 CREATE PROCEDURE mostrarModalidad()

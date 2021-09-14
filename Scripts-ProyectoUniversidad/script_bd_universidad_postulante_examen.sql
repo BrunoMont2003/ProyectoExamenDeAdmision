@@ -108,6 +108,32 @@ END $$
 drop procedure mostrarResultadosDeUnExamenOrdenados;
 call mostrarResultadosDeUnExamenOrdenados("EX-0002");
 
+
+
+DELIMITER $$
+CREATE PROCEDURE mostrarResultadosDeUnExamenOrdenadosDeUnaCarrera(in idEx char(10), in idCar char(10))
+BEGIN
+	select p.nombrePostulante, p.apellido_paterno,p.apellido_materno,p.dni, pe.puntaje, pe.numMalas,pe.numBuenas,pe.ordenMerito, pe.idPostulante, c.nombreCarrera 
+    from Postulante_Examen as pe
+    inner join examen as ex
+    on pe.idExamen=ex.idExamen
+    inner join areau as a
+    on a.idArea=ex.idArea
+    inner join facultad as f
+    on a.idArea=f.idArea
+    inner join carrera as c
+    on f.idFacultad=c.idFacultad
+    inner join postulante as p
+    on p.idPostulante=pe.idPostulante
+    where ex.idExamen=idEx
+    and
+    c.idCarrera=idCar
+    and p.idCarrera=idCar
+	order by puntaje desc;
+END$$;
+ drop procedure mostrarResultadosDeUnExamenOrdenadosDeUnaCarrera;
+call mostrarResultadosDeUnExamenOrdenadosDeUnaCarrera("EX-0002","INGN-05");
+
 DELIMITER $$
 create procedure mostrarPostulantesPorExamen(in idEx char(8))
 BEGIN

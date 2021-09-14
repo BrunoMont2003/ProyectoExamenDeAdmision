@@ -21,23 +21,26 @@ import javax.swing.table.DefaultTableModel;
  * @author USUARIO
  */
 public class DialogBuscarAula extends javax.swing.JDialog {
-DefaultTableModel modelo = new DefaultTableModel();
+
+    DefaultTableModel modelo = new DefaultTableModel();
     Aula aulaSelec = new Aula();
     AulaDAO ad = new AulaDAO();
+
     /**
      * Creates new form DialogBuscarAula
      */
     public DialogBuscarAula() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         ad.mostrarAula(modelo);
     }
+
     public DialogBuscarAula(String idCarrera) throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
         Areas area = CarrerasDAO.getInstancia().buscarAreaDeUnaCarrera(idCarrera);
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         ad.mostrarAulaPorArea(area.getIdArea(), modelo);
     }
 
@@ -50,98 +53,94 @@ DefaultTableModel modelo = new DefaultTableModel();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtIdAula = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnSeleccionar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("IDAULA:");
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
+        jLabel1.setText("ID AULA");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        txtIdAula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdAulaKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtIdAula, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 270, 40));
+
+        btnBuscar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
 
+        jButton2.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         jButton2.setText("Todos");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
+        btnSeleccionar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnSeleccionar.setText("Seleccionar");
         btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
-        jButton3.setText("Salir");
+        btnSalir.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 560, -1, -1));
 
         Tabla.setModel(modelo);
         jScrollPane2.setViewportView(Tabla);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 550, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(90, 90, 90)
-                            .addComponent(jButton3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addComponent(jLabel1)
-                            .addGap(29, 29, 29)
-                            .addComponent(txtIdAula, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(btnBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSeleccionar)
-                .addGap(104, 104, 104))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtIdAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnSeleccionar))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String idAula = txtIdAula.getText();
-        try {
-            ad.mostrarAulaPorArea(idAula, modelo);
-        } catch (SQLException ex) {
-            
+        if (txtIdAula.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No deje el campo vacio");
+        } else {
+            String idAula = txtIdAula.getText();
+            try {
+                ad.mostrarAulaPorArea(idAula, modelo);
+            } catch (SQLException ex) {
+
+            }
         }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
@@ -163,6 +162,16 @@ DefaultTableModel modelo = new DefaultTableModel();
             JOptionPane.showMessageDialog(null, "Debes Seleccionar un elemento");
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtIdAulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdAulaKeyTyped
+        if(txtIdAula.getText().length()>=7){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdAulaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -209,10 +218,11 @@ DefaultTableModel modelo = new DefaultTableModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtIdAula;
     // End of variables declaration//GEN-END:variables

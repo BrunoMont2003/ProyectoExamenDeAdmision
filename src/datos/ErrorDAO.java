@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -154,4 +155,74 @@ public class ErrorDAO {
             cnn.close();
         }
     }
+    
+    
+    
+    
+       public void mostrarCantidadDeErrorporClave(String idClave, DefaultTableModel modelo) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Clave", "Cantidad De Claves"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareCall("call BuscarClavesConMayorError(?)");
+            ps.setString(1, idClave);
+            rs = ps.executeQuery();
+            while (rs.next()) {      
+                idClave = rs.getString("idClave");
+                String numero = rs.getString("CantidadDeErrores");
+                String fila[] = {idClave,numero};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+       
+       
+       public void mostrarCCError(DefaultTableModel modelo) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"IdClave","Cantidad Errores"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareStatement("call clavesConMayorErrora()");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idClave = rs.getString("idClave");
+                String numero = rs.getString("CantidadDeErrores");
+                String fila[] = {idClave,numero};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }   
+       
+        public DefaultComboBoxModel ObtIdClave() throws SQLException{
+        cnn = Conexion.getInstancia().miConexion();
+        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.addElement("Seleccione Clave");
+        PreparedStatement ps = null;
+       
+        try{
+            ps = cnn.prepareStatement("call mostrar_Errores()");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ListaModelo.addElement(rs.getString("idClave"));
+            }
+            rs.close();
+        }catch(SQLException e){
+             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        }
+        return ListaModelo;
+    }   
 }

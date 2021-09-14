@@ -1,4 +1,3 @@
-
 package presentacion;
 
 import datos.AulaDAO;
@@ -11,11 +10,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class DialogBuscarResponsableAula extends javax.swing.JDialog {
-DefaultTableModel modelo = new DefaultTableModel();
+
+    DefaultTableModel modelo = new DefaultTableModel();
     ResponsableAula responsableSelec = new ResponsableAula();
     ResponsableAulaDAO b = new ResponsableAulaDAO();
+
     /**
      * Creates new form DialogBuscarAula
      */
@@ -35,10 +35,11 @@ DefaultTableModel modelo = new DefaultTableModel();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnTodos = new javax.swing.JButton();
         btnDatos = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -49,68 +50,90 @@ DefaultTableModel modelo = new DefaultTableModel();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("NOMBRE:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 270, -1));
+        jPanel1.setBackground(new java.awt.Color(102, 255, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
+        jLabel1.setText("Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 300, 30));
+
+        btnBuscar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, 30));
 
-        jButton2.setText("Todos");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+        btnTodos.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
+        btnTodos.setText("Todos");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, 30));
 
+        btnDatos.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnDatos.setText("Datos");
         btnDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDatosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
+        jPanel1.add(btnDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, 30));
 
+        jButton3.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         jButton3.setText("Salir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, -1, 30));
 
         Tabla.setModel(modelo);
         jScrollPane2.setViewportView(Tabla);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 550, 500));
 
+        btnSeleccionar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnSeleccionar.setText("Seleccionar");
         btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
+        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, 30));
 
+        btnFuncion.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnFuncion.setText("Función");
         btnFuncion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFuncionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, -1, -1));
+        jPanel1.add(btnFuncion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String nombre = txtNombre.getText();
-        try {
-            b.mostraResponsableporNombre(nombre, modelo);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR SQL: "+ex.getMessage());
+        if (txtNombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No deje el campo vacio");
+        } else {
+            String nombre = txtNombre.getText();
+            try {
+                b.mostraResponsableporNombre(nombre, modelo);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "ERROR SQL: " + ex.getMessage());
+            }
         }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosActionPerformed
@@ -119,7 +142,7 @@ DefaultTableModel modelo = new DefaultTableModel();
             String idResponsable = modelo.getValueAt(i, 0).toString();
             try {
                 ResponsableAulaAdapter respon = b.buscarResponsable(idResponsable);
-                JOptionPane.showMessageDialog(null, respon.Apellidos_Nombres()+"\n"+respon.identificación());
+                JOptionPane.showMessageDialog(null, respon.Apellidos_Nombres() + "\n" + respon.identificación());
             } catch (SQLException ex) {
                 Logger.getLogger(DialogBuscarResponsableAula.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -136,7 +159,7 @@ DefaultTableModel modelo = new DefaultTableModel();
             responsableSelec.setNombres(modelo.getValueAt(i, 2).toString());
             responsableSelec.setDni(modelo.getValueAt(i, 3).toString());
             String idAula = modelo.getValueAt(i, 4).toString();
-            AulaDAO x = new AulaDAO();            
+            AulaDAO x = new AulaDAO();
             try {
                 responsableSelec.setAula(x.buscarAula(idAula));
             } catch (SQLException ex) {
@@ -154,9 +177,10 @@ DefaultTableModel modelo = new DefaultTableModel();
             String idResponsable = modelo.getValueAt(i, 0).toString();
             try {
                 ResponsableAulaAdapter respon = b.buscarResponsable(idResponsable);
-                JOptionPane.showMessageDialog(null, respon.identificación()+"\n"+respon.funcion());
+                JOptionPane.showMessageDialog(null, respon.identificación() + "\n" + respon.funcion());
             } catch (SQLException ex) {
-                Logger.getLogger(DialogBuscarResponsableAula.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("ERROR:" + ex.getMessage());
+
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debes Seleccionar un elemento");
@@ -166,6 +190,14 @@ DefaultTableModel modelo = new DefaultTableModel();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        try {
+            b.mostrarResponsable(modelo);
+        } catch (SQLException ex) {
+            System.out.println("ERROR:" + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnTodosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,9 +247,10 @@ DefaultTableModel modelo = new DefaultTableModel();
     private javax.swing.JButton btnDatos;
     private javax.swing.JButton btnFuncion;
     private javax.swing.JButton btnSeleccionar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnTodos;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
