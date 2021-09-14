@@ -31,10 +31,7 @@ public class pnlReporteExamen extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnRegistroExamen = new rsbuttom.RSButtonMetro();
         btnRegistroRango = new rsbuttom.RSButtonMetro();
-        btn1 = new rsbuttom.RSButtonMetro();
-        jPanel3 = new javax.swing.JPanel();
         btnRegistroClave = new rsbuttom.RSButtonMetro();
-        btnReporteErrores = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -66,41 +63,6 @@ public class pnlReporteExamen extends javax.swing.JPanel {
             }
         });
 
-        btn1.setBackground(new java.awt.Color(255, 153, 102));
-        btn1.setColorHover(new java.awt.Color(255, 51, 51));
-        btn1.setColorNormal(new java.awt.Color(255, 153, 102));
-        btn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegistroExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistroRango, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(220, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegistroExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegistroRango, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 77, 520, -1));
-
         btnRegistroClave.setBackground(new java.awt.Color(255, 153, 102));
         btnRegistroClave.setText("REPORTE CLAVES");
         btnRegistroClave.setColorHover(new java.awt.Color(255, 51, 51));
@@ -111,45 +73,35 @@ public class pnlReporteExamen extends javax.swing.JPanel {
             }
         });
 
-        btnReporteErrores.setBackground(new java.awt.Color(255, 153, 102));
-        btnReporteErrores.setText("REPORTE ERRORES");
-        btnReporteErrores.setColorHover(new java.awt.Color(255, 51, 51));
-        btnReporteErrores.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnReporteErrores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteErroresActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(219, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistroExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistroRango, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRegistroExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegistroRango, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistroClave, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btnReporteErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 354, 520, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 520, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf-file.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnReporteErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteErroresActionPerformed
-    }//GEN-LAST:event_btnReporteErroresActionPerformed
 
     private void btnRegistroRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroRangoActionPerformed
         DialogBuscarRangoPreguntas f = new DialogBuscarRangoPreguntas();
@@ -161,10 +113,6 @@ public class pnlReporteExamen extends javax.swing.JPanel {
         f.setVisible(true);
     }//GEN-LAST:event_btnRegistroExamenActionPerformed
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-      
-    }//GEN-LAST:event_btn1ActionPerformed
-
     private void btnRegistroClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroClaveActionPerformed
         DialogBuscarClave f = new DialogBuscarClave();
        f.setVisible(true);
@@ -172,14 +120,11 @@ public class pnlReporteExamen extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btn1;
     private rsbuttom.RSButtonMetro btnRegistroClave;
     private rsbuttom.RSButtonMetro btnRegistroExamen;
     private rsbuttom.RSButtonMetro btnRegistroRango;
-    private rsbuttom.RSButtonMetro btnReporteErrores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

@@ -191,7 +191,7 @@ public class ErrorDAO {
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
-            ps = cnn.prepareStatement("call clavesConMayorErrora()");
+            ps = cnn.prepareStatement("call clavesConMayorError()");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idClave = rs.getString("idClave");

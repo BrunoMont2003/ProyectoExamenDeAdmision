@@ -27,7 +27,7 @@ public class DialogRevisarExamen extends javax.swing.JDialog {
 
     public DialogRevisarExamen() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
-        setLocationRelativeTo(this);
+        setLocation(100,100);
         initComponents();
         try {
             for (int i = 0; i < examendao.listarExamenes().size(); i++) {

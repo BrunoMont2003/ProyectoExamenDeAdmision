@@ -8,6 +8,7 @@ package presentacion.paneles;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import presentacion.DialogCantidadDeErroresPorClave;
 import presentacion.DialogGenerarVacantes;
 import presentacion.DialogReportePorCarrera;
 import presentacion.DialogReporteRevision;
@@ -35,8 +36,9 @@ public class pnlReporteResultados extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnPorCarrera = new rsbuttom.RSButtonMetro();
+        btnResultados = new rsbuttom.RSButtonMetro();
         btnVacantes = new rsbuttom.RSButtonMetro();
+        btnClavesConMenorAceptacion = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -48,18 +50,18 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         jLabel1.setText("REPORTE RESULTADOS");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, 499, -1));
 
-        btnPorCarrera.setBackground(new java.awt.Color(255, 153, 102));
-        btnPorCarrera.setText("RESULTADOS");
-        btnPorCarrera.setColorHover(new java.awt.Color(255, 51, 51));
-        btnPorCarrera.setColorNormal(new java.awt.Color(255, 153, 102));
-        btnPorCarrera.addActionListener(new java.awt.event.ActionListener() {
+        btnResultados.setBackground(new java.awt.Color(255, 153, 102));
+        btnResultados.setText("RESULTADOS GENERALES");
+        btnResultados.setColorHover(new java.awt.Color(255, 51, 51));
+        btnResultados.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnResultados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPorCarreraActionPerformed(evt);
+                btnResultadosActionPerformed(evt);
             }
         });
 
         btnVacantes.setBackground(new java.awt.Color(255, 153, 102));
-        btnVacantes.setText("VACANTES");
+        btnVacantes.setText("INGRESANTES");
         btnVacantes.setColorHover(new java.awt.Color(255, 51, 51));
         btnVacantes.setColorNormal(new java.awt.Color(255, 153, 102));
         btnVacantes.addActionListener(new java.awt.event.ActionListener() {
@@ -68,34 +70,47 @@ public class pnlReporteResultados extends javax.swing.JPanel {
             }
         });
 
+        btnClavesConMenorAceptacion.setBackground(new java.awt.Color(255, 153, 102));
+        btnClavesConMenorAceptacion.setText("CLAVES CON MENOR ACEPTACIÓN");
+        btnClavesConMenorAceptacion.setColorHover(new java.awt.Color(255, 51, 51));
+        btnClavesConMenorAceptacion.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnClavesConMenorAceptacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClavesConMenorAceptacionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(105, 105, 105)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnClavesConMenorAceptacion, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVacantes, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPorCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(160, Short.MAX_VALUE))
+                    .addComponent(btnResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btnPorCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(btnResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnVacantes, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btnClavesConMenorAceptacion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 520, 240));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 520, 310));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf-file.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPorCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPorCarreraActionPerformed
+    private void btnResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadosActionPerformed
         try {
             DialogReportePorCarrera f;
             f = new DialogReportePorCarrera();
@@ -103,7 +118,7 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
-    }//GEN-LAST:event_btnPorCarreraActionPerformed
+    }//GEN-LAST:event_btnResultadosActionPerformed
 
     private void btnVacantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacantesActionPerformed
         try {
@@ -114,9 +129,19 @@ public class pnlReporteResultados extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnVacantesActionPerformed
 
+    private void btnClavesConMenorAceptacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClavesConMenorAceptacionActionPerformed
+        try {
+            DialogCantidadDeErroresPorClave f = new DialogCantidadDeErroresPorClave();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+        }
+    }//GEN-LAST:event_btnClavesConMenorAceptacionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnPorCarrera;
+    private rsbuttom.RSButtonMetro btnClavesConMenorAceptacion;
+    private rsbuttom.RSButtonMetro btnResultados;
     private rsbuttom.RSButtonMetro btnVacantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

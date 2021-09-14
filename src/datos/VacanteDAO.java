@@ -188,10 +188,11 @@ public class VacanteDAO {
                         pse.setString(1, idPostulante);
                         pse.setString(2, idExamen);
                         pse.executeUpdate();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Ya se han designado las vacantes, diríjase a reportes de vacantes");
-                        break;
                     }
+//                    else{
+//                        JOptionPane.showMessageDialog(null, "Ya se han designado las vacantes, diríjase a reportes de vacantes");
+//                        break;
+//                    }
                 }
             }
 
@@ -200,7 +201,9 @@ public class VacanteDAO {
         } finally {
             cnn.close();
             ps.close();
-            pse.close();
+            if(pse!=null){
+                pse.close();
+            }
         }
 
     }

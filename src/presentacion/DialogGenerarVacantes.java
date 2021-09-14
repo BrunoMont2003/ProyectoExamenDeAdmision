@@ -35,7 +35,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
 
     public DialogGenerarVacantes() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
-        setLocationRelativeTo(null);
+        setLocation(100, 100);
         initComponents();
 
     }
@@ -224,7 +224,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 690, 134, 40));
 
         jLabel2.setFont(new java.awt.Font("Roboto Condensed", 3, 48)); // NOI18N
-        jLabel2.setText("GENERAR VACANTES");
+        jLabel2.setText("INGRESANTES");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
         btnGenerarVacantes.setText("VACANTES");

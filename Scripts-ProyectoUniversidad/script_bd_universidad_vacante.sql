@@ -48,25 +48,25 @@ create procedure buscarVacantesDeUnExamenEnUnaCarrera(in idEx char(8), in idCar 
 BEGIN
 	select v.idExamen, v.idPostulante,p.nombrePostulante, 
     p.apellido_paterno,p.apellido_materno, p.dni, 
-    pe.puntaje, pe.ordenMerito, c.nombreCarrera, m.nombre as modalidad
-    from VACANTE as v
-    inner join examen as ex
-    on v.idExamen=ex.idExamen
-    inner join areau as a
-    on ex.idArea=a.idArea
-    inner join facultad as f
-    on a.idArea=f.idArea
-    inner join carrera as c
-    on f.idFacultad=c.idFacultad
-    inner join postulante_examen as pe
-    on v.idPostulante=pe.idPostulante
-    inner join postulante as p
-    on pe.idPostulante=p.idPostulante
-    inner join modalidad as m
-    on ex.idModalidad=m.idModalidad
-    where pe.idExamen=idEx
-    and c.idCarrera=idCar
-    ORDER BY pe.puntaje desc;
+    pe.puntaje, pe.ordenMerito, c.nombreCarrera, m.nombre as modalidad  
+    FROM VACANTE AS V
+    INNER JOIN EXAMEN AS EX
+    ON V.IDEXAMEN=EX.IDEXAMEN
+    INNER JOIN AREAU AS A
+    ON EX.IDAREA=A.IDAREA
+    INNER JOIN FACULTAD AS F
+    ON A.IDAREA=F.IDAREA
+    INNER JOIN CARRERA AS C
+    ON F.IDFACULTAD=C.IDFACULTAD
+    INNER JOIN POSTULANTE AS P
+    ON V.IDPOSTULANTE=P.IDPOSTULANTE AND C.IDCARRERA=P.IDCARRERA
+    INNER JOIN POSTULANTE_EXAMEN AS PE
+    ON P.IDPOSTULANTE=PE.IDPOSTULANTE AND EX.IDEXAMEN=PE.IDEXAMEN
+    INNER JOIN MODALIDAD AS M
+    ON EX.IDMODALIDAD=M.IDMODALIDAD
+    WHERE V.IDEXAMEN=IDEX
+    AND C.IDCARRERA=IDCAR
+    ORDER BY PUNTAJE DESC;
 END $$
  drop procedure buscarVacantesDeUnExamenEnUnaCarrera;
 call buscarVacantesDeUnExamenEnUnaCarrera("EX-0002", "INGN-05");

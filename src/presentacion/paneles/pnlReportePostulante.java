@@ -6,7 +6,11 @@
 package presentacion.paneles;
 
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import presentacion.DialogBuscarPostulante;
+import presentacion.DialogReportarPostulantePorAulaYCarrera;
 
 /**
  *
@@ -33,6 +37,7 @@ public class pnlReportePostulante extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnReportePostulante = new rsbuttom.RSButtonMetro();
         btnReporteRespuestas = new rsbuttom.RSButtonMetro();
+        btnSegunAula = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -64,28 +69,41 @@ public class pnlReportePostulante extends javax.swing.JPanel {
             }
         });
 
+        btnSegunAula.setBackground(new java.awt.Color(255, 153, 102));
+        btnSegunAula.setText("POSTULANTE SEGÚN AULA");
+        btnSegunAula.setColorHover(new java.awt.Color(255, 51, 51));
+        btnSegunAula.setColorNormal(new java.awt.Color(255, 153, 102));
+        btnSegunAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSegunAulaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnReportePostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporteRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addGap(110, 110, 110)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnReportePostulante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReporteRespuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSegunAula, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(40, 40, 40)
                 .addComponent(btnReportePostulante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReporteRespuestas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btnSegunAula, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 520, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 520, 260));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf-file.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 650, 470));
@@ -100,10 +118,20 @@ public class pnlReportePostulante extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReporteRespuestasActionPerformed
 
+    private void btnSegunAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSegunAulaActionPerformed
+        try {
+            DialogReportarPostulantePorAulaYCarrera f = new DialogReportarPostulantePorAulaYCarrera();
+            f.setVisible(true);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+        }
+    }//GEN-LAST:event_btnSegunAulaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnReportePostulante;
     private rsbuttom.RSButtonMetro btnReporteRespuestas;
+    private rsbuttom.RSButtonMetro btnSegunAula;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

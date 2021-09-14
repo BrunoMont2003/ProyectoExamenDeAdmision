@@ -33,7 +33,7 @@ public class DialogReportePorCarrera extends javax.swing.JDialog {
 
     public DialogReportePorCarrera() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
-        setLocationRelativeTo(null);
+        setLocation(100,100);
         initComponents();
 
     }

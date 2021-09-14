@@ -602,3 +602,36 @@ begin
 end$$
 drop procedure eliminarPostulante;
 call eliminarPostulante("P-00000006");
+
+
+
+DELIMITER $$
+CREATE PROCEDURE  buscarPostulanteSegunUbicacionYCarrera(in idau char(10), in idCar char(10))
+BEGIN
+  select * from postulante where concat(idPostulante,nombrePostulante,apellido_paterno,apellido_materno,dni,idCarrera,idAula) like concat('%','%','%','%','%',idCar,idau);
+END$$
+call buscarPostulanteSegunUbicacionYCarrera('A-00001','CBIO-01');
+drop procedure buscarPostulanteSegunUbicacionYCarrera;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE buscarAulaCarrera(in idA char(10), in idC char(10))
+BEGIN
+  select * from Postulante where  idAula=idA and idCarrera=idC;
+END$$
+drop procedure buscarAulaCarrera;
+
+call buscarAulaCarrera('A-00005','CBIO-04');
+
+
+DELIMITER $$
+CREATE PROCEDURE mostrarPorUbicacionyCar()
+BEGIN
+  select  idAula, idCarrera, idPostulante, nombrePostulante, apellido_paterno, apellido_materno from postulante;
+END$$
+
+drop procedure  mostrarPorUbicacionyCar;
+
+call   mostrarPorUbicacionyCar();
