@@ -195,7 +195,7 @@ public class ExamenDAO {
                 Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
                 lista.add(ex);
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException | SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
         } finally {
             cnn.close();

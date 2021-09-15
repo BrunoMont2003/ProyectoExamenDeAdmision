@@ -167,6 +167,7 @@ public class ClaveDAO {
             cnn.close();
         }
     }
+
     public void mostrarClavesPorExamen(DefaultTableModel modelo, String idEx) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;

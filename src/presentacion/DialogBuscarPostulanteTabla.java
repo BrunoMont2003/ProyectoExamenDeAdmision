@@ -51,6 +51,17 @@ public class DialogBuscarPostulanteTabla extends javax.swing.JDialog {
             System.out.println("Error: " + ex.getMessage());
         }
     }
+    public DialogBuscarPostulanteTabla(String idExamen) {
+        super(FrmPrincipal.getInstancia(), true);
+        initComponents();
+        setLocationRelativeTo(null);
+
+        try {
+            postulantedao.mostrarPostulantesPorExamen(modelo, idExamen);
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

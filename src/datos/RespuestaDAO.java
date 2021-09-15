@@ -195,6 +195,32 @@ public class RespuestaDAO {
         }
     }
 
+    public void mostrarRespuestasDePostulanteEnUnExamen(DefaultTableModel modelo, String idPostulante, String idExamen) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Respuesta", "NUMERO", "LETRA", "ID POSTULANTE", "ID EXAMEN"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareCall("call mostrarRespuestasDePostulanteEnUnExamen(?,?)");
+            ps.setString(1, idPostulante);
+            ps.setString(2, idExamen);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idRespuesta = rs.getString("idRespuesta");
+                int numero = rs.getInt("numero");
+                char letra = rs.getString("letra").charAt(0);
+                String fila[] = {idRespuesta, String.valueOf(numero), String.valueOf(letra), idPostulante, idExamen};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+
     public void mostrarRespuestasCorrectasDePostulanteEnUnExamen(DefaultTableModel modelo, String idPos, String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;

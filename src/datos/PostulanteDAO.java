@@ -109,7 +109,6 @@ public class PostulanteDAO {
 
                 ListaPostulante_Examen examenes = PostulanteDAO.getInstancia().buscarExamenes(idPostulante);
                 pos.setL(examenes);
-
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -161,21 +160,27 @@ public class PostulanteDAO {
             ListaPostulante_Examen examenesEnBD = PostulanteDAO.getInstancia().buscarExamenes(postulante.getIdPostulante());
 
             if (examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty()) {
-                System.out.println("examenesEnBD.getL().isEmpty() && examenes.getL().isEmpty() " + examenesEnBD.getN() + " && " + examenes.getN());
+                System.out.println("examenesEnBD.getL().getN && examenes.getL().getN() " + examenesEnBD.getN() + " && " + examenes.getN());
                 ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
                 ps.setString(1, postulante.getIdPostulante());
                 ps.setString(2, examenes.getElemento(0).getExamen().getIdExamen());
                 ps.executeUpdate();
 
             } else {
+                System.out.println("Before: examenesEnBD.getL().getN && examenes.getL().getN() " + examenesEnBD.getN() + " && " + examenes.getN());
                 for (int i = 0; i < examenes.getN(); i++) {
                     //ELIMINAR TODOS LOS EXAMENES
-                    PostulanteDAO.getInstancia().eliminarExamen(postulante.getL().getElemento(i).getExamen().getIdExamen());
+                    System.out.println("Eliminando EXAMEN: "+postulante.getL().getElemento(i).getExamen().getIdExamen());
+                    PostulanteDAO.getInstancia().eliminarExamen(postulante.getIdPostulante() , postulante.getL().getElemento(i).getExamen().getIdExamen());
+                    //Insertar todo denuevo
                     ps = cnn.prepareCall("call insertarPostulanteExamenBase(?,?)");
+                    System.out.println("Insertando: "+examenes.getElemento(i).getExamen().getIdExamen());
                     ps.setString(1, postulante.getIdPostulante());
                     ps.setString(2, examenes.getElemento(i).getExamen().getIdExamen());
                     ps.executeUpdate();
                 }
+                System.out.println("After: examenesEnBD.getL().getN && examenes.getL().getN() " + examenesEnBD.getN() + " && " + examenes.getN());
+
             }
 
         } catch (SQLException e) {
@@ -266,12 +271,13 @@ public class PostulanteDAO {
         }
     }
 
-    public void eliminarExamen(String idExamen) throws SQLException {
+    public void eliminarExamen(String idPostulante, String idExamen) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
         try {
-            ps = cnn.prepareCall("call eliminarExamenDeUnPostulante(?)");
-            ps.setString(1, idExamen);
+            ps = cnn.prepareCall("call eliminar_Postulante_Examen(?,?)");
+            ps.setString(1, idPostulante);
+            ps.setString(2, idExamen);
             ps.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
@@ -340,6 +346,7 @@ public class PostulanteDAO {
             cnn.close();
         }
     }
+
     public void mostrarPostulantesPorApellidos(DefaultTableModel modelo, String ape) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -420,6 +427,7 @@ public class PostulanteDAO {
             cnn.close();
         }
     }
+
     public void mostrarPostulantesPorExamenYCarrera(String idExamen, String idCarrera, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -451,8 +459,6 @@ public class PostulanteDAO {
         }
     }
 
-   
-
     public DefaultComboBoxModel ObtIdAulaPorArea(String idArea) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
@@ -473,7 +479,7 @@ public class PostulanteDAO {
         return ListaModelo;
     }
 
-      public DefaultComboBoxModel ObtIdCarrera() throws SQLException {
+    public DefaultComboBoxModel ObtIdCarrera() throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.addElement("Seleccione Carrera");
@@ -492,7 +498,6 @@ public class PostulanteDAO {
         return ListaModelo;
     }
 
-      
     public void mostraPostulantePorAC(String idAu, String idCar, DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
@@ -503,7 +508,7 @@ public class PostulanteDAO {
         try {
             ps = cnn.prepareCall("call buscarPostulanteSegunUbicacionYCarrera(?,?)");
             ps.setString(1, idAu + "%");
-            ps.setString(2, idCar+ "%");
+            ps.setString(2, idCar + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
                 String idPostulante = rs.getString("idPostulante");
@@ -523,13 +528,11 @@ public class PostulanteDAO {
             cnn.close();
         }
     }
-      
-      
-      
-       public void mostrarPorUbicacionCar(DefaultTableModel modelo) throws SQLException {
+
+    public void mostrarPorUbicacionCar(DefaultTableModel modelo) throws SQLException {
         cnn = Conexion.getInstancia().miConexion();
         PreparedStatement ps = null;
-        String titulos[] = {"ID Postulante", "Nombres", "Apellido Paterno", "Apellido Materno", "ID Carrera","ID AULA"};
+        String titulos[] = {"ID Postulante", "Nombres", "Apellido Paterno", "Apellido Materno", "ID Carrera", "ID AULA"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -542,7 +545,7 @@ public class PostulanteDAO {
                 String apellido_materno = rs.getString("apellido_materno");
                 String idCarrera = rs.getString("idCarrera");
                 String idAula = rs.getString("idAula");
-                String fila[] = {idPostulante, nombres, apellido_paterno, apellido_materno,idCarrera, idAula};
+                String fila[] = {idPostulante, nombres, apellido_paterno, apellido_materno, idCarrera, idAula};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {

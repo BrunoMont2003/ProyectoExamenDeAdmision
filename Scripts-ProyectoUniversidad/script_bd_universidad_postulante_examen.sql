@@ -69,7 +69,7 @@ create procedure eliminarExamenDeUnPostulante(in idEx char(8))
 BEGIN
 	Delete from Postulante_Examen where idExamen = idEx;
 END $$
-
+drop procedure eliminarExamenDeUnPostulante;
 
 DELIMITER $$
 create procedure mostrar_Postulante_Examen()
@@ -145,7 +145,7 @@ BEGIN
     where pe.idExamen = idEx;
 END $$
 drop procedure mostrarPostulantesPorExamen;
-call mostrarPostulantesPorExamen("EX-0002");
+call mostrarPostulantesPorExamen("EX-0033");
 
 
 DELIMITER $$

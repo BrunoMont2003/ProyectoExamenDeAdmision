@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3bcf398-af5e-4f45-b4f7-b04ba1a3fa4a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idex" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idcar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select v.idExamen, v.idPostulante,p.nombrePostulante, 
+    p.apellido_paterno,p.apellido_materno, p.dni, 
+    pe.puntaje, pe.ordenMerito, c.nombreCarrera, m.nombre as modalidad  
+    FROM VACANTE AS V
+    INNER JOIN EXAMEN AS EX
+    ON V.IDEXAMEN=EX.IDEXAMEN
+    INNER JOIN AREAU AS A
+    ON EX.IDAREA=A.IDAREA
+    INNER JOIN FACULTAD AS F
+    ON A.IDAREA=F.IDAREA
+    INNER JOIN CARRERA AS C
+    ON F.IDFACULTAD=C.IDFACULTAD
+    INNER JOIN POSTULANTE AS P
+    ON V.IDPOSTULANTE=P.IDPOSTULANTE AND C.IDCARRERA=P.IDCARRERA
+    INNER JOIN POSTULANTE_EXAMEN AS PE
+    ON P.IDPOSTULANTE=PE.IDPOSTULANTE AND EX.IDEXAMEN=PE.IDEXAMEN
+    INNER JOIN MODALIDAD AS M
+    ON EX.IDMODALIDAD=M.IDMODALIDAD
+
+WHERE V.IDEXAMEN like $P{idex}
+    AND C.IDCARRERA $P{idcar}
+    ORDER BY PUNTAJE DESC;
+
+
+]]>
+	</queryString>
+	<field name="idExamen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idPostulante" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombrePostulante" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido_paterno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido_materno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="puntaje" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ordenMerito" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreCarrera" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modalidad" class="java.lang.String"/>
+	<group name="idExamen">
+		<groupExpression><![CDATA[$F{idExamen}]]></groupExpression>
+	</group>
+	<group name="idPostulante">
+		<groupExpression><![CDATA[$F{idPostulante}]]></groupExpression>
+	</group>
+	<group name="nombrePostulante">
+		<groupExpression><![CDATA[$F{nombrePostulante}]]></groupExpression>
+	</group>
+	<group name="apellido_paterno">
+		<groupExpression><![CDATA[$F{apellido_paterno}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="2" width="100" height="20" uuid="3a28ead3-b021-4de8-b8ee-8833f1b48857"/>
+				<text><![CDATA[idPostulante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="2" width="100" height="20" uuid="3386ff51-5ac4-4ea3-88e7-2e6b8558b54a"/>
+				<text><![CDATA[nombrePostulante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="100" height="20" uuid="7da07f8c-05ab-4a93-af18-29567267fe62"/>
+				<text><![CDATA[apellido_paterno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="fe428a5b-41d0-4380-9670-3adb52c77c5e"/>
+				<text><![CDATA[apellido_materno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="2" width="100" height="20" uuid="b8855b3e-05fe-452c-bb71-542f74391fa5"/>
+				<text><![CDATA[dni]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="2" width="100" height="20" uuid="f37e9e3d-95b4-49e2-93b8-c3ba1a0c32ee"/>
+				<text><![CDATA[puntaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="2" width="100" height="20" uuid="e4ccbf1b-5f79-4845-926d-5d2a548bdfcb"/>
+				<text><![CDATA[ordenMerito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="2" width="100" height="20" uuid="99c6e093-5bbc-4c40-aee8-d6003600d3d6"/>
+				<text><![CDATA[nombreCarrera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="2" width="100" height="20" uuid="9566ba90-8623-473c-aace-b26a0797a25a"/>
+				<text><![CDATA[modalidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="260132b7-665d-41dd-937d-22383758ce01"/>
+				<textFieldExpression><![CDATA[$F{idExamen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="100" height="20" uuid="3053b821-2a2b-4eeb-b333-b923b8c7483a"/>
+				<textFieldExpression><![CDATA[$F{idPostulante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="100" height="20" uuid="c08ebaec-dbac-4f00-9840-effe02f038e4"/>
+				<textFieldExpression><![CDATA[$F{nombrePostulante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="100" height="20" uuid="0cc1fdc0-5e60-41d4-9ea8-b7e054697a33"/>
+				<textFieldExpression><![CDATA[$F{apellido_paterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="f9e9ebfa-512f-46e0-9ce5-c3d7e91d1891"/>
+				<textFieldExpression><![CDATA[$F{apellido_materno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="39" width="100" height="20" uuid="da11a756-1fdf-4e54-8410-2f1fb9310172"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="45" width="100" height="20" uuid="78385ab8-f7c3-42df-a4e5-b89e87376975"/>
+				<textFieldExpression><![CDATA[$F{puntaje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="58" width="100" height="20" uuid="761fbcd0-bef3-4e21-a329-a55abb4adebc"/>
+				<textFieldExpression><![CDATA[$F{ordenMerito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="54" width="100" height="20" uuid="774a3cfc-ec02-41be-a410-127e5a7fc5fa"/>
+				<textFieldExpression><![CDATA[$F{nombreCarrera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="83" width="100" height="20" uuid="3e0b9916-a944-4748-9c0d-ccadeb97e701"/>
+				<textFieldExpression><![CDATA[$F{modalidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

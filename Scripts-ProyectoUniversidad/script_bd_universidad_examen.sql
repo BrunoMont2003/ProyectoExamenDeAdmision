@@ -96,7 +96,7 @@ begin
 end$$
 drop procedure modificarexamen;
 call modificarExamen("EX-0001", "2021-II", "2021-06-27", "AREA_B","MODD-01");
-
+/*
 DELIMITER $$
 create procedure eliminarExamen(in id char(8))
 begin
@@ -107,7 +107,17 @@ begin
 end$$
 call eliminarExamen("EX-0003");
 drop procedure eliminarExamen;
-
+*/
+DELIMITER $$
+create procedure eliminarExamen(in id char(8))
+begin
+  call eliminarClavesDeUnExamen(id);
+  call eliminarRespuestasDeUnExamen(id);
+  call eliminarVacantesDeUnExamen(id);
+  DELETE from postulante_examen where idExamen=id;
+  DELETE from examen where idExamen=id;
+end$$
+call eliminarExamen("EX-0003");
 
 DELIMITER $$
 CREATE PROCEDURE mostrarExamenesDeUnaModalidad(in id char(15))

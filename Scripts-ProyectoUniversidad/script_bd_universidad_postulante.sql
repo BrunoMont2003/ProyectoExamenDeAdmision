@@ -604,6 +604,7 @@ begin
   call eliminarRespuestasDeUnPostulante(idPos);
   Delete from Postulante_Examen where idPostulante = idPos;
   DELETE FROM postulante where idPostulante=idPos;
+  DELETE FROM vacante WHERE idPostulante=IDPOS;
 end$$
 drop procedure eliminarPostulante;
 call eliminarPostulante("P-00000006");

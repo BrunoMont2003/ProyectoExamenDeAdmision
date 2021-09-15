@@ -53,10 +53,11 @@ call modificarRangoPreguntas("RAN-001", "Conocimientos", 4.079, -1.021);
 DELIMITER $$
 create procedure eliminarRangoPreguntas(in id char(8))
 begin
+	DELETE FROM CLAVE WHERE IDRANGOPREGUNTAS=ID;
   DELETE FROM rangoPreguntas where idRangoPreguntas=id;
 end$$
-
-
+drop procedure eliminarrangopreguntas;
+-- call eliminarRangoPreguntas("RAN-001");
 
 
 
