@@ -82,16 +82,11 @@ public class ExamenDAO {
             if (rs.next()) {
                 String semestre = rs.getString("semestre");
                 String fechaSql = rs.getString("fecha");
-                System.out.println("Desde el dao " + fechaSql);
                 String fechaArray[] = fechaSql.split("-");
                 int añoF = Integer.parseInt(fechaArray[0]);
-                System.out.println("Año dao: " + añoF);
                 int mes = Integer.parseInt(fechaArray[1]);
-                System.out.println("Mes dao: " + mes);
                 int dia = Integer.parseInt(fechaArray[2]);
-                System.out.println("Dia dao: " + dia);
                 Fecha fecha = new Fecha(dia, mes, añoF);
-                System.out.println("La cague?" + fecha.toStringFormatSql());
                 String idArea = rs.getString("idArea");
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
                 String idModalidad = rs.getString("idModalidad");
@@ -274,7 +269,7 @@ public class ExamenDAO {
         String idExamen = examen.getIdExamen();
         System.out.println("Reconoce el examen: " + examen.getIdExamen());
         ArrayList<Postulante> postulantes = PostulanteDAO.getInstancia().listarPostulantesPorExamen(idExamen);
-        for (int i = postulantes.size() - 1; i < postulantes.size(); i++) {
+        for (int i = 0; i < postulantes.size(); i++) {
             double puntaje = 0;
             int numBuenas = 0;
             int numMalas = 0;

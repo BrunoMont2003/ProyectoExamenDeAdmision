@@ -125,7 +125,7 @@ public class DialogExamen extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(155, 202, 238));
+        jPanel1.setBackground(new java.awt.Color(234, 252, 247));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Roboto Condensed", 1, 24)); // NOI18N
@@ -174,8 +174,8 @@ public class DialogExamen extends javax.swing.JDialog {
         jLabel8.setText("Semestre");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(155, 202, 238));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ÁREA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(234, 252, 247));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "ÁREA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -216,8 +216,8 @@ public class DialogExamen extends javax.swing.JDialog {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 530, 230));
 
-        jPanel3.setBackground(new java.awt.Color(155, 202, 238));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha del Exámen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(234, 252, 247));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Fecha del Exámen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -246,8 +246,8 @@ public class DialogExamen extends javax.swing.JDialog {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 170, 120));
 
-        jPanel5.setBackground(new java.awt.Color(155, 202, 238));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MODALIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        jPanel5.setBackground(new java.awt.Color(234, 252, 247));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "MODALIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -354,7 +354,7 @@ public class DialogExamen extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIdExamenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdExamenKeyTyped
-        if (txtIdExamen.getText().length() >= 8) {
+        if (txtIdExamen.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdExamenKeyTyped
@@ -453,11 +453,16 @@ public class DialogExamen extends javax.swing.JDialog {
                 if (examendao.exists(idExamen)) {
                     JOptionPane.showMessageDialog(null, "Ese codigo ya existe");
                 } else {
-                    Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
-                    examendao.insertar(x);
+                    if (fecha.esValida()) {
 
-                    limpiarEntradas();
-                    examendao.mostrarExamen(modelo);
+                        Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
+                        examendao.insertar(x);
+
+                        limpiarEntradas();
+                        examendao.mostrarExamen(modelo);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Fecha invalida");
+                    }
                 }
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
@@ -524,12 +529,17 @@ public class DialogExamen extends javax.swing.JDialog {
                 fecha.setDia(dia);
                 fecha.setMes(mes);
                 fecha.setAño(año);
-                Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
-                examendao.actualizar(x);
 
-                limpiarEntradas();
-                desHabilitar();
-                examendao.mostrarExamen(modelo);
+                if (fecha.esValida()) {
+
+                    Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
+                    examendao.actualizar(x);
+                    limpiarEntradas();
+                    desHabilitar();
+                    examendao.mostrarExamen(modelo);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Fecha invalida");
+                }
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
             }

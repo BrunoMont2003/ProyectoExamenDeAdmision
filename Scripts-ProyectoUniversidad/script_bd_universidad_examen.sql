@@ -63,7 +63,7 @@ CREATE PROCEDURE buscarExamen(in id char(8))
 BEGIN
   select * from Examen where idExamen=id;
 END$$
-call buscarExamen("EX-0003");
+call buscarExamen("EX-0033");
 
 DELIMITER $$
 CREATE PROCEDURE buscarExamenPorSemestreYCarreraYModalidad(in sem char(10), in car char(10), in moda char(15))

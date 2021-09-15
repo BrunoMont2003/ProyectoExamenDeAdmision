@@ -74,7 +74,7 @@ create procedure buscarCarrera(in idCar char(10))
 begin
   select * from carrera where idcarrera=idCar;
 end$$
-
+call buscarCarrera("INGN-05");
 
 DELIMITER $$
 create procedure buscarCarreraPorNombre(in nom varchar(40))
