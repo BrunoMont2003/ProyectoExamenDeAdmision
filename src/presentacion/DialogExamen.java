@@ -29,6 +29,7 @@ public class DialogExamen extends javax.swing.JDialog {
 
     Modalidad modalidad;
     Areas area;
+    Fecha fecha;
     ExamenDAO examendao = new ExamenDAO();
 
     public DialogExamen() {
@@ -445,15 +446,19 @@ public class DialogExamen extends javax.swing.JDialog {
                 int dia = Integer.parseInt(txtDia.getText());
                 int mes = Integer.parseInt(txtMes.getText());
 
-                Fecha fecha = new Fecha();
+                fecha = new Fecha();
                 fecha.setDia(dia);
                 fecha.setMes(mes);
                 fecha.setAño(año);
-                Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
-                examendao.insertar(x);
+                if (examendao.exists(idExamen)) {
+                    JOptionPane.showMessageDialog(null, "Ese codigo ya existe");
+                } else {
+                    Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
+                    examendao.insertar(x);
 
-                limpiarEntradas();
-                examendao.mostrarExamen(modelo);
+                    limpiarEntradas();
+                    examendao.mostrarExamen(modelo);
+                }
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
             }
@@ -480,6 +485,10 @@ public class DialogExamen extends javax.swing.JDialog {
                     txtNombreArea.setText(x.getArea().getNombreArea());
                     txtIdModalidad.setText(x.getModalidad().getIdModalidad());
                     txtNombreModalidad.setText(x.getModalidad().getNombreM());
+                    modalidad = x.getModalidad();
+                    area = x.getArea();
+                    fecha = x.getFecha();
+
                     habilitar();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró dicho examen");
@@ -511,7 +520,10 @@ public class DialogExamen extends javax.swing.JDialog {
                 int dia = Integer.parseInt(txtDia.getText());
                 int mes = Integer.parseInt(txtMes.getText());
 
-                Fecha fecha = new Fecha(dia, mes, año);
+                fecha = new Fecha();
+                fecha.setDia(dia);
+                fecha.setMes(mes);
+                fecha.setAño(año);
                 Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
                 examendao.actualizar(x);
 

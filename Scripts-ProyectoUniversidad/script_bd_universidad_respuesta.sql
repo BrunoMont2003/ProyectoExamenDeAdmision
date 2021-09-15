@@ -76,6 +76,8 @@ end$$
 -- drop procedure mostrarrespuestasdepostulante;
 call mostrarRespuestasDePostulante("P-");
 
+
+
 DELIMITER $$
 create procedure mostrarRespuestasDePostulanteEnUnExamen(in idPos char(10), in idEx char(15))
 begin
@@ -85,6 +87,25 @@ call mostrarRespuestasDePostulanteEnUnExamen("P-00000501","EX-0001");
 
 delete from respuesta where idPostulante="P-00000001";
 
+
+
+DELIMITER $$
+create procedure mostrarRespuestasCorrectasDePostulanteEnUnExamen(in idPos char(10), in idEx char(15))
+begin
+  select 
+  r.numero, r.letra,rp.idRangoPreguntas, rp.nombre
+  from respuesta as r
+  inner join examen as ex
+  on r.idExamen=ex.idExamen
+  inner join clave as c
+  on ex.idExamen = c.idExamen
+  inner join RangoPreguntas as rp
+  on c.idRangoPreguntas = rp.idRangoPreguntas
+  and r.numero=c.numero and r.letra=c.letra
+  where idPostulante = idPos and r.idExamen=idEx;
+end$$
+drop procedure mostrarRespuestasCorrectasDePostulanteEnUnExamen;
+call mostrarRespuestasCorrectasDePostulanteEnUnExamen("P-00000462","EX-0002");
 
 
 

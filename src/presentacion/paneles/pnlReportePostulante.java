@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import presentacion.DialogBuscarPostulante;
+import presentacion.DialogBuscarPostulanteTabla;
+import presentacion.DialogBuscarRespuesta;
 import presentacion.DialogReportarPostulantePorAulaYCarrera;
 
 /**
@@ -110,12 +112,13 @@ public class pnlReportePostulante extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportePostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePostulanteActionPerformed
-        DialogBuscarPostulante f = new DialogBuscarPostulante();
+        DialogBuscarPostulanteTabla f = new DialogBuscarPostulanteTabla();
         f.setVisible(true);
     }//GEN-LAST:event_btnReportePostulanteActionPerformed
 
     private void btnReporteRespuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteRespuestasActionPerformed
-        // TODO add your handling code here:
+        DialogBuscarRespuesta f = new DialogBuscarRespuesta();
+        f.setVisible(true);
     }//GEN-LAST:event_btnReporteRespuestasActionPerformed
 
     private void btnSegunAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSegunAulaActionPerformed

@@ -26,6 +26,7 @@ BEGIN
 END$$
 
 
+
 call insertar_postulante("P-00000001","DARREN CARLOS","ABAL","MENDOZA","76512311","CBIO-01","A-00001","MODD-01");
 call insertar_postulante("P-00000002","JORGE JUNIOR","VIGO","VILLALOBOS","72485759","CBIO-01","A-00001","MODD-01");
 call insertar_postulante("P-00000003","DIEGO ARON","MURILLO","LOZANO","72174856","CBIO-01","A-00001","MODD-01");
@@ -569,6 +570,8 @@ call insertar_postulante("P-00000500","JUNIOR ALEXIS","CENTURION","GUEVARA","751
 
 select * from postulante where IDmodalidad = "MODD-01";
 
+delete FROM POSTULANTE WHERE IDMODALIDAD="MODD-01";
+
 DELIMITER $$
 CREATE PROCEDURE mostrarPostulantes()
 BEGIN 
@@ -592,6 +595,8 @@ begin
 end$$
 
 call modificarPostulante("P-00000001","DARREN CARLOS","ABALES","MENDOZA","76512321","CBIO-01","A-00001","MODD-01");
+
+
 
 DELIMITER $$
 create procedure eliminarPostulante(in idPos char(10))
@@ -635,3 +640,11 @@ END$$
 drop procedure  mostrarPorUbicacionyCar;
 
 call   mostrarPorUbicacionyCar();
+
+DELIMITER $$
+CREATE PROCEDURE mostrarPostulantesPorApellidos(in ape varchar(20))
+BEGIN 
+  select*from postulante where apellido_paterno like concat(ape,'%');
+END$$
+
+call  mostrarPostulantesPorApellidos("dia");

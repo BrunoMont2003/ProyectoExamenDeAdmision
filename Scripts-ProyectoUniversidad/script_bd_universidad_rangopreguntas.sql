@@ -8,7 +8,7 @@ CREATE TABLE RangoPreguntas (
     PRIMARY KEY (idRangoPreguntas)
 );
 
-
+drop table RangoPreguntas;
 DELIMITER $$
 CREATE PROCEDURE insertarRangoPreguntas(in id char(8), in nom varchar(45),in cor double, in inc double)
 BEGIN

@@ -340,6 +340,36 @@ public class PostulanteDAO {
             cnn.close();
         }
     }
+    public void mostrarPostulantesPorApellidos(DefaultTableModel modelo, String ape) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Postulante", "Nombres", "Apellido Paterno", "Apellido Materno", "DNI", "ID Carrera", "ID AULA", "ID Modalidad"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            ps = cnn.prepareCall("call mostrarPostulantesPorApellidos(?)");
+            ps.setString(1, ape);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                String nombres = rs.getString("nombrePostulante");
+                String apellido_paterno = rs.getString("apellido_paterno");
+                String apellido_materno = rs.getString("apellido_materno");
+                String dni = rs.getString("dni");
+                String idCarrera = rs.getString("idCarrera");
+                String idAula = rs.getString("idAula");
+                String idModalidad = rs.getString("idModalidad");
+                String fila[] = {idPostulante, nombres, apellido_paterno, apellido_materno, dni, idCarrera, idAula, idModalidad};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
 
     public void mostrarExamenes(String idPostulante, DefaultTableModel modelo) throws SQLException {
         try {
@@ -378,6 +408,36 @@ public class PostulanteDAO {
                 String apellido_materno = rs.getString("apellido_materno");
                 String dni = rs.getString("dni");
                 String idCarrera = rs.getString("idCarrera");
+                String idAula = rs.getString("idAula");
+                String idModalidad = rs.getString("idModalidad");
+                String fila[] = {idPostulante, nombres, apellido_paterno, apellido_materno, dni, idCarrera, idAula, idModalidad};
+                modelo.addRow(fila);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en SQL " + e.getMessage());
+        } finally {
+            ps.close();
+            cnn.close();
+        }
+    }
+    public void mostrarPostulantesPorExamenYCarrera(String idExamen, String idCarrera, DefaultTableModel modelo) throws SQLException {
+        cnn = Conexion.getInstancia().miConexion();
+        PreparedStatement ps = null;
+        String titulos[] = {"ID Postulante", "Nombres", "Apellido Paterno", "Apellido Materno", "DNI", "ID Carrera", "ID AULA", "ID Modalidad"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+
+        try {
+            ps = cnn.prepareCall("call mostrarPostulantesPorExamenYCarrera(?,?)");
+            ps.setString(1, idExamen);
+            ps.setString(2, idCarrera);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String idPostulante = rs.getString("idPostulante");
+                String nombres = rs.getString("nombrePostulante");
+                String apellido_paterno = rs.getString("apellido_paterno");
+                String apellido_materno = rs.getString("apellido_materno");
+                String dni = rs.getString("dni");
                 String idAula = rs.getString("idAula");
                 String idModalidad = rs.getString("idModalidad");
                 String fila[] = {idPostulante, nombres, apellido_paterno, apellido_materno, dni, idCarrera, idAula, idModalidad};

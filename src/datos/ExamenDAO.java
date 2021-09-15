@@ -82,11 +82,16 @@ public class ExamenDAO {
             if (rs.next()) {
                 String semestre = rs.getString("semestre");
                 String fechaSql = rs.getString("fecha");
+                System.out.println("Desde el dao " + fechaSql);
                 String fechaArray[] = fechaSql.split("-");
                 int añoF = Integer.parseInt(fechaArray[0]);
+                System.out.println("Año dao: " + añoF);
                 int mes = Integer.parseInt(fechaArray[1]);
+                System.out.println("Mes dao: " + mes);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                System.out.println("Dia dao: " + dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+                System.out.println("La cague?" + fecha.toStringFormatSql());
                 String idArea = rs.getString("idArea");
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
                 String idModalidad = rs.getString("idModalidad");
@@ -121,7 +126,8 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
                 Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
 
@@ -189,7 +195,8 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+
                 Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
                 lista.add(ex);
             }
@@ -221,7 +228,8 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+
                 Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
                 lista.add(ex);
             }
@@ -397,7 +405,7 @@ public class ExamenDAO {
                 int numBuenas = rs.getInt("numBuenas");
                 int numMalas = rs.getInt("numMalas");
 
-                Object fila[] = {nombre, carrera, String.format("%.2f",puntaje), numBuenas, numMalas};
+                Object fila[] = {nombre, carrera, String.format("%.2f", puntaje), numBuenas, numMalas};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -426,7 +434,7 @@ public class ExamenDAO {
                 String carrera = pos.getCarrera().getNombreCarrera();
                 double puntaje = rs.getDouble("puntaje");
                 int ordenMerito = rs.getInt("ordenMerito");
-                Object fila[] = {nombre, carrera, String.format("%.2f",puntaje), ordenMerito};
+                Object fila[] = {nombre, carrera, String.format("%.2f", puntaje), ordenMerito};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -458,7 +466,7 @@ public class ExamenDAO {
                 String carrera = rs.getString("nombreCarrera");
                 double puntaje = rs.getDouble("puntaje");
                 int ordenMerito = rs.getInt("ordenMerito");
-                Object fila[] = {idPostulante, apPaterno + " " + apMaterno + ", " + nombre, dni, String.format("%.2f",puntaje), ordenMerito, carrera};
+                Object fila[] = {idPostulante, apPaterno + " " + apMaterno + ", " + nombre, dni, String.format("%.2f", puntaje), ordenMerito, carrera};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {

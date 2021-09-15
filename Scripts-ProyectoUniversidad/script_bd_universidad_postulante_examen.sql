@@ -148,9 +148,35 @@ drop procedure mostrarPostulantesPorExamen;
 call mostrarPostulantesPorExamen("EX-0002");
 
 
+DELIMITER $$
+create procedure mostrarPostulantesPorExamenYCarrera(in idEx char(8), in idCar char(10))
+BEGIN
+-- select p.idPostulante, p.NombrePostulante, p.apellido_paterno, p.apellido_materno, p.dni				
+    select *
+    from Postulante as p
+    inner join postulante_examen as pe
+    on p.idPostulante = pe.idPostulante
+    inner join carrera as c
+    on p.idCarrera = c.idCarrera
+    where pe.idExamen = idEx
+    and c.idCarrera=idCar;
+END $$
+drop procedure mostrarPostulantesPorExamenYCarrera;
+call mostrarPostulantesPorExamenYCarrera("EX-0002","INGN-05");
+
+
+
+/*
+DELETE PE FROM POSTULANTE_EXAMEN as pe
+inner join POSTULANTE AS P
+ON PE.IDPOSTULANTE=P.IDPOSTULANTE
+INNER JOIN MODALIDAD AS M
+ON P.IDMODALIDAD=M.IDMODALIDAD
+WHERE M.IDMODALIDAD="MODD-03";
+*/
 
 -- idarea="AREA_A" and idModalidad="MODD-01"
-DELETE FROM POSTULANTE_EXAMEN WHERE IDEXAMEN="EX-0029";
+-- DELETE FROM POSTULANTE_EXAMEN WHERE IDEXAMEN="EX-0029";
 call insertarPostulanteExamenBase("P-00000001","EX-0013");
 call insertarPostulanteExamenBase("P-00000002","EX-0013");
 call insertarPostulanteExamenBase("P-00000003","EX-0013");
@@ -219,7 +245,7 @@ call insertarPostulanteExamenBase("P-00000052","EX-0029");
 call insertarPostulanteExamenBase("P-00000053","EX-0029");
 
 -- idarea="AREA_B" and idModalidad="MODD-01"
-DELETE FROM POSTULANTE_EXAMEN WHERE IDEXAMEN="EX-0014";
+-- DELETE FROM POSTULANTE_EXAMEN WHERE IDEXAMEN="EX-0014";
 call insertarPostulanteExamenBase("P-00000015","EX-0014");
 call insertarPostulanteExamenBase("P-00000016","EX-0014");
 call insertarPostulanteExamenBase("P-00000017","EX-0014");
