@@ -213,11 +213,13 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnTodoActionPerformed
 
     private void txtCodigKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigKeyTyped
-
+        if (txtCodig.getText().length() >= 6) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCodigKeyTyped
 
     private void txtCodigKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigKeyReleased
-         String idArea = txtCodig.getText();
+        String idArea = txtCodig.getText();
         try {
             ad.mostraAreaPorCodigo(idArea, modelo);
         } catch (SQLException ex) {

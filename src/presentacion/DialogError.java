@@ -107,6 +107,12 @@ public class DialogError extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("IdError:");
 
+        txtIdError.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdErrorKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Descripcion:");
 
@@ -374,6 +380,7 @@ public class DialogError extends javax.swing.JDialog {
             fr.ReporteError();
             dispose();
         } catch (JRException ex) {
+            Logger.getLogger(DialogError.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGenActionPerformed
 
@@ -492,6 +499,12 @@ public class DialogError extends javax.swing.JDialog {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtIdErrorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdErrorKeyTyped
+        if(txtIdError.getText().length()>=7){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdErrorKeyTyped
 
     /**
      * @param args the command line arguments

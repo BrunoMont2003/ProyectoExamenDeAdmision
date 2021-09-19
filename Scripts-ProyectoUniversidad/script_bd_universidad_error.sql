@@ -9,8 +9,10 @@ CREATE TABLE error (
     idClave CHAR(15) NOT NULL,
     PRIMARY KEY (idError),
     FOREIGN KEY (idClave)
-        REFERENCES clave (idClave)
+        REFERENCES clave (idClave) ON UPDATE CASCADE ON DELETE CASCADE
 );
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE error; SET FOREIGN_KEY_CHECKS=1;
+
 
 call insertar_Error("ER-0001", "Enunciado incompleto","C-00001");
 call insertar_Error("ER-0002", "Claves incorrectas","C-00005");

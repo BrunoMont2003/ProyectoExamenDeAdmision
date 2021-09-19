@@ -244,7 +244,7 @@ public class DialogModalidad extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRestarurarActionPerformed
 
     private void txtIdModalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdModalidadKeyTyped
-        if(txtIdModalidad.getText().length()>=6){
+        if(txtIdModalidad.getText().length()>=7){
             evt.consume();
         }
     }//GEN-LAST:event_txtIdModalidadKeyTyped

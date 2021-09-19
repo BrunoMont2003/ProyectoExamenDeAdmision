@@ -439,6 +439,8 @@ public class DialogClave extends javax.swing.JDialog {
                     txtNombre.setText(x.getRangoPreguntas().getNombre());
                     txtCorrecta.setText(String.valueOf(x.getRangoPreguntas().getPuntajeCorrecta()));
                     txtIncorrecta.setText(String.valueOf(x.getRangoPreguntas().getPuntajeIncorrecta()));
+                    examen = x.getExamen();
+                    rango = x.getRangoPreguntas();
                     habilitar();
                 } else {
                     JOptionPane.showMessageDialog(this, "Dicha clave no existe");
@@ -506,7 +508,7 @@ public class DialogClave extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtIdClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdClaveKeyTyped
-        if (txtIdClave.getText().length() >= 8) {
+        if (txtIdClave.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdClaveKeyTyped

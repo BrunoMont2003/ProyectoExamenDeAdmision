@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import presentacion.DialogEstadisticoCantidadCarrerasBarras;
+import presentacion.DialogEstadisticoCantidadCarrerasBarras;
+import presentacion.DialogEstadisticoCantidadCarrerasPie;
 import presentacion.DialogEstadisticoCantidadCarrerasPie;
 import presentacion.DialogEstadisticoCantidadFacultadesBarras;
 import presentacion.DialogEstadisticoCantidadFacultadesPie;

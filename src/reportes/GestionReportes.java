@@ -5,14 +5,19 @@
  */
 package reportes;
 
+import datos.CarrerasDAO;
 import datos.Conexion;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import sun.awt.WindowClosingListener;
 
 /**
  *
@@ -97,6 +102,22 @@ public class GestionReportes {
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
         view.setTitle("Rango Preguntas");
+        view.setVisible(true);
+        view.setAlwaysOnTop(true);
+
+    }
+    public void ReporteVacantes(String idExamen, String idCarrera) throws JRException, SQLException {
+        Conexion con = new Conexion();
+        Connection conn = con.miConexion();
+        JasperReport reporte = null;
+        Map parametro = new HashMap();
+        parametro.put("IDEX", idExamen);
+        parametro.put("IDCAR", idCarrera);
+        String path = "src\\reportes\\reportVacantes.jasper";
+        reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+        JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
+        JasperViewer view = new JasperViewer(jprint, false);
+        view.setTitle("Vacantes de "+CarrerasDAO.getInstancia().buscarCarreras(idCarrera).getNombreCarrera());
         view.setVisible(true);
         view.setAlwaysOnTop(true);
 

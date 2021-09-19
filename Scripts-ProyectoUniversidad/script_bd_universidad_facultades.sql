@@ -7,8 +7,10 @@ create table facultad(
     nombreFacultad varchar(40) not null,
     idArea char(10) not null,
     primary key (idFacultad),
-    foreign key (idArea) references areaU(idArea)
+    foreign key (idArea) references areaU(idArea) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE FACULTAD; SET FOREIGN_KEY_CHECKS=1;
 
 DELIMITER $$
 CREATE PROCEDURE insertar_facultad(in idFa char(10), in nombF varchar(40), in idAr char(10))
@@ -73,6 +75,14 @@ begin
 end$$
 
 call eliminarFacultad("FACD-13");
+
+
+
+
+
+
+
+
 
 DELIMITER $$
 CREATE PROCEDURE mostrarFacultadesDeUnArea(in id char(10))

@@ -35,6 +35,28 @@ public class DialogFacultad extends javax.swing.JDialog {
 
     }
 
+    public void habilitar() {
+        btnModificar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnGuardar.setEnabled(false);
+        btnBuscarFacultad.setEnabled(false);
+    }
+
+    public void desHabilitar() {
+        btnModificar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnGuardar.setEnabled(true);
+        btnBuscarFacultad.setEnabled(true);
+    }
+
+    public void limpiarEntradas() {
+        txtIDFacultad.setText("");
+        txtNomFacultad.setText("");
+        txtIdArea.setText("");
+        txtNombreArea.setText("");
+        txtIDFacultad.requestFocus();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,6 +90,7 @@ public class DialogFacultad extends javax.swing.JDialog {
         btnGen = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btnRestaurar = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -159,7 +182,7 @@ public class DialogFacultad extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 471, -1, -1));
+        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, -1, -1));
 
         btnBuscarFacultad.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnBuscarFacultad.setText("Buscar");
@@ -168,7 +191,7 @@ public class DialogFacultad extends javax.swing.JDialog {
                 btnBuscarFacultadActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBuscarFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 471, -1, -1));
+        jPanel3.add(btnBuscarFacultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
 
         btnModificar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnModificar.setText("Modificar");
@@ -177,7 +200,7 @@ public class DialogFacultad extends javax.swing.JDialog {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 471, -1, -1));
+        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, -1));
 
         btnEliminar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -186,7 +209,7 @@ public class DialogFacultad extends javax.swing.JDialog {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 511, -1, -1));
+        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
 
         btnTodos.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnTodos.setText("Todos");
@@ -195,7 +218,7 @@ public class DialogFacultad extends javax.swing.JDialog {
                 btnTodosActionPerformed(evt);
             }
         });
-        jPanel3.add(btnTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 511, -1, -1));
+        jPanel3.add(btnTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 520, -1, -1));
 
         btnGen.setBackground(new java.awt.Color(255, 51, 51));
         btnGen.setFont(new java.awt.Font("Lucida Bright", 1, 14)); // NOI18N
@@ -216,6 +239,15 @@ public class DialogFacultad extends javax.swing.JDialog {
         });
         jPanel3.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 530, 90, 30));
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 53, 48));
+
+        btnRestaurar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
+        btnRestaurar.setText("Restaurar");
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 520, 100, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 580));
 
@@ -269,13 +301,13 @@ public class DialogFacultad extends javax.swing.JDialog {
             String idFacultad = txtIDFacultad.getText();
             Facultad x;
             x = fd.buscarFacultad(idFacultad);
-            if(x !=null){
-                
-            txtNomFacultad.setText(x.getNombreFacultad());
-            txtIdArea.setText(x.getAreas().getIdArea());
-            txtNombreArea.setText(x.getAreas().getNombreArea());
-            areas = x.getAreas();
-            }else{
+            if (x != null) {
+
+                txtNomFacultad.setText(x.getNombreFacultad());
+                txtIdArea.setText(x.getAreas().getIdArea());
+                txtNombreArea.setText(x.getAreas().getNombreArea());
+                areas = x.getAreas();
+            } else {
                 JOptionPane.showMessageDialog(null, "ESA FACULTAD NO EXISTE");
             }
 
@@ -326,16 +358,22 @@ public class DialogFacultad extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtIDFacultadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDFacultadKeyTyped
-        if(txtIDFacultad.getText().length()>=7){
+        if (txtIDFacultad.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIDFacultadKeyTyped
 
     private void txtNomFacultadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomFacultadKeyTyped
-        if(txtNomFacultad.getText().length()>=40){
+        if (txtNomFacultad.getText().length() >= 40) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNomFacultadKeyTyped
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        // TODO add your handling code here:
+        limpiarEntradas();
+        desHabilitar();
+    }//GEN-LAST:event_btnRestaurarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -344,6 +382,7 @@ public class DialogFacultad extends javax.swing.JDialog {
     private javax.swing.JButton btnGen;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnRestaurar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JButton btnTodos;

@@ -80,6 +80,7 @@ public class DialogBuscarPostulanteTabla extends javax.swing.JDialog {
         txtNombres = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,9 +118,9 @@ public class DialogBuscarPostulanteTabla extends javax.swing.JDialog {
         });
         jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 570, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel6.setText("Nombres");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
+        jLabel6.setFont(new java.awt.Font("Barlow Condensed Black", 0, 36)); // NOI18N
+        jLabel6.setText("BUSCAR POSTULANTE");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, 40));
 
         txtNombres.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -136,6 +137,10 @@ public class DialogBuscarPostulanteTabla extends javax.swing.JDialog {
         jScrollPane1.setViewportView(Tabla);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 750, 410));
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel7.setText("APELLIDOS");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 850, 720));
 
@@ -247,6 +252,7 @@ public class DialogBuscarPostulanteTabla extends javax.swing.JDialog {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtNombres;

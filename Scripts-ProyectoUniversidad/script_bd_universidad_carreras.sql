@@ -1,15 +1,15 @@
 use bduniversidad;
 -- drop procedure insertar_carreras;
--- drop table carrera;
+drop table carrera;
 
 create table carrera(
 	idCarrera char(10) not null, 
     nombreCarrera varchar(40) not null,
     idFacultad char(10) not null,
     primary key (idCarrera),
-    foreign key(idFacultad) references facultad(idFacultad)
+    foreign key(idFacultad) references facultad(idFacultad) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE carrera; SET FOREIGN_KEY_CHECKS=1;
 
 DELIMITER $$
 CREATE PROCEDURE insertar_carreras(in idcar char(10), in nombcar varchar(40), in idFac char(10))

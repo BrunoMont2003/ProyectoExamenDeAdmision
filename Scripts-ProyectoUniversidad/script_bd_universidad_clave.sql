@@ -8,11 +8,13 @@ CREATE TABLE clave (
     idRangoPreguntas CHAR(8) NOT NULL,
     PRIMARY KEY (idClave),
     FOREIGN KEY (idExamen)
-        REFERENCES Examen (idExamen),
+        REFERENCES Examen (idExamen) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (idRangoPreguntas)
-        REFERENCES RangoPreguntas (idRangoPreguntas)
+        REFERENCES RangoPreguntas (idRangoPreguntas) ON UPDATE CASCADE ON DELETE CASCADE
 );
 drop table clave;
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE clave; SET FOREIGN_KEY_CHECKS=1;
+
 
 DELIMITER $$
 CREATE PROCEDURE insertarClave(in id char(15), in num smallint, in let char(4), idEx char(8), idR char(8))

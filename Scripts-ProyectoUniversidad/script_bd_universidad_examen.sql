@@ -8,11 +8,13 @@ CREATE TABLE examen (
     idModalidad CHAR(15),
     PRIMARY KEY (idExamen),
     FOREIGN KEY (idArea)
-        REFERENCES areau (idArea),
+        REFERENCES areau (idArea) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (idModalidad)
-        REFERENCES modalidad (idModalidad)
+        REFERENCES modalidad (idModalidad) ON UPDATE CASCADE ON DELETE CASCADE
 );
 drop table examen;
+
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE EXAMEN; SET FOREIGN_KEY_CHECKS=1;
 
 
 DELIMITER $$
@@ -91,7 +93,6 @@ call mostrarExamen;
 DELIMITER $$
 create procedure modificarExamen(in id char(8), in sem varchar(10), in f date, IN idAr char(10), in idM char(15))
 begin
-  -- UPDATE CLAVE set idExamen = id where idExamen = id;
   UPDATE Examen SET semestre=sem, fecha=f, idArea = idAr, idModalidad = idM WHERE idExamen=id;
 end$$
 drop procedure modificarexamen;

@@ -67,7 +67,6 @@ public class DialogReportePorCarrera extends javax.swing.JDialog {
         txtIdExamen = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        btnRestaurar = new rsbuttom.RSButtonMetro();
         btnSalir = new rsbuttom.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -193,19 +192,6 @@ public class DialogReportePorCarrera extends javax.swing.JDialog {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 970, 610));
 
-        btnRestaurar.setText("Restaurar");
-        btnRestaurar.setColorBorde(null);
-        btnRestaurar.setColorHover(new java.awt.Color(228, 171, 172));
-        btnRestaurar.setColorNormal(new java.awt.Color(237, 197, 212));
-        btnRestaurar.setColorTextHover(new java.awt.Color(0, 0, 0));
-        btnRestaurar.setColorTextPressed(new java.awt.Color(0, 0, 0));
-        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRestaurarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 690, 134, 40));
-
         btnSalir.setText("Salir");
         btnSalir.setColorBorde(null);
         btnSalir.setColorHover(new java.awt.Color(228, 171, 172));
@@ -285,10 +271,6 @@ public class DialogReportePorCarrera extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAñoKeyTyped
 
-    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-
-    }//GEN-LAST:event_btnRestaurarActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -354,7 +336,6 @@ public class DialogReportePorCarrera extends javax.swing.JDialog {
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpiarSeleccion;
-    private rsbuttom.RSButtonMetro btnRestaurar;
     private rsbuttom.RSButtonMetro btnSalir;
     private javax.swing.JComboBox<String> cboCarrera;
     private javax.swing.JComboBox<String> cboModalidad;
