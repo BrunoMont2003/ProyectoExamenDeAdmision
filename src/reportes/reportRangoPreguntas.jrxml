@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="10ded652-d926-45ab-b4e5-114cb40a9158">
+	<property name="ireport.zoom" value="1.2100000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     rangopreguntas.`idRangoPreguntas` AS rangopreguntas_idRangoPreguntas,
+     rangopreguntas.`nombre` AS rangopreguntas_nombre,
+     rangopreguntas.`puntajeCorrecta` AS rangopreguntas_puntajeCorrecta,
+     rangopreguntas.`puntajeIncorrecta` AS rangopreguntas_puntajeIncorrecta
+FROM
+     `rangopreguntas` rangopreguntas]]>
+	</queryString>
+	<field name="rangopreguntas_idRangoPreguntas" class="java.lang.String"/>
+	<field name="rangopreguntas_nombre" class="java.lang.String"/>
+	<field name="rangopreguntas_puntajeCorrecta" class="java.lang.Double"/>
+	<field name="rangopreguntas_puntajeIncorrecta" class="java.lang.Double"/>
+	<group name="rangopreguntas_idRangoPreguntas">
+		<groupExpression><![CDATA[$F{rangopreguntas_idRangoPreguntas}]]></groupExpression>
+	</group>
+	<group name="rangopreguntas_nombre">
+		<groupExpression><![CDATA[$F{rangopreguntas_nombre}]]></groupExpression>
+	</group>
+	<group name="rangopreguntas_puntajeCorrecta">
+		<groupExpression><![CDATA[$F{rangopreguntas_puntajeCorrecta}]]></groupExpression>
+	</group>
+	<group name="rangopreguntas_puntajeIncorrecta">
+		<groupExpression><![CDATA[$F{rangopreguntas_puntajeIncorrecta}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="12" width="378" height="37" uuid="24ee3e3e-cee6-4423-b04e-f8694f169762"/>
+				<textElement>
+					<font fontName="Bell MT" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte De Rango De Preguntas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="1f4457e4-f94f-4847-b558-0450b842852c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id De Rango]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="137" y="2" width="115" height="20" uuid="e6ac30d0-ad5b-4324-9b40-bd014476485d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre De Rango]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="2" width="115" height="20" uuid="a139a238-1988-4c4e-b85a-d57b10e1d945"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pregunta Correcta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="2" width="115" height="20" uuid="9504271c-fa14-45f9-838e-329cc0d922e9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pregunta Incorrecta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b83cf905-ed90-41cb-ba59-53cae598cda6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rangopreguntas_idRangoPreguntas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="1" width="158" height="20" uuid="4dd83c79-2903-4235-9de7-1235bd463b49"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rangopreguntas_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="0" width="100" height="20" uuid="93c23494-e378-4ef8-8e37-f617f963d872"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rangopreguntas_puntajeIncorrecta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="112" y="0" width="1" height="21" uuid="137c9bb0-e54c-4ce8-8706-23a09176ec8f"/>
+			</line>
+			<textField>
+				<reportElement x="296" y="1" width="100" height="20" uuid="4d1ad46c-ea2e-4422-8bbf-061b82fd7706"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rangopreguntas_puntajeCorrecta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="288" y="0" width="1" height="21" uuid="31f9aa82-1c02-4bbe-9cb3-83ee5701c894"/>
+			</line>
+			<line>
+				<reportElement x="418" y="0" width="1" height="21" uuid="ecdb2c57-2e8d-4894-b949-8c6ac41b1714"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

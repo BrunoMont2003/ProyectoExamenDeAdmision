@@ -47,7 +47,19 @@ call modificarArea("AREA_A", "Ciencias De La Vida Y La Salud");
 DELIMITER $$
 create procedure eliminarArea(in idar char(10))
 begin
+	
 	DELETE FROM areau where idarea=idar;
+    
+end$$
+call eliminarArea("AREA_A");
+
+
+
+DELIMITER $$
+create procedure eliminarArea(in idar char(10))
+begin
+	-- voy a crear la cascada
+    
 end$$
 call eliminarArea("AREA_A");
 

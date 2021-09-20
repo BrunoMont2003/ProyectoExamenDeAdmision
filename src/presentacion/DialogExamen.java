@@ -13,7 +13,11 @@ import entidades.Examen;
 import entidades.Fecha;
 import entidades.Modalidad;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,6 +33,7 @@ public class DialogExamen extends javax.swing.JDialog {
 
     Modalidad modalidad;
     Areas area;
+    Fecha fecha;
     ExamenDAO examendao = new ExamenDAO();
 
     public DialogExamen() {
@@ -61,16 +66,12 @@ public class DialogExamen extends javax.swing.JDialog {
     public void limpiarEntradas() {
         txtSemestre.setText("");
         txtIdExamen.setText("");
-        txtAño.setText("");
-
+        Calendar.setDatoFecha(null);
         txtIdArea.setText("");
         txtNombreArea.setText("");
 
         txtIdModalidad.setText("");
         txtNombreModalidad.setText("");
-
-        txtDia.setText("");
-        txtMes.setText("");
 
         txtIdExamen.requestFocus();
 
@@ -88,25 +89,18 @@ public class DialogExamen extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtIdExamen = new javax.swing.JTextField();
-        txtAño = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         txtSemestre = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtIdArea = new javax.swing.JTextField();
         txtNombreArea = new javax.swing.JTextField();
-        btnCancelarArea = new javax.swing.JButton();
         btnBuscarArea = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        txtMes = new javax.swing.JTextField();
-        txtDia = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        btnCancelarArea = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -120,11 +114,13 @@ public class DialogExamen extends javax.swing.JDialog {
         btnSalir = new javax.swing.JButton();
         btnRestaurar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        Calendar = new rojeru_san.componentes.RSDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(155, 202, 238));
+        jPanel1.setBackground(new java.awt.Color(234, 252, 247));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Roboto Condensed", 1, 24)); // NOI18N
@@ -135,10 +131,6 @@ public class DialogExamen extends javax.swing.JDialog {
         jLabel2.setText("ID Examen");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel4.setText("Año");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
-
         txtIdExamen.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         txtIdExamen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -146,14 +138,6 @@ public class DialogExamen extends javax.swing.JDialog {
             }
         });
         jPanel1.add(txtIdExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, -1));
-
-        txtAño.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        txtAño.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtAñoKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 230, -1));
 
         Tabla.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         Tabla.setModel(modelo);
@@ -167,14 +151,14 @@ public class DialogExamen extends javax.swing.JDialog {
                 txtSemestreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtSemestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 230, -1));
+        jPanel1.add(txtSemestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 230, -1));
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel8.setText("Semestre");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        txtFecha.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtFecha.setText("Fecha");
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(155, 202, 238));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ÁREA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(234, 252, 247));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "ÁREA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -193,16 +177,6 @@ public class DialogExamen extends javax.swing.JDialog {
         txtNombreArea.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jPanel2.add(txtNombreArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 310, -1));
 
-        btnCancelarArea.setBackground(new java.awt.Color(234, 107, 107));
-        btnCancelarArea.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnCancelarArea.setText("Cancelar");
-        btnCancelarArea.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarAreaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnCancelarArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
-
         btnBuscarArea.setBackground(new java.awt.Color(168, 192, 215));
         btnBuscarArea.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         btnBuscarArea.setText("...");
@@ -213,40 +187,20 @@ public class DialogExamen extends javax.swing.JDialog {
         });
         jPanel2.add(btnBuscarArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
+        btnCancelarArea.setBackground(new java.awt.Color(234, 107, 107));
+        btnCancelarArea.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnCancelarArea.setText("Cancelar");
+        btnCancelarArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAreaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCancelarArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 530, 230));
 
-        jPanel3.setBackground(new java.awt.Color(155, 202, 238));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha del Exámen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18))); // NOI18N
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel11.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel11.setText("Mes");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-
-        txtMes.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        txtMes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtMesKeyTyped(evt);
-            }
-        });
-        jPanel3.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 80, -1));
-
-        txtDia.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        txtDia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDiaKeyTyped(evt);
-            }
-        });
-        jPanel3.add(txtDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 80, -1));
-
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel10.setText("Día");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 170, 120));
-
-        jPanel5.setBackground(new java.awt.Color(155, 202, 238));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MODALIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
+        jPanel5.setBackground(new java.awt.Color(234, 252, 247));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "MODALIDAD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -347,46 +301,27 @@ public class DialogExamen extends javax.swing.JDialog {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 140, -1));
 
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel12.setText("Semestre");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        jPanel1.add(Calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 890));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIdExamenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdExamenKeyTyped
-        if (txtIdExamen.getText().length() >= 8) {
+        if (txtIdExamen.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdExamenKeyTyped
-
-    private void txtAñoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAñoKeyTyped
-        char c = evt.getKeyChar();
-        if (txtAño.getText().length() >= 4 || (c < '0' || c > '9')) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtAñoKeyTyped
 
     private void txtSemestreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSemestreKeyTyped
         if (txtSemestre.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtSemestreKeyTyped
-
-    private void txtDiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaKeyTyped
-        char c = evt.getKeyChar();
-
-        if (txtDia.getText().length() >= 2 || (c < '0' || c > '9')) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDiaKeyTyped
-
-    private void txtMesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMesKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-
-        if (txtMes.getText().length() >= 2 || (c < '0' || c > '9')) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtMesKeyTyped
 
     private void btnBuscarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAreaActionPerformed
         try {
@@ -427,10 +362,8 @@ public class DialogExamen extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtIdExamen.getText().equals("")
-                || txtAño.getText().equals("")
                 || txtSemestre.getText().equals("")
-                || txtDia.getText().equals("")
-                || txtMes.getText().equals("")
+                || Calendar.getDatoFecha() == null
                 || txtIdModalidad.getText().equals("")
                 || txtNombreModalidad.getText().equals("")
                 || txtIdArea.getText().equals("")
@@ -440,20 +373,27 @@ public class DialogExamen extends javax.swing.JDialog {
 
             try {
                 String idExamen = txtIdExamen.getText();
-                int año = Integer.parseInt(txtAño.getText());
                 String semestre = txtSemestre.getText();
-                int dia = Integer.parseInt(txtDia.getText());
-                int mes = Integer.parseInt(txtMes.getText());
+                Date fe = Calendar.getDatoFecha();
+                fecha = new Fecha();
+                fecha.setDia(fe.getDate());
+                fecha.setMes(fe.getMonth()+1);
+                fecha.setAño(fe.getYear()+1900);
+                if (examendao.exists(idExamen)) {
+                    JOptionPane.showMessageDialog(null, "Ese codigo ya existe");
+                } else {
+                    if (fecha.esValida()) {
 
-                Fecha fecha = new Fecha();
-                fecha.setDia(dia);
-                fecha.setMes(mes);
-                fecha.setAño(año);
-                Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
-                examendao.insertar(x);
+                        Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
+                        examendao.insertar(x);
+                        
 
-                limpiarEntradas();
-                examendao.mostrarExamen(modelo);
+                        limpiarEntradas();
+                        examendao.mostrarExamen(modelo);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Fecha invalida");
+                    }
+                }
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
             }
@@ -473,13 +413,24 @@ public class DialogExamen extends javax.swing.JDialog {
                 if (x != null) {
                     System.out.println("FORMATO NORMAL: " + x.getFecha().toString());
                     txtSemestre.setText(x.getSemestre());
-                    txtAño.setText(String.valueOf(x.getFecha().getAño()));
-                    txtMes.setText(String.valueOf(x.getFecha().getMes()));
-                    txtDia.setText(String.valueOf(x.getFecha().getDia()));
+                    String año = String.valueOf(x.getFecha().getAño());
+                    String mes = String.valueOf(x.getFecha().getMes());
+                    String dia = String.valueOf(x.getFecha().getDia());
+                    String f = año+"/"+mes+"/"+dia;
+                    
+                    SimpleDateFormat formato =  new SimpleDateFormat("yyyy/MM/dd");
+                    
+                    java.util.Date nfecha = formato.parse(f);
+                    
+                    Calendar.setDatoFecha(nfecha);
                     txtIdArea.setText(x.getArea().getIdArea());
                     txtNombreArea.setText(x.getArea().getNombreArea());
                     txtIdModalidad.setText(x.getModalidad().getIdModalidad());
                     txtNombreModalidad.setText(x.getModalidad().getNombreM());
+                    modalidad = x.getModalidad();
+                    area = x.getArea();
+                    fecha = x.getFecha();
+
                     habilitar();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró dicho examen");
@@ -487,16 +438,16 @@ public class DialogExamen extends javax.swing.JDialog {
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
 
+            } catch (ParseException ex) {
+                Logger.getLogger(DialogExamen.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if (txtIdExamen.getText().equals("")
-                || txtAño.getText().equals("")
+                || Calendar.getDatoFecha() == null
                 || txtSemestre.getText().equals("")
-                || txtDia.getText().equals("")
-                || txtMes.getText().equals("")
                 || txtIdModalidad.getText().equals("")
                 || txtNombreModalidad.getText().equals("")
                 || txtIdArea.getText().equals("")
@@ -506,18 +457,24 @@ public class DialogExamen extends javax.swing.JDialog {
 
             try {
                 String idExamen = txtIdExamen.getText();
-                int año = Integer.parseInt(txtAño.getText());
                 String semestre = txtSemestre.getText();
-                int dia = Integer.parseInt(txtDia.getText());
-                int mes = Integer.parseInt(txtMes.getText());
+                
+                Date fe = Calendar.getDatoFecha();
+                fecha = new Fecha();
+                fecha.setDia(fe.getDate());
+                fecha.setMes(fe.getMonth()+1);
+                fecha.setAño(fe.getYear());
 
-                Fecha fecha = new Fecha(dia, mes, año);
-                Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
-                examendao.actualizar(x);
+                if (fecha.esValida()) {
 
-                limpiarEntradas();
-                desHabilitar();
-                examendao.mostrarExamen(modelo);
+                    Examen x = new Examen(idExamen, semestre, fecha, area, modalidad);
+                    examendao.actualizar(x);
+                    limpiarEntradas();
+                    desHabilitar();
+                    examendao.mostrarExamen(modelo);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Fecha invalida");
+                }
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
             }
@@ -708,6 +665,134 @@ public class DialogExamen extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -725,6 +810,7 @@ public class DialogExamen extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojeru_san.componentes.RSDateChooser Calendar;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscarArea;
@@ -736,27 +822,21 @@ public class DialogExamen extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtAño;
-    private javax.swing.JTextField txtDia;
+    private javax.swing.JLabel txtFecha;
     private javax.swing.JTextField txtIdArea;
     private javax.swing.JTextField txtIdExamen;
     private javax.swing.JTextField txtIdModalidad;
-    private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNombreArea;
     private javax.swing.JTextField txtNombreModalidad;
     private javax.swing.JTextField txtSemestre;

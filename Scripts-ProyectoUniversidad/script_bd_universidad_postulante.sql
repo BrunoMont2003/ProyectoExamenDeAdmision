@@ -12,10 +12,14 @@ CREATE TABLE postulante (
     idAula CHAR(10),
     idModalidad CHAR(15),
     PRIMARY KEY (idPostulante),
-    FOREIGN KEY (idCarrera) REFERENCES carrera (idCarrera),
-    FOREIGN KEY (idAula) REFERENCES aula (idAula),
-    FOREIGN KEY (idModalidad) REFERENCES modalidad(idModalidad)
+    FOREIGN KEY (idCarrera) REFERENCES carrera (idCarrera) ON DELETE CASCADE,
+    FOREIGN KEY (idAula) REFERENCES aula (idAula) ON DELETE CASCADE,
+    FOREIGN KEY (idModalidad) REFERENCES modalidad(idModalidad) ON DELETE CASCADE
 );
+
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE postulante; SET FOREIGN_KEY_CHECKS=1;
+select * from information_schema.KEY_COLUMN_USAGE where referenced_table_name = 'postulante';
+
 drop table postulante;
 SELECT *FROM postulante;
 drop procedure insertar_postulante;
@@ -25,6 +29,7 @@ BEGIN
   insert into postulante(idPostulante, nombrePostulante, apellido_paterno, apellido_materno, dni, idCarrera, idAula, idModalidad) values (idPos, nombP, apeM, apeF, dni, idcar, idla, idmo);
 END$$
 
+call eliminarPostulante("P-00000001");
 
 call insertar_postulante("P-00000001","DARREN CARLOS","ABAL","MENDOZA","76512311","CBIO-01","A-00001","MODD-01");
 call insertar_postulante("P-00000002","JORGE JUNIOR","VIGO","VILLALOBOS","72485759","CBIO-01","A-00001","MODD-01");
@@ -569,6 +574,8 @@ call insertar_postulante("P-00000500","JUNIOR ALEXIS","CENTURION","GUEVARA","751
 
 select * from postulante where IDmodalidad = "MODD-01";
 
+delete FROM POSTULANTE WHERE IDMODALIDAD="MODD-01";
+
 DELIMITER $$
 CREATE PROCEDURE mostrarPostulantes()
 BEGIN 
@@ -593,15 +600,19 @@ end$$
 
 call modificarPostulante("P-00000001","DARREN CARLOS","ABALES","MENDOZA","76512321","CBIO-01","A-00001","MODD-01");
 
+
+
 DELIMITER $$
 create procedure eliminarPostulante(in idPos char(10))
 begin
   call eliminarRespuestasDeUnPostulante(idPos);
   Delete from Postulante_Examen where idPostulante = idPos;
   DELETE FROM postulante where idPostulante=idPos;
+  DELETE FROM vacante WHERE idPostulante=IDPOS;
 end$$
 drop procedure eliminarPostulante;
 call eliminarPostulante("P-00000006");
+
 
 
 
@@ -635,3 +646,11 @@ END$$
 drop procedure  mostrarPorUbicacionyCar;
 
 call   mostrarPorUbicacionyCar();
+
+DELIMITER $$
+CREATE PROCEDURE mostrarPostulantesPorApellidos(in ape varchar(20))
+BEGIN 
+  select*from postulante where apellido_paterno like concat(ape,'%');
+END$$
+
+call  mostrarPostulantesPorApellidos("dia");

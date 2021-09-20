@@ -27,10 +27,11 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class DialogReporteCarreras extends javax.swing.JDialog {
 
-   DefaultTableModel modelo = new DefaultTableModel();
-   Carreras carrerasSelec = new Carreras();
-   
+    DefaultTableModel modelo = new DefaultTableModel();
+    Carreras carrerasSelec = new Carreras();
+
     CarrerasDAO cd = new CarrerasDAO();
+
     /**
      * Creates new form DialogCarreras
      */
@@ -73,7 +74,7 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(204, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(204, 225, 236));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -84,6 +85,11 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 310, -1));
 
         txtIdFacu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Id Facultad"));
+        txtIdFacu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdFacuKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtIdFacu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 400, 42));
         txtIdFacu.getAccessibleContext().setAccessibleName("Facultad");
 
@@ -140,7 +146,7 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         try {
             cd.mostraCarreraPorFacultad(idFacultad, modelo);
         } catch (SQLException ex) {
-          
+
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -153,24 +159,24 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         try {
             Conexion con = new Conexion();
             Connection conn = con.miConexion();
-            JasperReport reporte  = null;
-            Map  parametro = new HashMap();
-            parametro.put("idar",idFacultad);
+            JasperReport reporte = null;
+            Map parametro = new HashMap();
+            parametro.put("idar", idFacultad);
             String path = "src\\reportes\\reporteCARRERAS.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
-            JasperViewer view = new JasperViewer(jprint,false);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
+            JasperViewer view = new JasperViewer(jprint, false);
             view.setTitle("CARRERAS SEGUN FACULTAD");
             view.setVisible(true);
             view.setAlwaysOnTop(true);
             dispose();
         } catch (JRException ex) {
-            
+
         }
     }//GEN-LAST:event_btnGenerActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-          int i = Tabla.getSelectedRow();
+        int i = Tabla.getSelectedRow();
         if (i != -1) {
             carrerasSelec.setCodigoCarrera(modelo.getValueAt(i, 0).toString());
             carrerasSelec.setNombreCarrera(modelo.getValueAt(i, 1).toString());
@@ -180,7 +186,13 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
-  
+    private void txtIdFacuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdFacuKeyTyped
+        // TODO add your handling code here:
+        if (txtIdFacu.getText().length() >= 7) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdFacuKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSalir;

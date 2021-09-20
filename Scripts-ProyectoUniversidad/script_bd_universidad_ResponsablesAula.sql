@@ -11,9 +11,9 @@ CREATE TABLE responsableAula (
     idAula CHAR(8) NOT NULL,
     PRIMARY KEY (idResponsable),
     FOREIGN KEY (idAula)
-        REFERENCES aula (idAula)
+        REFERENCES aula (idAula) ON update CASCADE ON DELETE CASCADE
 );
-
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE responsableaula; SET FOREIGN_KEY_CHECKS=1;
 DELIMITER $$
 create procedure insertar_Responsable(in idRes char(8), in apellid varchar(60), in nombr varchar(60), in dni char(8), in idAul char(8))
 begin
@@ -22,7 +22,7 @@ end$$
 call insertar_Responsable("R-00001", "Gálvez Orezolli", "Daira Sofía","73901875","A-00001");
 call insertar_Responsable("R-00002", "Moreno Alva", "Julio Herminio","75845123","A-00001");
 call insertar_Responsable("R-00003", "Ramos Soriano", "Rosa Janeth","73086825","B-00002");
-call insertar_Responsable("R-00004", "Cubas Gonzales", "Noheli Rosa","73306878","B-0003");
+call insertar_Responsable("R-00004", "Cubas Gonzales", "Noheli Rosa","73306878","B-00003");
 call insertar_Responsable("R-00005", "Alvarado Avalos", "Carmen Yovani","73953875","B-00003");
 call insertar_Responsable("R-00006", "Ruiz Carrasco", "Gisela Yulissa","73601865","C-00004");
 call insertar_Responsable("R-00007", "Cabrera Rodriguez", "Mario Sebastian","78902875","A-00005");
@@ -57,7 +57,7 @@ call insertar_Responsable("R-00034", "Sanchez Davila", "Ana Julia","72901805","A
 call insertar_Responsable("R-00035", "Sanchez Castro", "Juan Luis","73901874","A-00002");
 call insertar_Responsable("R-00036", "Corro Perez", "Juan Julio","75845122","A-00002");
 call insertar_Responsable("R-00037", "Rojas Perez", "Martha Joaquina","73086821","B-00001");
-call insertar_Responsable("R-00038", "Cueva Cumpa", "Dayana Marisol","73306876","B-0004");
+call insertar_Responsable("R-00038", "Cueva Cumpa", "Dayana Marisol","73306876","B-00004");
 call insertar_Responsable("R-00039", "Alvarez Florentino", "Carol Leah","73953879","B-00004");
 call insertar_Responsable("R-00040", "Carrillo Pastor", "Maria Juana","73601860","C-00001");
 call insertar_Responsable("R-00041", "Cordova Zavaleta", "Joaquin Carlos","78902871","A-00003");

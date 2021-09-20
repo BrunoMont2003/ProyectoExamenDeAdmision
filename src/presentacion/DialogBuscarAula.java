@@ -57,7 +57,7 @@ public class DialogBuscarAula extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtIdAula = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnTodos = new javax.swing.JButton();
         btnSeleccionar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -88,9 +88,14 @@ public class DialogBuscarAula extends javax.swing.JDialog {
         });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
-        jButton2.setText("Todos");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
+        btnTodos.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
+        btnTodos.setText("Todos");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
         btnSeleccionar.setFont(new java.awt.Font("Open Sans", 1, 13)); // NOI18N
         btnSeleccionar.setText("Seleccionar");
@@ -168,10 +173,18 @@ public class DialogBuscarAula extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtIdAulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdAulaKeyTyped
-        if(txtIdAula.getText().length()>=7){
+        if (txtIdAula.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdAulaKeyTyped
+
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        try {
+            ad.mostrarAula(modelo);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnTodosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,7 +233,7 @@ public class DialogBuscarAula extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

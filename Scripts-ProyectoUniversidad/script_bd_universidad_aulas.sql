@@ -16,8 +16,10 @@ CREATE TABLE aula (
     idArea CHAR(10) NOT NULL,
     PRIMARY KEY (idAula),
     FOREIGN KEY (idArea)
-        REFERENCES areaU (idArea)
+        REFERENCES areaU (idArea) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE aula; SET FOREIGN_KEY_CHECKS=1;
 
 DELIMITER $$
 CREATE PROCEDURE insertar_aula(in idAu char(8), in numA int, in cap int, numAU int, idA char(10))

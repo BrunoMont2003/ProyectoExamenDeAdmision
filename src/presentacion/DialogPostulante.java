@@ -762,7 +762,7 @@ public class DialogPostulante extends javax.swing.JDialog {
                     postulante = pd.buscarPostulante(txtIdPostulante.getText());
                     pe = postulante.getL().getElemento(i);
                     examenes.eliminar(i);
-                    pd.eliminarExamen(idExamen);
+                    pd.eliminarExamen(postulante.getIdPostulante() , idExamen);
                 } catch (SQLException ex) {
                     System.out.println("ERROR: " + ex.getMessage());
                 }
@@ -789,6 +789,7 @@ public class DialogPostulante extends javax.swing.JDialog {
         limpiarEntradas();
         deshabilitarAula();
         deshabilitarExamen();
+        desHabilitar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -861,7 +862,7 @@ public class DialogPostulante extends javax.swing.JDialog {
                     txtNAula.setText(String.valueOf(x.getAula().getnAula()));
                     txtIdModalidad.setText(x.getModalidad().getIdModalidad());
                     txtNomModalidad.setText(x.getModalidad().getNombreM());
-
+                    examenes = x.getL();
                     pd.mostrarExamenes(idPostulante, modelo);
                     habilitar();
                     habilitarAula();

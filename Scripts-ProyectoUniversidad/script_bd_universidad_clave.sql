@@ -8,11 +8,13 @@ CREATE TABLE clave (
     idRangoPreguntas CHAR(8) NOT NULL,
     PRIMARY KEY (idClave),
     FOREIGN KEY (idExamen)
-        REFERENCES Examen (idExamen),
+        REFERENCES Examen (idExamen) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (idRangoPreguntas)
-        REFERENCES RangoPreguntas (idRangoPreguntas)
+        REFERENCES RangoPreguntas (idRangoPreguntas) ON UPDATE CASCADE ON DELETE CASCADE
 );
 drop table clave;
+SET FOREIGN_KEY_CHECKS=0; DROP TABLE clave; SET FOREIGN_KEY_CHECKS=1;
+
 
 DELIMITER $$
 CREATE PROCEDURE insertarClave(in id char(15), in num smallint, in let char(4), idEx char(8), idR char(8))
@@ -56,7 +58,7 @@ create procedure eliminarClavesDeUnExamen(in idEx char(15))
 begin
   DELETE FROM clave where idExamen=idEx;
 end$$
-call eliminarClavesDeUnExamen("EX-0001");
+call eliminarClavesDeUnExamen("EX-0002");
 
 -- drop procedure eliminarclavedeunexamen;
 
@@ -78,9 +80,6 @@ begin
 end$$
 -- drop procedure mostrarclavesdeexamen;
 call buscarClavePorExamenYNumero("EX-0001", 2);
-
-
-
 
 
 call insertarClave("C-00001", 1, 'd',"EX-0001","RAN-001");
@@ -184,36 +183,36 @@ call insertarClave("C-00098", 98, 'c',"EX-0001","RAN-002");
 call insertarClave("C-00099", 99, 'b',"EX-0001","RAN-002");
 call insertarClave("C-00100", 100, 'c',"EX-0001","RAN-002");
 
- call insertarClave("C-00101", 1, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00102", 2, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00103", 3, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00104", 4, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00105", 5, 'b',"EX-0002","RAN-002");
-call insertarClave("C-00106", 6, 'b',"EX-0002","RAN-002");
-call insertarClave("C-00107", 7, 'd',"EX-0002","RAN-002");
-call insertarClave("C-00108", 8, 'b',"EX-0002","RAN-002");
-call insertarClave("C-00109", 9, 'd',"EX-0002","RAN-002");
-call insertarClave("C-00110", 10, 'd',"EX-0002","RAN-002");
-call insertarClave("C-00111", 11, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00112", 12, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00113", 13, 'b',"EX-0002","RAN-002");
-call insertarClave("C-00114", 14, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00115", 15, 'b',"EX-0002","RAN-002");
-call insertarClave("C-00116", 16, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00117", 17, 'd',"EX-0002","RAN-002");
-call insertarClave("C-00118", 18, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00119", 19, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00120", 20, 'd',"EX-0002","RAN-002");
-call insertarClave("C-00121", 21, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00122", 22, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00123", 23, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00124", 24, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00125", 25, 'a',"EX-0002","RAN-002");
-call insertarClave("C-00126", 26, 'b',"EX-0002","RAN-002");
-call insertarClave("C-00127", 27, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00128", 28, 'd',"EX-0002","RAN-002");
-call insertarClave("C-00129", 29, 'c',"EX-0002","RAN-002");
-call insertarClave("C-00130", 30, 'a',"EX-0002","RAN-002");
+ call insertarClave("C-00101", 1, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00102", 2, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00103", 3, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00104", 4, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00105", 5, 'b',"EX-0002","RAN-001");
+call insertarClave("C-00106", 6, 'b',"EX-0002","RAN-001");
+call insertarClave("C-00107", 7, 'd',"EX-0002","RAN-001");
+call insertarClave("C-00108", 8, 'b',"EX-0002","RAN-001");
+call insertarClave("C-00109", 9, 'd',"EX-0002","RAN-001");
+call insertarClave("C-00110", 10, 'd',"EX-0002","RAN-001");
+call insertarClave("C-00111", 11, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00112", 12, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00113", 13, 'b',"EX-0002","RAN-001");
+call insertarClave("C-00114", 14, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00115", 15, 'b',"EX-0002","RAN-001");
+call insertarClave("C-00116", 16, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00117", 17, 'd',"EX-0002","RAN-001");
+call insertarClave("C-00118", 18, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00119", 19, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00120", 20, 'd',"EX-0002","RAN-001");
+call insertarClave("C-00121", 21, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00122", 22, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00123", 23, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00124", 24, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00125", 25, 'a',"EX-0002","RAN-001");
+call insertarClave("C-00126", 26, 'b',"EX-0002","RAN-001");
+call insertarClave("C-00127", 27, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00128", 28, 'd',"EX-0002","RAN-001");
+call insertarClave("C-00129", 29, 'c',"EX-0002","RAN-001");
+call insertarClave("C-00130", 30, 'a',"EX-0002","RAN-001");
 call insertarClave("C-00131", 31, 'a',"EX-0002","RAN-002");
 call insertarClave("C-00132", 32, 'd',"EX-0002","RAN-002");
 call insertarClave("C-00133", 33, 'b',"EX-0002","RAN-002");

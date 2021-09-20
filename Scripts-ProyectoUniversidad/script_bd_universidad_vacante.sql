@@ -3,13 +3,13 @@ CREATE TABLE VACANTE (
     idPostulante CHAR(10) NOT NULL,
     idExamen CHAR(8) NOT NULL,
     PRIMARY KEY (idPostulante, idExamen),
-    FOREIGN KEY (idPostulante)
-        REFERENCES Postulante (idPostulante),
+    FOREIGN KEY (idPostulante) 
+        REFERENCES Postulante (idPostulante) ON UPDATE CASCADE ON DELETE CASCADE ,
     FOREIGN KEY (idExamen)
-        REFERENCES Examen (idExamen)
+        REFERENCES Examen (idExamen) ON UPDATE CASCADE ON DELETE CASCADE
 );
-drop table vacante;
 
+drop table vacante;
 DELIMITER $$
 create procedure insertarVacante(in idPos char(10), in idEx char(8))
 BEGIN
@@ -84,6 +84,16 @@ BEGIN
 END $$
 drop procedure eliminarVacantesDeUnExamen;
 call eliminarVacantesDeUnExamen("EX-0002");
+
+
+
+
+
+
+
+
+
+
 
 DELIMITER $$
 create procedure mostrarVacantes()

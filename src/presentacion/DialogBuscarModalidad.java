@@ -63,10 +63,20 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
 
         txtIdModalidad.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         txtIdModalidad.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "ID Modalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto Condensed", 1, 14))); // NOI18N
+        txtIdModalidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdModalidadKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtIdModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 158, 44));
 
         txtNombreM.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         txtNombreM.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "NombreModalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto Condensed", 1, 14))); // NOI18N
+        txtNombreM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreMKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 163, 44));
 
         Tabla.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
@@ -154,6 +164,18 @@ public class DialogBuscarModalidad extends javax.swing.JDialog {
         txtIdModalidad.setText("");
         txtNombreM.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtIdModalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdModalidadKeyTyped
+        if (txtIdModalidad.getText().length() >= 7) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdModalidadKeyTyped
+
+    private void txtNombreMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMKeyTyped
+        if (txtIdModalidad.getText().length() >= 14) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreMKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

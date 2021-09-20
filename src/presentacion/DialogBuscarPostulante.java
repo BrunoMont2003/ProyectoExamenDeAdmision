@@ -32,6 +32,7 @@ public class DialogBuscarPostulante extends javax.swing.JDialog {
 
         try {
             for (int i = 0; i < postulantedao.listarPostulantes().size(); i++) {
+                System.out.println(postulantedao.listarPostulantes().get(i).getIdPostulante());
                 cboIdPostulante.addItem(postulantedao.listarPostulantes().get(i).getIdPostulante());
             }
         } catch (SQLException ex) {

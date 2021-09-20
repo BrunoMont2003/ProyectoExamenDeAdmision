@@ -8,7 +8,6 @@ package datos;
 import entidades.Areas;
 import entidades.Carreras;
 import entidades.Facultad;
-import javax.swing.table.DefaultTableModel;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,39 +31,37 @@ public class CarrerasDAOTest {
     @Test
     public void testInsertar() throws Exception {
         System.out.println("insertar");
-        Carreras carreras = new Carreras("SLUD-02", "Estomatologia",
+        Carreras carreras = new Carreras("SLUD-AA", "Estomatologia",
                 new Facultad("FACD-09", "Estomatologia",
                         new Areas("AREA_A", "Ciencias De La Vidad Y La Salud")));
         CarrerasDAO instance = new CarrerasDAO();
-        assertNull(instance.buscarCarreras("SLUD-02"));
+        assertNull(instance.buscarCarreras("SLUD-AA"));
         instance.insertar(carreras);
     }
 
     @Test
     public void testBuscarCarreras() throws Exception {
         System.out.println("buscarCarreras");
-        String idCarrera = "FACD-09";
-        CarrerasDAO instance = new CarrerasDAO();
+        String idCarrera = "INGN-05";
         Carreras expResult = CarrerasDAO.getInstancia().buscarCarreras(idCarrera);
-        Carreras result = instance.buscarCarreras(idCarrera);
-        assertEquals(expResult, result);
+        assertNotEquals(expResult, null);
     }
 
     @Test
     public void testActualizar() throws Exception {
         System.out.println("actualizar");
-        Carreras carreras = new Carreras("SLUD-02", "Estomatologia y Odontologia",
+        Carreras carreras = new Carreras("SLUD-AA", "Estomatologia y Odontologia",
                 new Facultad("FACD-09", "Estomatologia",
                         new Areas("AREA_A", "Ciencias De La Vidad Y La Salud")));
         CarrerasDAO instance = new CarrerasDAO();
-        assertNotNull(instance.buscarCarreras("SLUD-02"));
+        assertNotNull(instance.buscarCarreras("SLUD-AA"));
         instance.actualizar(carreras);
     }
 
     @Test
     public void testEliminar() throws Exception {
         System.out.println("eliminar");
-        String idCarrera = "SLUD-02";
+        String idCarrera = "SLUD-BB";
         CarrerasDAO instance = new CarrerasDAO();
         assertNotNull(instance.buscarCarreras(idCarrera));
         instance.eliminar(idCarrera);

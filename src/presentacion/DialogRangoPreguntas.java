@@ -230,7 +230,7 @@ public class DialogRangoPreguntas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIncorrectaKeyTyped
 
     private void txtIdRangoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdRangoKeyTyped
-        if (txtIdRango.getText().length() >= 8) {
+        if (txtIdRango.getText().length() >= 7) {
             evt.consume();
         }
     }//GEN-LAST:event_txtIdRangoKeyTyped

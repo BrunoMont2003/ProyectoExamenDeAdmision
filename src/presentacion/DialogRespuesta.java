@@ -34,6 +34,7 @@ public class DialogRespuesta extends javax.swing.JDialog {
         desHabilitar();
         setLocationRelativeTo(null);
         txtIdRespuesta.requestFocus();
+        btnSeleccionarPostulante.setEnabled(false);
         try {
             dao.mostrarRespuestas(modelo);
         } catch (SQLException ex) {
@@ -304,7 +305,7 @@ public class DialogRespuesta extends javax.swing.JDialog {
         });
         jPanel2.add(txtModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 220, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 430, 340));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 430, 340));
 
         jPanel3.setBackground(new java.awt.Color(227, 246, 233));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "POSTULANTE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 18))); // NOI18N
@@ -389,9 +390,9 @@ public class DialogRespuesta extends javax.swing.JDialog {
         });
         jPanel3.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 270, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 430, 340));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 430, 340));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 1010, 830));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 0, 1460, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -482,7 +483,7 @@ public class DialogRespuesta extends javax.swing.JDialog {
             String idRespuesta = txtIdRespuesta.getText();
             int numero = Integer.parseInt(cboNumero.getSelectedItem().toString());
             char letra = cboLetra.getSelectedItem().toString().charAt(0);
-            System.out.println("letra "+letra);
+            System.out.println("letra " + letra);
             try {
 
                 Respuesta x = new Respuesta(idRespuesta, numero, letra, postulante, examen);
@@ -543,11 +544,14 @@ public class DialogRespuesta extends javax.swing.JDialog {
         DialogBuscarExmn f = new DialogBuscarExmn();
         f.setVisible(true);
         examen = f.examenSelec;
-        txtIdExamen.setText(examen.getIdExamen());
-        txtSemestre.setText(examen.getSemestre());
-        txtFecha.setText(examen.getFecha().toStringFormatSql());
-        txtArea.setText(examen.getArea().getNombreArea());
-        txtModalidad.setText(examen.getModalidad().getNombreM());
+        if(examen!=null){
+            txtIdExamen.setText(examen.getIdExamen());
+            txtSemestre.setText(examen.getSemestre());
+            txtFecha.setText(examen.getFecha().toStringFormatSql());
+            txtArea.setText(examen.getArea().getNombreArea());
+            txtModalidad.setText(examen.getModalidad().getNombreM());
+            btnSeleccionarPostulante.setEnabled(true);
+        }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void txtIdExamenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdExamenKeyTyped
@@ -587,14 +591,16 @@ public class DialogRespuesta extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoMaternoKeyTyped
 
     private void btnSeleccionarPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarPostulanteActionPerformed
-        DialogBuscarPostulante f = new DialogBuscarPostulante();
-        f.setVisible(true);
-        postulante = f.postulanteSelec;
-        txtIdPostulante.setText(postulante.getIdPostulante());
-        txtNombre.setText(postulante.getNombres());
-        txtApellidoPaterno.setText(postulante.getApellido_paterno());
-        txtApellidoMaterno.setText(postulante.getApellido_materno());
-        txtDni.setText(postulante.getDni());
+        if (examen != null) {
+            DialogBuscarPostulanteTabla f = new DialogBuscarPostulanteTabla(examen.getIdExamen());
+            f.setVisible(true);
+            postulante = f.postulanteSelec;
+            txtIdPostulante.setText(postulante.getIdPostulante());
+            txtNombre.setText(postulante.getNombres());
+            txtApellidoPaterno.setText(postulante.getApellido_paterno());
+            txtApellidoMaterno.setText(postulante.getApellido_materno());
+            txtDni.setText(postulante.getDni());
+        }
 
     }//GEN-LAST:event_btnSeleccionarPostulanteActionPerformed
 

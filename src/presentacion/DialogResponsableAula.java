@@ -335,7 +335,8 @@ public class DialogResponsableAula extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombresKeyTyped
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
-        if (txtDni.getText().length() >= 8) {
+         char c = evt.getKeyChar();
+        if (txtDni.getText().length() >= 8 || (c < '0' || c > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDniKeyTyped

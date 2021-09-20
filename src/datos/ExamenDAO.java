@@ -86,7 +86,7 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
                 String idArea = rs.getString("idArea");
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
                 String idModalidad = rs.getString("idModalidad");
@@ -121,7 +121,8 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+
                 Areas areas = AreasDAO.getInstancia().buscarArea(idArea);
                 Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidad(idModalidad);
 
@@ -189,11 +190,12 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+
                 Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
                 lista.add(ex);
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException | SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
         } finally {
             cnn.close();
@@ -221,7 +223,8 @@ public class ExamenDAO {
                 int añoF = Integer.parseInt(fechaArray[0]);
                 int mes = Integer.parseInt(fechaArray[1]);
                 int dia = Integer.parseInt(fechaArray[2]);
-                Fecha fecha = new Fecha(añoF, mes, dia);
+                Fecha fecha = new Fecha(dia, mes, añoF);
+
                 Examen ex = new Examen(idExamen, semestre, fecha, area, modalidad);
                 lista.add(ex);
             }
@@ -266,7 +269,7 @@ public class ExamenDAO {
         String idExamen = examen.getIdExamen();
         System.out.println("Reconoce el examen: " + examen.getIdExamen());
         ArrayList<Postulante> postulantes = PostulanteDAO.getInstancia().listarPostulantesPorExamen(idExamen);
-        for (int i = postulantes.size() - 1; i < postulantes.size(); i++) {
+        for (int i = 0; i < postulantes.size(); i++) {
             double puntaje = 0;
             int numBuenas = 0;
             int numMalas = 0;
@@ -397,7 +400,7 @@ public class ExamenDAO {
                 int numBuenas = rs.getInt("numBuenas");
                 int numMalas = rs.getInt("numMalas");
 
-                Object fila[] = {nombre, carrera, String.format("%.2f",puntaje), numBuenas, numMalas};
+                Object fila[] = {nombre, carrera, String.format("%.2f", puntaje), numBuenas, numMalas};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -426,7 +429,7 @@ public class ExamenDAO {
                 String carrera = pos.getCarrera().getNombreCarrera();
                 double puntaje = rs.getDouble("puntaje");
                 int ordenMerito = rs.getInt("ordenMerito");
-                Object fila[] = {nombre, carrera, String.format("%.2f",puntaje), ordenMerito};
+                Object fila[] = {nombre, carrera, String.format("%.2f", puntaje), ordenMerito};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {
@@ -458,7 +461,7 @@ public class ExamenDAO {
                 String carrera = rs.getString("nombreCarrera");
                 double puntaje = rs.getDouble("puntaje");
                 int ordenMerito = rs.getInt("ordenMerito");
-                Object fila[] = {idPostulante, apPaterno + " " + apMaterno + ", " + nombre, dni, String.format("%.2f",puntaje), ordenMerito, carrera};
+                Object fila[] = {idPostulante, apPaterno + " " + apMaterno + ", " + nombre, dni, String.format("%.2f", puntaje), ordenMerito, carrera};
                 modelo.addRow(fila);
             }
         } catch (SQLException e) {

@@ -18,7 +18,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import reportes.GestionReportes;
 
 /**
  *
@@ -32,6 +35,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
     DefaultTableModel modelo = new DefaultTableModel();
     PostulanteDAO postulantedao = new PostulanteDAO();
     VacanteDAO vacantedao = new VacanteDAO();
+    Carreras carrera = null;
 
     public DialogGenerarVacantes() throws SQLException {
         super(FrmPrincipal.getInstancia(), true);
@@ -67,12 +71,14 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtIdExamen = new javax.swing.JTextField();
+        btnGenerarVacantes = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         btnRestaurar = new rsbuttom.RSButtonMetro();
         btnSalir = new rsbuttom.RSButtonMetro();
         jLabel2 = new javax.swing.JLabel();
-        btnGenerarVacantes = new rsbuttom.RSButtonMetro();
+        jLabel3 = new javax.swing.JLabel();
+        btnGenerarReportePorParametro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -190,6 +196,19 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         txtIdExamen.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
         jPanel2.add(txtIdExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 210, 30));
 
+        btnGenerarVacantes.setText("OBTENER VACANTES");
+        btnGenerarVacantes.setColorBorde(null);
+        btnGenerarVacantes.setColorHover(new java.awt.Color(185, 204, 214));
+        btnGenerarVacantes.setColorNormal(new java.awt.Color(99, 151, 167));
+        btnGenerarVacantes.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnGenerarVacantes.setColorTextPressed(new java.awt.Color(0, 0, 0));
+        btnGenerarVacantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarVacantesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnGenerarVacantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 200, 40));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 520, 460));
 
         Tabla.setModel(modelo);
@@ -226,19 +245,17 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Roboto Condensed", 3, 48)); // NOI18N
         jLabel2.setText("INGRESANTES");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 670, 80, 66));
 
-        btnGenerarVacantes.setText("VACANTES");
-        btnGenerarVacantes.setColorBorde(null);
-        btnGenerarVacantes.setColorHover(new java.awt.Color(175, 202, 215));
-        btnGenerarVacantes.setColorNormal(new java.awt.Color(200, 228, 242));
-        btnGenerarVacantes.setColorTextHover(new java.awt.Color(0, 0, 0));
-        btnGenerarVacantes.setColorTextPressed(new java.awt.Color(0, 0, 0));
-        btnGenerarVacantes.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarReportePorParametro.setBackground(new java.awt.Color(255, 51, 51));
+        btnGenerarReportePorParametro.setFont(new java.awt.Font("Roboto Slab SemiBold", 1, 11)); // NOI18N
+        btnGenerarReportePorParametro.setText("GENERAR REPORTE");
+        btnGenerarReportePorParametro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarVacantesActionPerformed(evt);
+                btnGenerarReportePorParametroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarVacantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 690, 134, 40));
+        jPanel1.add(btnGenerarReportePorParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 690, 210, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1620, 760));
 
@@ -253,26 +270,30 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         try {
             String semestre = cboSemestre.getSelectedItem().toString();
             String nomCarrera = cboCarrera.getSelectedItem().toString();
-            Carreras carrera = CarrerasDAO.getInstancia().buscarCarrerasPorNombre(nomCarrera);
+            carrera = CarrerasDAO.getInstancia().buscarCarrerasPorNombre(nomCarrera);
+            if (carrera != null) {
 
-            System.out.println("Carrera" + carrera.getCodigoCarrera());
+                System.out.println("Carrera" + carrera.getCodigoCarrera());
 
-            String nomModalidad = cboModalidad.getSelectedItem().toString();
+                String nomModalidad = cboModalidad.getSelectedItem().toString();
 
-            Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidadPorNombre(nomModalidad);
+                Modalidad modalidad = ModalidadDAO.getInstancia().buscarModalidadPorNombre(nomModalidad);
 
-            System.out.println("Modalidad: " + modalidad.getIdModalidad());
+                System.out.println("Modalidad: " + modalidad.getIdModalidad());
 
-            examen = examendao.buscarExamen(semestre, carrera.getCodigoCarrera(), modalidad.getIdModalidad());
+                examen = examendao.buscarExamen(semestre, carrera.getCodigoCarrera(), modalidad.getIdModalidad());
 
-            System.out.println("Examen: " + examen.getIdExamen());
+                System.out.println("Examen: " + examen.getIdExamen());
 
-            txtIdExamen.setText(examen.getIdExamen());
-            txtDia.setText(String.valueOf(examen.getFecha().getDia()));
-            txtMes.setText(String.valueOf(examen.getFecha().getMes()));
-            txtAño.setText(String.valueOf(examen.getFecha().getAño()));
-            examendao.setOrdenDeMerito(examen, carrera.getCodigoCarrera());
-            examendao.mostrarPostulantesPorExamenDeUnaCarrera(modelo, examen.getIdExamen(), carrera.getCodigoCarrera());
+                txtIdExamen.setText(examen.getIdExamen());
+                txtDia.setText(String.valueOf(examen.getFecha().getDia()));
+                txtMes.setText(String.valueOf(examen.getFecha().getMes()));
+                txtAño.setText(String.valueOf(examen.getFecha().getAño()));
+                examendao.setOrdenDeMerito(examen, carrera.getCodigoCarrera());
+                examendao.mostrarPostulantesPorExamenDeUnaCarrera(modelo, examen.getIdExamen(), carrera.getCodigoCarrera());
+            } else {
+                JOptionPane.showMessageDialog(null, "Algo anda mal con la carrera");
+            }
 
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
@@ -324,13 +345,29 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
     private void btnGenerarVacantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVacantesActionPerformed
         try {
             String nomCarrera = cboCarrera.getSelectedItem().toString();
-            Carreras carrera = CarrerasDAO.getInstancia().buscarCarrerasPorNombre(nomCarrera);
+            carrera = CarrerasDAO.getInstancia().buscarCarrerasPorNombre(nomCarrera);
             vacantedao.setVacantes(examen, carrera.getCodigoCarrera());
             vacantedao.mostrarVacantesDeUnExamenEnUnaCarrera(modelo, examen.getIdExamen(), carrera.getCodigoCarrera());
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnGenerarVacantesActionPerformed
+
+    private void btnGenerarReportePorParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportePorParametroActionPerformed
+        try {
+            if (examen != null && carrera != null) {
+                String idExamen = examen.getIdExamen();
+                String idCarrera = carrera.getCodigoCarrera();
+                GestionReportes gr = new GestionReportes();
+                gr.ReporteVacantes(idExamen, idCarrera);
+                dispose();
+            }
+        } catch (JRException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnGenerarReportePorParametroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,6 +425,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnGenerarReportePorParametro;
     private rsbuttom.RSButtonMetro btnGenerarVacantes;
     private javax.swing.JButton btnLimpiarSeleccion;
     private rsbuttom.RSButtonMetro btnRestaurar;
@@ -400,6 +438,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
