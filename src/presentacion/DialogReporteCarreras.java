@@ -162,7 +162,7 @@ public class DialogReporteCarreras extends javax.swing.JDialog {
             JasperReport reporte = null;
             Map parametro = new HashMap();
             parametro.put("idar", idFacultad);
-            String path = "src\\reportes\\reporteCARRERAS.jasper";
+            String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reporteCARRERAS.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
             JasperViewer view = new JasperViewer(jprint, false);

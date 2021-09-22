@@ -47,7 +47,6 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGenerarReportePorParametro = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -62,16 +61,6 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnGenerarReportePorParametro.setBackground(new java.awt.Color(255, 51, 51));
-        btnGenerarReportePorParametro.setFont(new java.awt.Font("Roboto Slab SemiBold", 1, 11)); // NOI18N
-        btnGenerarReportePorParametro.setText("GENERAR REPORTE");
-        btnGenerarReportePorParametro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarReportePorParametroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGenerarReportePorParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 210, 50));
 
         jPanel1.setBackground(new java.awt.Color(198, 222, 239));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,7 +133,7 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 80, 66));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 760, 560));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 760, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -167,27 +156,6 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Debes Seleccionar un elemento");
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
-
-    private void btnGenerarReportePorParametroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportePorParametroActionPerformed
-        String idArea = txtCodig.getText();
-        try {
-            Conexion con = new Conexion();
-            Connection conn = con.miConexion();
-            JasperReport reporte = null;
-            Map parametro = new HashMap();
-            parametro.put("idar", idArea);
-            String path = "src\\reportes\\reporteAREAS.jasper";
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
-            JasperViewer view = new JasperViewer(jprint, false);
-            view.setTitle("Areas");
-            view.setVisible(true);
-            view.setAlwaysOnTop(true);
-            dispose();
-        } catch (JRException ex) {
-            System.out.println("ERROR: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnGenerarReportePorParametroActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (txtCodig.getText().equals("")) {
@@ -232,7 +200,6 @@ public class DialogBuscarAreas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnGenerarReportePorParametro;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JButton btnTodo;

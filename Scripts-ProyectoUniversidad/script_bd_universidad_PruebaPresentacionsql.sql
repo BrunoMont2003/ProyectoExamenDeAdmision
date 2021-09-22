@@ -1,7 +1,7 @@
 USE BDUNIVERSIDAD;
 
 call mostrarRespuestasDePostulanteEnUnExamen("P-00000250","EX-0033");
-
+call eliminarExamen("EX-0033");
 -- CLAVES DEL EXAMEN 33
 call insertarClave("C-00201", 1, 'c',"EX-0033","RAN-001");
 call insertarClave("C-00202", 2, 'd',"EX-0033","RAN-001");

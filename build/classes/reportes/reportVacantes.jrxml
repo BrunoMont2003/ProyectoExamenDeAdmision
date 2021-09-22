@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportVacantes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f963ad43-46c0-4f73-9490-6a588022f827">
 	<property name="ireport.zoom" value="2.1435888100000025"/>
-	<property name="ireport.x" value="382"/>
-	<property name="ireport.y" value="69"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="IDEX" class="java.lang.String">
 		<defaultValueExpression><![CDATA["EX-002"]]></defaultValueExpression>
 	</parameter>
@@ -10,7 +10,7 @@
 		<defaultValueExpression><![CDATA["INGN-05"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[	select v.idExamen, v.idPostulante,p.nombrePostulante, 
+		<![CDATA[select v.idExamen, v.idPostulante,p.nombrePostulante, 
     p.apellido_paterno,p.apellido_materno, p.dni, 
     pe.puntaje, pe.ordenMerito, c.nombreCarrera, m.nombre as modalidad  
     FROM VACANTE AS V
@@ -80,60 +80,46 @@
 	<columnHeader>
 		<band height="33" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="74" height="20" uuid="a61f6bcb-d4f5-4908-8b8d-9c331619daf5"/>
+				<reportElement x="44" y="1" width="148" height="20" uuid="a61f6bcb-d4f5-4908-8b8d-9c331619daf5"/>
 				<textElement>
-					<font size="8"/>
+					<font size="14"/>
 				</textElement>
-				<text><![CDATA[nombrePostulante]]></text>
+				<text><![CDATA[Nombre del Postulante]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="85" y="1" width="66" height="20" uuid="291520bd-f36d-4f8d-86bf-a5e70fcd0e4f"/>
+				<reportElement x="240" y="1" width="36" height="20" uuid="0f1e9813-2089-404d-bb32-f7e6a74e7502"/>
 				<textElement>
-					<font size="8"/>
+					<font size="14"/>
 				</textElement>
-				<text><![CDATA[apellido_paterno]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="240" y="0" width="46" height="20" uuid="0f1e9813-2089-404d-bb32-f7e6a74e7502"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[dni]]></text>
+				<text><![CDATA[DNI]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="303" y="1" width="48" height="20" uuid="90dc5621-9032-48da-85ad-56230c15e3c2"/>
 				<textElement>
-					<font size="8"/>
+					<font size="12"/>
 				</textElement>
 				<text><![CDATA[puntaje]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="367" y="0" width="25" height="20" uuid="c206ae17-8c80-4594-8103-a2112c911a7c"/>
+				<reportElement x="367" y="0" width="14" height="20" uuid="c206ae17-8c80-4594-8103-a2112c911a7c"/>
 				<textElement>
-					<font size="8"/>
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[ordenMerito]]></text>
+				<text><![CDATA[n°]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="392" y="1" width="84" height="20" uuid="8400292c-5275-4bb1-8687-b31d0cfe4d76"/>
-				<textElement>
-					<font size="8"/>
+				<reportElement x="409" y="1" width="56" height="20" uuid="8400292c-5275-4bb1-8687-b31d0cfe4d76"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[nombreCarrera]]></text>
+				<text><![CDATA[Carrera]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="492" y="1" width="63" height="20" uuid="a04aafad-b0ac-4a5d-9096-3d0450fa070c"/>
+				<reportElement x="506" y="1" width="25" height="20" uuid="a04aafad-b0ac-4a5d-9096-3d0450fa070c"/>
 				<textElement>
-					<font size="8"/>
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[modalidad]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="161" y="1" width="62" height="20" uuid="8463306f-0f69-409c-9c26-b85ff941fe5b"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[apellido_materno]]></text>
+				<text><![CDATA[Vía]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -176,7 +162,7 @@
 			</textField>
 			<textField>
 				<reportElement x="392" y="0" width="84" height="20" uuid="1c49b85b-7212-4bca-aaf4-dd531916c30d"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreCarrera}]]></textFieldExpression>

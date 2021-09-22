@@ -4,7 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/reportes/GestionReportes.java</file>
-            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogGenerarVacantes.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/paneles/pnlGeneradorDiagramas.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogModalidad.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/FrmPrincipal.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/ExamenDAO.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/Postulante_Examen.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/ListaPostulante_Examen.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogEstadisticoCantidadCarrerasPie.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/adapter/ResponsableAulaAdapter.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/test/datos/CarrerasDAOTest.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/Examen.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/ResponsableAula.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/datos/VacanteDAO.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/entidades/Postulante.java</file>
+            <file>file:/C:/Users/bruno/OneDrive/Desktop/UNT/CICLO3/TAREAS/POO%20II/Proyecto/ProyectoUniversidad/src/presentacion/DialogEstadisticoCantidadCarrerasBarras.java</file>
         </group>
     </open-files>
 </project-private>

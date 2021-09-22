@@ -15,11 +15,7 @@ import entidades.Modalidad;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,7 +41,7 @@ public class DialogExamen extends javax.swing.JDialog {
             txtIdExamen.requestFocus();
             examendao.mostrarExamen(modelo);
         } catch (SQLException ex) {
-            Logger.getLogger(DialogExamen.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR: "+ex.getMessage());
         }
     }
 
@@ -332,7 +328,8 @@ public class DialogExamen extends javax.swing.JDialog {
             txtIdArea.setText(area.getIdArea());
             txtNombreArea.setText(area.getNombreArea());
         } catch (SQLException ex) {
-            Logger.getLogger(DialogExamen.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: "+ex.getMessage());
+
         }
     }//GEN-LAST:event_btnBuscarAreaActionPerformed
 
@@ -356,7 +353,7 @@ public class DialogExamen extends javax.swing.JDialog {
             txtIdModalidad.setText(modalidad.getIdModalidad());
             txtNombreModalidad.setText(modalidad.getNombreM());
         } catch (SQLException ex) {
-            Logger.getLogger(DialogExamen.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: "+ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarModalidadActionPerformed
 
@@ -439,7 +436,8 @@ public class DialogExamen extends javax.swing.JDialog {
                 System.out.println("ERROR: " + ex.getMessage());
 
             } catch (ParseException ex) {
-                Logger.getLogger(DialogExamen.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: "+ex.getMessage());
+
             }
         }
     }//GEN-LAST:event_btnConsultarActionPerformed

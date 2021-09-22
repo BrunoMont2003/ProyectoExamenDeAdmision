@@ -157,7 +157,7 @@ public class DialogBuscarFacultad extends javax.swing.JDialog {
             JasperReport reporte  = null;
             Map  parametro = new HashMap();
             parametro.put("idar",idArea);
-            String path = "src\\reportes\\reporteFACULTAD.jasper";
+            String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reporteFACULTAD.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,parametro,conn);
             JasperViewer view = new JasperViewer(jprint,false);
