@@ -8,9 +8,11 @@ CREATE TABLE examen (
     idModalidad CHAR(15),
     PRIMARY KEY (idExamen),
     FOREIGN KEY (idArea)
-        REFERENCES areau (idArea) ON UPDATE CASCADE ON DELETE CASCADE,
+        REFERENCES areau (idArea)
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (idModalidad)
-        REFERENCES modalidad (idModalidad) ON UPDATE CASCADE ON DELETE CASCADE
+        REFERENCES modalidad (idModalidad)
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 drop table examen;
 
@@ -97,18 +99,7 @@ begin
 end$$
 drop procedure modificarexamen;
 call modificarExamen("EX-0001", "2021-II", "2021-06-27", "AREA_B","MODD-01");
-/*
-DELIMITER $$
-create procedure eliminarExamen(in id char(8))
-begin
-  call eliminarClavesDeUnExamen(id);
-  call eliminarRespuestasDeUnExamen(id);
-  call eliminarExamenDeUnPostulante(id);
-  DELETE FROM examen where idExamen=id;
-end$$
-call eliminarExamen("EX-0003");
-drop procedure eliminarExamen;
-*/
+
 DELIMITER $$
 create procedure eliminarExamen(in id char(8))
 begin

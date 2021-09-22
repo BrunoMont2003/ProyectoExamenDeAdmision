@@ -18,7 +18,7 @@ public class FrmInicio extends javax.swing.JFrame {
     public FrmInicio() {
         initComponents();
         this.setLocationRelativeTo(null);
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/unt-reescalado.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\img\\unt-reescalado.png");
     }
 
     /**

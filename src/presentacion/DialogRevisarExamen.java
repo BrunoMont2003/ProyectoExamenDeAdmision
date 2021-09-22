@@ -87,7 +87,6 @@ public class DialogRevisarExamen extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        btnRestaurar = new rsbuttom.RSButtonMetro();
         btnCalificar = new rsbuttom.RSButtonMetro();
         btnSalir = new rsbuttom.RSButtonMetro();
         btnOrdenMerito = new rsbuttom.RSButtonMetro();
@@ -258,19 +257,6 @@ public class DialogRevisarExamen extends javax.swing.JDialog {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 970, 610));
 
-        btnRestaurar.setText("Restaurar");
-        btnRestaurar.setColorBorde(null);
-        btnRestaurar.setColorHover(new java.awt.Color(228, 171, 172));
-        btnRestaurar.setColorNormal(new java.awt.Color(237, 197, 212));
-        btnRestaurar.setColorTextHover(new java.awt.Color(0, 0, 0));
-        btnRestaurar.setColorTextPressed(new java.awt.Color(0, 0, 0));
-        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRestaurarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 690, 134, 40));
-
         btnCalificar.setBackground(new java.awt.Color(111, 180, 189));
         btnCalificar.setText("CALIFICAR");
         btnCalificar.setColorBorde(null);
@@ -296,7 +282,7 @@ public class DialogRevisarExamen extends javax.swing.JDialog {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 690, 134, 40));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 690, 134, 40));
 
         btnOrdenMerito.setBackground(new java.awt.Color(111, 180, 189));
         btnOrdenMerito.setText("Orden De Mérito");
@@ -405,10 +391,6 @@ public class DialogRevisarExamen extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCalificarActionPerformed
 
-    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-
-    }//GEN-LAST:event_btnRestaurarActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -476,7 +458,6 @@ public class DialogRevisarExamen extends javax.swing.JDialog {
     private rsbuttom.RSButtonMetro btnCalificar;
     private javax.swing.JButton btnLimpiarSeleccion;
     private rsbuttom.RSButtonMetro btnOrdenMerito;
-    private rsbuttom.RSButtonMetro btnRestaurar;
     private rsbuttom.RSButtonMetro btnSalir;
     private javax.swing.JComboBox<String> cboIdExamen;
     private javax.swing.JLabel jLabel1;

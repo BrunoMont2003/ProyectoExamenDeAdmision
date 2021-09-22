@@ -9,8 +9,6 @@ package presentacion;
 import datos.ModalidadDAO;
 import entidades.Modalidad;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,20 +27,20 @@ public class DialogModalidad extends javax.swing.JDialog {
         super(FrmPrincipal.getInstancia(), true);
         initComponents();
         setLocationRelativeTo(null);
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/img/logo-unt1.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\img\\logo-unt1.png");
         md.mostrarModalidad(modelo);
         desHabilitar();
     }
 
     public void habilitar() {
-        btnActualizar.setEnabled(true);
+        btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
         btnGuardar.setEnabled(false);
         btnConsultar.setEnabled(false);
     }
 
     public void desHabilitar() {
-        btnActualizar.setEnabled(false);
+        btnModificar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(true);
         btnConsultar.setEnabled(true);
@@ -60,16 +58,16 @@ public class DialogModalidad extends javax.swing.JDialog {
 
         txtIdModalidad = new javax.swing.JTextField();
         txtNombreM = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnGuardar = new rsbuttom.RSButtonMetro();
+        btnConsultar = new rsbuttom.RSButtonMetro();
+        btnModificar = new rsbuttom.RSButtonMetro();
+        btnRestaurar = new rsbuttom.RSButtonMetro();
+        btnEliminar = new rsbuttom.RSButtonMetro();
+        btnSalir = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
-        btnConsultar = new javax.swing.JButton();
-        btnRestarurar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,84 +89,112 @@ public class DialogModalidad extends javax.swing.JDialog {
             }
         });
         getContentPane().add(txtNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 146, 226, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 551, 135));
 
-        btnGuardar.setBackground(new java.awt.Color(168, 192, 215));
-        btnGuardar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         btnGuardar.setText("Guardar");
-        btnGuardar.setEnabled(false);
+        btnGuardar.setColorBorde(null);
+        btnGuardar.setColorHover(new java.awt.Color(194, 210, 228));
+        btnGuardar.setColorNormal(new java.awt.Color(194, 224, 228));
+        btnGuardar.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnGuardar.setColorTextPressed(new java.awt.Color(0, 0, 0));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 111, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jTable1.setModel(modelo);
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 357, 480, 260));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 551, 135));
-
-        btnEliminar.setBackground(new java.awt.Color(234, 107, 107));
-        btnEliminar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 120, -1));
-
-        btnActualizar.setBackground(new java.awt.Color(168, 192, 215));
-        btnActualizar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnActualizar.setText("Modificar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 120, -1));
-
-        btnConsultar.setBackground(new java.awt.Color(168, 192, 215));
-        btnConsultar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         btnConsultar.setText("Consultar");
+        btnConsultar.setColorBorde(null);
+        btnConsultar.setColorHover(new java.awt.Color(194, 210, 228));
+        btnConsultar.setColorNormal(new java.awt.Color(194, 224, 228));
+        btnConsultar.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnConsultar.setColorTextPressed(new java.awt.Color(0, 0, 0));
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 120, -1));
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
-        btnRestarurar.setBackground(new java.awt.Color(234, 107, 107));
-        btnRestarurar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnRestarurar.setText("Restaurar");
-        btnRestarurar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setText("Modificar");
+        btnModificar.setColorBorde(null);
+        btnModificar.setColorHover(new java.awt.Color(194, 210, 228));
+        btnModificar.setColorNormal(new java.awt.Color(194, 224, 228));
+        btnModificar.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnModificar.setColorTextPressed(new java.awt.Color(0, 0, 0));
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRestarurarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRestarurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 270, 140, -1));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(230, 229, 251));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnRestaurar.setText("Restaurar");
+        btnRestaurar.setColorBorde(null);
+        btnRestaurar.setColorHover(new java.awt.Color(194, 210, 228));
+        btnRestaurar.setColorNormal(new java.awt.Color(194, 224, 228));
+        btnRestaurar.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnRestaurar.setColorTextPressed(new java.awt.Color(0, 0, 0));
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRestaurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
-        btnSalir.setBackground(new java.awt.Color(234, 107, 107));
-        btnSalir.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setColorBorde(null);
+        btnEliminar.setColorHover(new java.awt.Color(228, 171, 172));
+        btnEliminar.setColorNormal(new java.awt.Color(237, 197, 212));
+        btnEliminar.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnEliminar.setColorTextPressed(new java.awt.Color(0, 0, 0));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
         btnSalir.setText("Salir");
+        btnSalir.setColorBorde(null);
+        btnSalir.setColorHover(new java.awt.Color(228, 171, 172));
+        btnSalir.setColorNormal(new java.awt.Color(237, 197, 212));
+        btnSalir.setColorTextHover(new java.awt.Color(0, 0, 0));
+        btnSalir.setColorTextPressed(new java.awt.Color(0, 0, 0));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 92, -1));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+
+        jTable1.setModel(modelo);
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 480, 260));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 550, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void txtIdModalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdModalidadKeyTyped
+        if(txtIdModalidad.getText().length()>=7){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdModalidadKeyTyped
 
+    private void txtNombreMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMKeyTyped
+        if(txtNombreM.getText().length()>=20){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreMKeyTyped
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtIdModalidad.getText().equals("") || txtNombreM.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "NO DEJE EL CAMPO VACIO");
         } else {
@@ -182,42 +208,7 @@ public class DialogModalidad extends javax.swing.JDialog {
                 System.out.println("ERROR: " + ex.getMessage());
             }
         }
-
-
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try {
-            String idModalidad = txtIdModalidad.getText();
-            md.eliminar(idModalidad);
-            JOptionPane.showMessageDialog(null, "Se eliminó el registro");
-            md.mostrarModalidad(modelo);
-
-        } catch (SQLException ex) {
-            System.out.println("ERROR " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if (txtIdModalidad.getText().equals("") || txtNombreM.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "NO DEJE EL CAMPO VACIO");
-        } else {
-            String idModalidad = txtIdModalidad.getText();
-            String nombreM = txtNombreM.getText();
-            Modalidad x = new Modalidad(idModalidad, nombreM);
-            try {
-                md.actualizar(x);
-                md.mostrarModalidad(modelo);
-                desHabilitar();
-            } catch (SQLException ex) {
-                System.out.println("ERROR: " + ex.getMessage());
-            }
-        }
-    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         if (txtIdModalidad.getText().equals("")) {
@@ -239,30 +230,51 @@ public class DialogModalidad extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnRestarurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarurarActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtIdModalidad.getText().equals("") || txtNombreM.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "NO DEJE EL CAMPO VACIO");
+        } else {
+            String idModalidad = txtIdModalidad.getText();
+            String nombreM = txtNombreM.getText();
+            Modalidad x = new Modalidad(idModalidad, nombreM);
+            try {
+                md.actualizar(x);
+                md.mostrarModalidad(modelo);
+                desHabilitar();
+            } catch (SQLException ex) {
+                System.out.println("ERROR: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
         limpiarEntradas();
-    }//GEN-LAST:event_btnRestarurarActionPerformed
+    }//GEN-LAST:event_btnRestaurarActionPerformed
 
-    private void txtIdModalidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdModalidadKeyTyped
-        if(txtIdModalidad.getText().length()>=7){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtIdModalidadKeyTyped
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            String idModalidad = txtIdModalidad.getText();
+            md.eliminar(idModalidad);
+            JOptionPane.showMessageDialog(null, "Se eliminó el registro");
+            md.mostrarModalidad(modelo);
 
-    private void txtNombreMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMKeyTyped
-        if(txtNombreM.getText().length()>=20){
-            evt.consume();
+        } catch (SQLException ex) {
+            System.out.println("ERROR " + ex.getMessage());
         }
-    }//GEN-LAST:event_txtNombreMKeyTyped
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnRestarurar;
-    private javax.swing.JButton btnSalir;
+    private rsbuttom.RSButtonMetro btnConsultar;
+    private rsbuttom.RSButtonMetro btnEliminar;
+    private rsbuttom.RSButtonMetro btnGuardar;
+    private rsbuttom.RSButtonMetro btnModificar;
+    private rsbuttom.RSButtonMetro btnRestaurar;
+    private rsbuttom.RSButtonMetro btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

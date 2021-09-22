@@ -41,6 +41,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         super(FrmPrincipal.getInstancia(), true);
         setLocation(100, 100);
         initComponents();
+        btnGenerarReportePorParametro.setEnabled(false);
 
     }
 
@@ -58,7 +59,6 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         cboSemestre = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
-        btnLimpiarSeleccion = new javax.swing.JButton();
         txtDia = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtMes = new javax.swing.JTextField();
@@ -112,16 +112,6 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
             }
         });
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
-
-        btnLimpiarSeleccion.setBackground(new java.awt.Color(234, 107, 107));
-        btnLimpiarSeleccion.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        btnLimpiarSeleccion.setText("Restaurar");
-        btnLimpiarSeleccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarSeleccionActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnLimpiarSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 120, -1));
 
         txtDia.setEditable(false);
         txtDia.setFont(new java.awt.Font("Roboto Condensed", 1, 14)); // NOI18N
@@ -302,18 +292,6 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnLimpiarSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarSeleccionActionPerformed
-
-        txtDia.setText("");
-        txtMes.setText("");
-        txtAño.setText("");
-        txtIdExamen.setText("");
-        cboSemestre.setSelectedIndex(0);
-        cboModalidad.setSelectedIndex(0);
-        cboCarrera.setSelectedIndex(0);
-        cboSemestre.requestFocus();
-    }//GEN-LAST:event_btnLimpiarSeleccionActionPerformed
-
     private void txtDiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDiaKeyTyped
@@ -327,7 +305,14 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
     }//GEN-LAST:event_txtAñoKeyTyped
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-
+        txtDia.setText("");
+        txtMes.setText("");
+        txtAño.setText("");
+        txtIdExamen.setText("");
+        cboSemestre.setSelectedIndex(0);
+        cboModalidad.setSelectedIndex(0);
+        cboCarrera.setSelectedIndex(0);
+        cboSemestre.requestFocus();
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -348,6 +333,7 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
             carrera = CarrerasDAO.getInstancia().buscarCarrerasPorNombre(nomCarrera);
             vacantedao.setVacantes(examen, carrera.getCodigoCarrera());
             vacantedao.mostrarVacantesDeUnExamenEnUnaCarrera(modelo, examen.getIdExamen(), carrera.getCodigoCarrera());
+            btnGenerarReportePorParametro.setEnabled(true);
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -427,7 +413,6 @@ public class DialogGenerarVacantes extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGenerarReportePorParametro;
     private rsbuttom.RSButtonMetro btnGenerarVacantes;
-    private javax.swing.JButton btnLimpiarSeleccion;
     private rsbuttom.RSButtonMetro btnRestaurar;
     private rsbuttom.RSButtonMetro btnSalir;
     private javax.swing.JComboBox<String> cboCarrera;

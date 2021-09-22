@@ -17,7 +17,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import sun.awt.WindowClosingListener;
 
 /**
  *
@@ -29,7 +28,7 @@ public class GestionReportes {
         Conexion con = new Conexion();
         Connection conn = con.miConexion();
         JasperReport reporte = null;
-        String path = "src\\reportes\\reportAreas.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportAreas.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
@@ -43,7 +42,7 @@ public class GestionReportes {
         Conexion con = new Conexion();
         Connection conn = con.miConexion();
         JasperReport reporte = null;
-        String path = "src\\reportes\\reportFacultades.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportFacultades.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
@@ -56,7 +55,7 @@ public class GestionReportes {
         Conexion con = new Conexion();
         Connection conn = con.miConexion();
         JasperReport reporte = null;
-        String path = "src\\reportes\\reportCarreras.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportCarreras.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
@@ -70,7 +69,7 @@ public class GestionReportes {
         Conexion con = new Conexion();
         Connection conn = con.miConexion();
         JasperReport reporte = null;
-        String path = "src\\reportes\\reportErrores.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportErrores.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
@@ -84,7 +83,7 @@ public class GestionReportes {
         Conexion con = new Conexion();
         Connection conn = con.miConexion();
         JasperReport reporte = null;
-        String path = "src\\reportes\\reportCantidadDeErroresPorClave.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportCantidadDeErroresPorClave.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
@@ -97,7 +96,7 @@ public class GestionReportes {
         Conexion con = new Conexion();
         Connection conn = con.miConexion();
         JasperReport reporte = null;
-        String path = "src\\reportes\\reportRangoPreguntas.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportRangoPreguntas.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
         JasperViewer view = new JasperViewer(jprint, false);
@@ -113,7 +112,7 @@ public class GestionReportes {
         Map parametro = new HashMap();
         parametro.put("IDEX", idExamen);
         parametro.put("IDCAR", idCarrera);
-        String path = "src\\reportes\\reportVacantes.jasper";
+        String path = "C:\\Users\\bruno\\OneDrive\\Desktop\\UNT\\CICLO3\\TAREAS\\POO II\\Proyecto\\ProyectoUniversidad\\src\\reportes\\reportVacantes.jasper";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
         JasperViewer view = new JasperViewer(jprint, false);
